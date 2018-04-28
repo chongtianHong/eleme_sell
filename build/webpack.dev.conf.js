@@ -1,10 +1,10 @@
 'use strict'
-const utils = require('./utils')
-const webpack = require('webpack')
+const utils = require('./utils') // 工具方法
+const webpack = require('webpack') // 核心编译工具
 const config = require('../config')
-const merge = require('webpack-merge')
-const path = require('path')
-const baseWebpackConfig = require('./webpack.base.conf')
+const merge = require('webpack-merge') // 合并配置文件
+const path = require('path') // nodejs提供的一个api，表示提供一些文件、路径、操作一些方法
+const baseWebpackConfig = require('./webpack.base.conf') // webpack基础配置文件，被开发和线上的webpack配置文件所共享
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
