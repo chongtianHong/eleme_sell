@@ -26,14 +26,14 @@ module.exports = {
   },
   output: {
     path: config.build.assetsRoot,
-    filename: '[name].js',
-    publicPath: process.env.NODE_ENV === 'production'
+    filename: '[name].js', // 输出文件的名称,name对应的是entry里面的key
+    publicPath: process.env.NODE_ENV === 'production' // 请求的静态资源绝对路径
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
   },
-  resolve: {
-    extensions: ['.js', '.vue', '.json'],
-    alias: {
+  resolve: { // 关于在代码中通过require或es6或者模块的一些相关配置
+    extensions: ['.js', '.vue', '.json'], // 在require的模块路径中自动补全文件名后缀
+    alias: { // 指定别名
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
     }

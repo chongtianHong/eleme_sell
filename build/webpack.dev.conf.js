@@ -45,17 +45,19 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     }
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': require('../config/dev.env')
+    new webpack.DefinePlugin({ // 通过配置了DefinePlugin，这里面的标识就相当于全局变量，业务代码就可以直接使用配置的标识。
+      'process.env': require('../config/dev.env') // 插入适当的环境
     }),
+    // HotModule 插件在页面进行变更的时候只会重绘对应的页面模块，不会重绘整个 html 文件
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
     new webpack.NoEmitOnErrorsPlugin(),
     // https://github.com/ampedandwired/html-webpack-plugin
+    // 将 index.html 作为入口，注入 html 代码后生成 index.html文件
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: 'index.html',
-      inject: true
+      filename: 'index.html', // 生成文件
+      template: 'index.html', // 入口文件
+      inject: true // 输出的一些js和css会自动的注入到index.html里面
     }),
     // copy custom static assets
     new CopyWebpackPlugin([
