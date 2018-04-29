@@ -1,13 +1,24 @@
 'use strict'
+// 本文件，为生产环境中webpack的配置入口。
+// 同时，它也依赖于前面提到的webpack.base.conf.js、utils.js和config/index.js。
+// node自带的文件路径工具
 const path = require('path')
+// 工具函数集合
 const utils = require('./utils')
 const webpack = require('webpack')
+// 配置文件
 const config = require('../config')
+// webpack 配置合并插件
 const merge = require('webpack-merge')
+// webpack 基本配置
 const baseWebpackConfig = require('./webpack.base.conf')
+// webpack 复制文件和文件夹的插件
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+// 自动生成 html 并且注入到 .html 文件中的插件
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+// 提取css的插件
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+// webpack 优化压缩和优化 css 的插件
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
@@ -21,14 +32,20 @@ const webpackConfig = merge(baseWebpackConfig, {
       usePostCSS: true
     })
   },
+  // 是否开启 sourceMap
   devtool: config.build.productionSourceMap ? config.build.devtool : false,
   output: {
+    // 编译输出的静态资源根路径
     path: config.build.assetsRoot,
+    // 编译输出的文件名
     filename: utils.assetsPath('js/[name].[chunkhash].js'),
+    // 没有指定输出名的文件输出的文件名
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
+    // definePlugin 接收字符串插入到代码当中, 所以你需要的话可以写上 JS 的字符串
+    // 此处，插入适当的环境
     new webpack.DefinePlugin({
       'process.env': env
     }),
@@ -42,6 +59,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       parallel: true
     }),
     // extract css into its own file
+    // 提取 css
     new ExtractTextPlugin({
       filename: utils.assetsPath('css/[name].[contenthash].css'),
       // Setting the following option to `false` will not extract CSS from codesplit chunks.
@@ -52,6 +70,8 @@ const webpackConfig = merge(baseWebpackConfig, {
     }),
     // Compress extracted CSS. We are using this plugin so that possible
     // duplicated CSS from different components can be deduped.
+    // 压缩提取出来的 css
+    // 可以删除来自不同组件的冗余代码
     new OptimizeCSSPlugin({
       cssProcessorOptions: config.build.productionSourceMap
         ? { safe: true, map: { inline: false } }
@@ -60,6 +80,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
+    // 将 index.html 作为入口，注入 html 代码后生成 index.html文件
     new HtmlWebpackPlugin({
       filename: config.build.index,
       template: 'index.html',
@@ -72,6 +93,7 @@ const webpackConfig = merge(baseWebpackConfig, {
         // https://github.com/kangax/html-minifier#options-quick-reference
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+      // 必须通过 CommonsChunkPlugin一致地处理多个 chunks
       chunksSortMode: 'dependency'
     }),
     // keep module.id stable when vendor modules does not change
@@ -79,10 +101,12 @@ const webpackConfig = merge(baseWebpackConfig, {
     // enable scope hoisting
     new webpack.optimize.ModuleConcatenationPlugin(),
     // split vendor js into its own file
+    // 分割公共 js 到独立的文件
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks (module) {
         // any required modules inside node_modules are extracted to vendor
+        // node_modules中的任何所需模块都提取到vendor
         return (
           module.resource &&
           /\.js$/.test(module.resource) &&
@@ -94,6 +118,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     }),
     // extract webpack runtime and module manifest to its own file in order to
     // prevent vendor hash from being updated whenever app bundle is updated
+    // 将webpack runtime 和模块清单 提取到独立的文件，以防止当 app包更新时导致公共 jsd hash也更新
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
       minChunks: Infinity
@@ -109,6 +134,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     }),
 
     // copy custom static assets
+    // 复制静态资源
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, '../static'),
@@ -119,9 +145,12 @@ const webpackConfig = merge(baseWebpackConfig, {
   ]
 })
 
+// 开启 gzip 的情况时，给 webpack plugins添加 compression-webpack-plugin 插件
 if (config.build.productionGzip) {
+  // webpack 压缩插件
   const CompressionWebpackPlugin = require('compression-webpack-plugin')
 
+  // 向webpackconfig.plugins中加入下方的插件
   webpackConfig.plugins.push(
     new CompressionWebpackPlugin({
       asset: '[path].gz[query]',
@@ -137,6 +166,7 @@ if (config.build.productionGzip) {
   )
 }
 
+// 开启包分析的情况时， 给 webpack plugins添加 webpack-bundle-analyzer 插件
 if (config.build.bundleAnalyzerReport) {
   const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
   webpackConfig.plugins.push(new BundleAnalyzerPlugin())

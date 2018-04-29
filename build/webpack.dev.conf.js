@@ -1,13 +1,14 @@
 'use strict'
-const utils = require('./utils') // 工具方法
+// 开发环境中webpack的配置入口。
+const utils = require('./utils') // 工具函数集合
 const webpack = require('webpack') // 核心编译工具
-const config = require('../config')
-const merge = require('webpack-merge') // 合并配置文件
+const config = require('../config') // 配置文件
+const merge = require('webpack-merge') // 配置合并插件
 const path = require('path') // nodejs提供的一个api，表示提供一些文件、路径、操作一些方法
 const baseWebpackConfig = require('./webpack.base.conf') // webpack基础配置文件，被开发和线上的webpack配置文件所共享
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin') // 自动生成 html 并且注入到 .html 文件中的插件
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin') // webpack错误信息提示插件
 const portfinder = require('portfinder')
 
 const HOST = process.env.HOST

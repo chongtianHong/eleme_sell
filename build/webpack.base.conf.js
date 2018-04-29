@@ -1,9 +1,17 @@
 'use strict'
-const path = require('path')
-const utils = require('./utils')
-const config = require('../config')
+// 这个文件是开发环境和生产环境，甚至测试环境，这些环境的公共webpack配置。
+// 这个文件相当重要。
+const path = require('path') // node自带的文件路径工具
+const utils = require('./utils') // 工具函数集合
+const config = require('../config') // 配置文件
 const vueLoaderConfig = require('./vue-loader.conf')
 
+/**
+ * 获得绝对路径
+ * @method resolve
+ * @param  {String} dir 相对于本文件的路径
+ * @return {String}     绝对路径
+ */
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
@@ -25,15 +33,17 @@ module.exports = {
     app: './src/main.js' // 入口文件配置
   },
   output: {
-    path: config.build.assetsRoot,
+    path: config.build.assetsRoot, // 编译输出的静态资源根路径
     filename: '[name].js', // 输出文件的名称,name对应的是entry里面的key
+    // 正式发布环境下编译输出的上线路径的根路径
     publicPath: process.env.NODE_ENV === 'production' // 请求的静态资源绝对路径
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
   },
   resolve: { // 关于在代码中通过require或es6或者模块的一些相关配置
+    // 自动补全的扩展名
     extensions: ['.js', '.vue', '.json'], // 在require的模块路径中自动补全文件名后缀
-    alias: { // 指定别名
+    alias: { // 路径别名
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
     }
@@ -41,7 +51,7 @@ module.exports = {
   module: {
     rules: [
       ...(config.dev.useEslint ? [createLintingRule()] : []),
-      {
+      {// 审查 js 和 vue 文件
         test: /\.vue$/,
         loader: 'vue-loader',
         options: vueLoaderConfig

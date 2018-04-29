@@ -1,17 +1,39 @@
 'use strict'
-const path = require('path')
-const config = require('../config')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+// utils.js是一个被使用频率很高的文件，这个文件包含了三个工具函数：
+// 1生成静态资源的路径
+// 2生成 ExtractTextPlugin对象或loader字符串
+// 3生成 style-loader的配置
+const path = require('path') // node自带的文件路径工具
+const config = require('../config') // 配置文件
+const ExtractTextPlugin = require('extract-text-webpack-plugin') // 提取css的插件
 const packageConfig = require('../package.json')
 
+/**
+ * 生成静态资源的路径
+ * @method assertsPath
+ * @param  {String}    _path 相对于静态资源文件夹的文件路径
+ * @return {String}          静态资源完整路径
+ */
 exports.assetsPath = function (_path) {
   const assetsSubDirectory = process.env.NODE_ENV === 'production'
     ? config.build.assetsSubDirectory
     : config.dev.assetsSubDirectory
-
+  //  path.posix.join与path.join一样，不过总是以 posix 兼容的方式交互
   return path.posix.join(assetsSubDirectory, _path)
 }
 
+/**
+ * 生成处理css的loaders配置
+ * @method cssLoaders
+ * @param  {Object}   options 生成配置
+ *                            option = {
+ *                              // 是否开启 sourceMap
+ *                              sourceMap: true,
+ *                              // 是否提取css
+ *                              extract: true
+ *                            }
+ * @return {Object}           处理css的loaders配置对象
+ */
 exports.cssLoaders = function (options) {
   options = options || {}
 
@@ -29,6 +51,12 @@ exports.cssLoaders = function (options) {
     }
   }
 
+  /**
+   * 生成 ExtractTextPlugin对象或loader字符串
+   * @method generateLoaders
+   * @param  {Array}        loaders loader名称数组
+   * @return {String|Object}        ExtractTextPlugin对象或loader字符串
+   */
   // generate loader string to be used with extract text plugin
   function generateLoaders (loader, loaderOptions) {
     const loaders = options.usePostCSS ? [cssLoader, postcssLoader] : [cssLoader]
@@ -42,6 +70,8 @@ exports.cssLoaders = function (options) {
       })
     }
 
+    // extract为true时，提取css
+    // 生产环境中，默认为true
     // Extract CSS when that option is specified
     // (which is the case during production build)
     if (options.extract) {
@@ -81,7 +111,19 @@ exports.styleLoaders = function (options) {
 
   return output
 }
-
+/**
+ * 生成 style-loader的配置
+ * style-loader文档：https://github.com/webpack/style-loader
+ * @method styleLoaders
+ * @param  {Object}     options 生成配置
+ *                              option = {
+ *                                // 是否开启 sourceMap
+ *                                sourceMap: true,
+ *                                // 是否提取css
+ *                                extract: true
+ *                              }
+ * @return {Array}              style-loader的配置
+ */
 exports.createNotifierCallback = () => {
   const notifier = require('node-notifier')
 
