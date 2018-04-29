@@ -1,5 +1,5 @@
 'use strict'
-// utils.js是一个被使用频率很高的文件，这个文件包含了三个工具函数：
+// utils.js是一个工具函数集合,被使用频率很高，这个文件包含了三个工具函数：
 // 1生成静态资源的路径
 // 2生成 ExtractTextPlugin对象或loader字符串
 // 3生成 style-loader的配置
