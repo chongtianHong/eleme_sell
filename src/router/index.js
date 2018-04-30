@@ -1,11 +1,11 @@
-import Vue from 'vue'
+import Vue from 'vue';
 // 引用路由插件
-import Router from 'vue-router'
+import Router from 'vue-router';
 // 先是使用import把需要使用路由的组件引入, 需要注意的就是 from 后面需要带上'@/'
-import HelloWorld from '@/components/HelloWorld'
+import HelloWorld from '@/components/HelloWorld';
 
 // 使用路由插件
-Vue.use(Router)
+Vue.use(Router);
 
 // 需要注意的是，export default new Router 必须写在文件底部，而且后面还需要接一空行，否则无法通过 ESlint 语法验证
 // 使用路由规则
@@ -18,4 +18,4 @@ export default new Router({
       component: HelloWorld
     }
   ]
-})
+});
