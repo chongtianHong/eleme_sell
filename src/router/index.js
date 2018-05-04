@@ -3,6 +3,9 @@ import Vue from 'vue';
 import Router from 'vue-router';
 // 先是使用import把需要使用路由的组件引入, 需要注意的就是 from 后面需要带上'@/'
 import HelloWorld from '@/components/HelloWorld';
+import goods from '@/components/goods/goods';
+import seller from '@/components/seller/seller';
+import ratings from '@/components/ratings/ratings';
 
 // 使用路由插件
 Vue.use(Router);
@@ -16,6 +19,21 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: HelloWorld
+    },
+    {
+      path: '/goods',
+      name: 'goods',
+      component: goods
+    },
+    {
+      path: '/seller',
+      name: 'seller',
+      component: seller
+    },
+    {
+      path: '/ratings',
+      name: 'ratings',
+      component: ratings
     }
   ]
 });
