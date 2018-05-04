@@ -1,15 +1,26 @@
 <template>
   <div id="app">
+    <!-- 替换div class=“header”里面的内容 -->
     <v-header></v-header>
+    <!-- div class=“tab”里面的内容 -->
     <div class="tab">
-      <div class="tab-item">商品</div>
-      <div class="tab-item">评价</div>
-      <div class="tab-item">商家</div>
+      <!-- 使用 router-link 组件来导航. -->
+      <!-- 通过传入 `to` 属性指定链接. -->
+      <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
+      <div class="tab-item">
+        <router-link to="/goods">商品</router-link>
+      </div>
+      <div class="tab-item">
+        <router-link to="/ratings">评价</router-link>
+      </div>
+      <div class="tab-item">
+        <router-link to="/seller">商家</router-link>
+      </div>
     </div>
-    <div class="content">
-      I am content!
-    </div>
-    <!-- <router-view/> -->
+    <!-- 路由出口 -->
+    <!-- 路由匹配到的组件将渲染在这里 -->
+    <!-- 替换div class=“content”里面的内容 -->
+    <router-view></router-view>
   </div>
 </template>
 
