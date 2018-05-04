@@ -2,7 +2,6 @@ import Vue from 'vue';
 // 引用路由插件
 import Router from 'vue-router';
 // 先是使用import把需要使用路由的组件引入, 需要注意的就是 from 后面需要带上'@/'
-import HelloWorld from '@/components/HelloWorld';
 import goods from '@/components/goods/goods';
 import seller from '@/components/seller/seller';
 import ratings from '@/components/ratings/ratings';
