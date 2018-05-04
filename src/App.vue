@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <v-header></v-header>
     <div class="header">
       I am header!
     </div>
