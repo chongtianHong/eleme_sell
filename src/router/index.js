@@ -16,11 +16,6 @@ export default new Router({
   mode: 'history', // 若不配置 mode，就会使用默认的 hash 模式，该模式下会将路径格式化为 #! 开头。
   routes: [
     {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    },
-    {
       path: '/goods',
       name: 'goods',
       component: goods
