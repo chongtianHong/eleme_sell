@@ -1,7 +1,5 @@
 <template>
-  <div class="header">
-      商品
-  </div>
+  <div>I am goods</div>
 </template>
 
 <script type="text/ecmascript-6">
