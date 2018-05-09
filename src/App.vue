@@ -5,8 +5,8 @@
     <!-- div class=“tab”里面的内容 -->
     <div class="tab">
       <!-- 使用 router-link 组件来导航. -->
-      <!-- 通过传入 `to` 属性指定链接. -->
-      <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
+      <!-- 通过传入 'to' 属性指定链接. -->
+      <!-- <router-link> 默认会被渲染成一个 '<a>' 标签 -->
       <div class="tab-item">
         <router-link to="/goods">商品</router-link>
       </div>
