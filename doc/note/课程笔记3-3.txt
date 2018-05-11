@@ -1,0 +1,35 @@
+vue-cli项目文件介绍：
+
+一级目录：
+build和config  webpack配置相关
+node_modules文件夹：npm install 安装的依赖代码库
+src存放项目源码
+static存放第三方静态资源，里面有个.gitkeep文件，作用是当这个目录为空，也能将这个空目录提交到git上（一般目录为空的文件夹不会被提交，.git会忽略）
+
+
+文件：
+.babelrc是babel一些配置，因为我们写的代码是ES6，大部分浏览器无法自适应ES6的语法，于是需要将ES6通过babel编译成ES5。
+	// presets表示预设，babel运行时预先需要安装的一些插件
+.editorconfig是编译器的配置
+.eslintignore可以指定忽略语法检查的目录文件
+.eslintrc.js是eslint的配置文件
+.gitignore可以设置git仓库忽略的一些文件或目录
+index.html是入口html文件
+package.json是项目的配置文件
+README.md项目的描述文件
+
+
+build  //最终发布的代码存放的位置
+config   //配置目录，包括端口号等
+node_modules  //npm加载的项目依赖模块
+src  //这里是我们要开发的目录，基本上要做的事情都在这个目录里。
+static  //静态资源目录，如图片、字体等。
+package.json //项目配置文件，这个用于控制项目的依赖。使用npm加载依赖时，会按照这个文件里面描述的各个依赖模块的版本进行查找，先查找node_modules目录下是否已存在某个依赖，若不存在再去网络下载，但是不会查找本地缓存中已经下载好的。
+index.html  //项目的入口
+static/.gitkeep  //这个文件保证这个文件夹在上传到github的时候会始终存在。因为github本身会忽略掉空文件夹。
+.babelrc  // babel语法编译器的编译配置
+.editorconfig  //编辑器的配置
+.eslintignore  //忽略语法检查的目录
+.eslintrc.js  //eslint的配置文件
+.gitignore   //一些不需要上传的文件或者目录
+README.md   //项目的描述文件

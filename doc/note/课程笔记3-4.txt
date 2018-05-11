@@ -1,0 +1,56 @@
+vue-cli项目运行：
+
+从入口文件index.html看，css和js会被动态插入到该文件中。
+
+页面的入口js文件是main.js。从import App from './App'可以看到main.js是依赖APP.vue这个文件。
+
+组件文件后缀名为.vue。每个组件分为3个部分，分别是template、script和style。
+App组件，由三部分构成，<template></template>、<script></script>、<style></style>
+
+src目录下：
+asset  //放置一些图片
+components  //组件目录，用于放置一些组件
+router  //路由文件
+App.vue  //项目组件入口，可以将组件都写在里面
+main.js  //项目的核心js文件（入口文件）
+
+
+export default是vue提供的一个语法糖，可以通过一个{}来定义一个组件。例如：
+export default {
+  
+	name: 'HelloWorld',
+  
+	data () {
+    
+		return {
+      
+			msg: 'Welcome to Your Vue.js App'
+    
+		}
+  	
+	}
+
+}
+
+
+
+router目录下的index.js：先是使用import把需要使用路由的组件引入 需要注意的就是 from 后面需要带上'@/'
+例如：import HelloWorld from '@/components/HelloWorld'
+
+在创建的 router 对象中，如果不配置 mode，就会使用默认的 hash 模式，该模式下会将路径格式化为 #! 开头。
+添加 mode: 'history' 之后将使用 HTML5 history 模式，该模式下没有 # 前缀，而且可以使用 pushState 和 replaceState 来管理记录。
+
+
+<div id="app">
+  <h1>Hello App!</h1>
+  <p>
+    <!-- 使用 router-link 组件来导航. -->
+    <!-- 通过传入 `to` 属性指定链接. -->
+    <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
+    <router-link to="/foo">Go to Foo</router-link>
+    <router-link to="/bar">Go to Bar</router-link>
+  </p>
+  <!-- 路由出口 -->
+  <!-- 路由匹配到的组件将渲染在这里 -->
+  <router-view></router-view>
+</div>

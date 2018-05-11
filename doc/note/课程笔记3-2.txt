@@ -1,0 +1,13 @@
+vue-cli安装：
+
+node版本要在v4.4以上
+
+npm install -g vue-cli
+
+vue init webpack sell (完成一系列配置选项）
+
+cd sell (进入项目目录）
+
+npm install （安装项目依赖）
+
+npm run dev （运行）
