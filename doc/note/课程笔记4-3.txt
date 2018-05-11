@@ -1,0 +1,9 @@
+图标字体制作
+
+IcoMoon   https://icomoon.io
+
+打开网址，然后点击右上角的 IcoMoon App
+跳转页面后点击Import Icons，导入resource里面svg目录下的所有文件。
+
+
+制作完将fonts目录下的所有文件和style.css拷贝到项目中使用

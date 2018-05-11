@@ -1,0 +1,3 @@
+项目资源准备
+
+介绍了resource目录下的psd和img资源
