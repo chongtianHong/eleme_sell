@@ -1,0 +1,5 @@
+对比 angular react
+
+1 vue.js更轻量，gzip大小只有20k+。angular 56k，react 44k
+2 vue.js更容易上手，学习曲线平稳。angular学习成本高，依赖注入概念等，对前端不友好。react具有jsx语法。
+3 吸取两家之长，借鉴了angular的指令（v-show，v-hide）和react的组件化（把一个页面抽象成一颗组件树，组件具有完整的生命周期）。vue有自己特有的一个计算属性、
