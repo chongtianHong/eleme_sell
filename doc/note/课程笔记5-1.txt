@@ -1,0 +1,15 @@
+组件拆分（上）
+
+把整个页面看成是app.vue的大组件
+
+header组件
+nav导航组件：包括商品，评论和商家三个组件。三个区块的切换基于vue.router来实现。
+
+在static目录下引入css目录，里面包含reset.css文件。
+
+
+ESlint是es6代码风格检查工具。如果要修改检查风格，则到.eslintrc.js中的rules里面去修改。
+
+main.js里面有这句话：/* eslint-disable no-new */ 单独给这行代码添加这行注释，可以跳过该校验
+ESlint里面规定如果在js要使用new关键字，一定要赋值给某一个变量。而使用vue实例化是不需要赋值的。
+

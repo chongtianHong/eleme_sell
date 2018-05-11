@@ -1,0 +1,26 @@
+vue-router（上）
+
+vue-router官方文档：https://router.vuejs.org/zh-cn/installation.html
+vue-router的引入，看文档。import VueRouter from 'vue-router'
+
+局部注册组件的方式
+var Child = {
+  template: '<div>A custom component!</div>'
+}
+new Vue({
+  // ...
+  components: {
+    // <my-component> 将只在父模板可用
+    'my-component': Child
+  }
+})
+
+
+新建组件、组件导出：
+export default {
+  name: 'goods'
+};
+
+
+配置路由在router/index.js里面配置。
+需要使用import把需要使用路由的组件引入, 需要注意的就是 from 后面需要带上'@/'

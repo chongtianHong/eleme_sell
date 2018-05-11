@@ -1,0 +1,12 @@
+组件拆分（中）
+
+先在app.vue里面创建3个div，分别是header，tab和content。
+
+然后编写header组件、tab组件和content组件，然后将app.vue里面对应的div替换成对应的组件。
+
+其中：
+<script type="text/ecmascript-6"></script>和<style lang="stylus" rel="stylesheet/styles"></style>
+声明的type是为了指示编辑器用对应的语法来解析这部分的代码而不会认为是错误。
+
+如果需要使用components里面的组件，需要在app.vue里面注册。
+同时，对应的组件里面也要对外暴露。

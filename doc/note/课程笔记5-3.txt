@@ -1,0 +1,21 @@
+组件拆分（下）
+
+注册了header以后就能在标签中使用<header>
+然而html5中已有语义化header标签，冲突了，所以将app.vue里面component里面注册的组件key改为v-header。
+export default {
+  name: 'App',
+  components: {
+    'v-header': header
+  }
+};
+
+
+tab导航商品、评价和商家三等分，于是使用flexbox布局。在app.vue里面写样式。style要定义stylus属性，否则ide会报错。
+高度和行高看设计稿，由于移动端的设计都是按两倍大小设计的，则实际设置的像素应该是设计稿宽度/2。
+
+
+在浏览器中看具体样式，看到有兼容性写法，这部分是由于vue-loader依赖一个叫做postcss的插件，这个插件会自动帮我们抹平css兼容问题。
+
+点击按钮实现组件切换则使用v-router。
+
+
