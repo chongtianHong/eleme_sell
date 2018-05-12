@@ -51,5 +51,8 @@ export default {
     color: rgb(77, 85, 93);
     display: block;
   }
+  a.router-link-active{
+    color: rgb(240, 20, 20);
+  }
 }
 </style>
