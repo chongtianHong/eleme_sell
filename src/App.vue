@@ -33,6 +33,9 @@ export default {
       seller: {}
     };
   },
+  created () {
+
+  },
   components: {
     'v-header': header
   }
