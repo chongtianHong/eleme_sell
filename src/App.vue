@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import header from './components/header/header.vue';
+import header from '@/components/header/header.vue';
 export default {
   name: 'App',
   components: {
@@ -45,6 +45,11 @@ export default {
       text-align: center;
       flex: 1;
     }
+  }
+  a {
+    font-size: 14px;
+    color: rgb(77, 85, 93);
+    display: block;
   }
 }
 </style>
