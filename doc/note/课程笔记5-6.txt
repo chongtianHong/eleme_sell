@@ -1,0 +1,15 @@
+像素border实现
+
+.tab设置border-bottom: 1px solid rgba(7, 17, 27, 0.1);
+在移动端显示的是2px，和设备的DPR有关。这个视频就是为了解决这个问题。
+通过设置mixin等实现。移动端真正显示1像素。
+主要是利用伪类和缩放来实现。
+(比较复杂，并没有实现)
+
+
+如何在用PC开发的时候用手机实时预览:https://blog.csdn.net/qq_39894133/article/details/78992933
+1.window下开发打开ipconfig 不同开发环境输入命令不同（ifconfig）
+2.找到ip地址 将http://localhost替换为ip地址（http://192.168.8.36）例如：http://192.168.8.36:8080/index.html
+3.复制地址到草料二维码网站（地址：http://cli.im/）  扫描生成的二维码即可
+!!!需要保证手机和电脑连接同一个区域网才ok （一般手机和电脑是同一个区域网 不需要重新设置）
+
