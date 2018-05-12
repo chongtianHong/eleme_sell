@@ -4,9 +4,11 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import VueRouter from 'vue-router';
+import VueResource from 'vue-resource';
 
 Vue.config.productionTip = false;
 Vue.use(VueRouter); // 安装路由插件
+Vue.use(VueResource); // 安装vue-resource插件
 // 加载路由规则
 /* eslint-disable no-new */
 new Vue({
