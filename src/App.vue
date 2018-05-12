@@ -34,8 +34,8 @@ export default {
     };
   },
   created () {
-    this.$http.get('/api/seller').then(() => {
-      
+    this.$http.get('/api/seller').then((response) => {
+
     });
   },
   components: {
