@@ -24,7 +24,7 @@
   </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
 import header from '@/components/header/header.vue';
 export default {
   name: 'App',
@@ -34,7 +34,9 @@ export default {
     };
   },
   created () {
-
+    this.$http.get('/api/seller').then(() => {
+      
+    });
   },
   components: {
     'v-header': header
