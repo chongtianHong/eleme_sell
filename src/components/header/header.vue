@@ -25,8 +25,7 @@
       </div>
     </div>
     <div class="bulletin-wrapper">
-      <span class="bulletin-title"></span>
-      <span class="bulletin-text">{{seller.bulletin}}</span>
+      <span class="bulletin-title"></span><span class="bulletin-text">{{seller.bulletin}}</span>
       <i class="icon-keyboard_arrow_right"> > </i>
     </div>
   </div>
@@ -140,7 +139,34 @@ export default {
     }
   }
   .bulletin-wrapper{
-
+    position: relative;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 22px 0 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: rgba(7,17,27,0.2);
+    .bulletin-title{
+      display: inline-block;
+      vertical-align: top;
+      margin-top: 10px;
+      width: 22px;
+      height: 12px;
+      background: url(bulletin@2x.1.png) no-repeat;
+      background-size: cover;
+    }
+    .bulletin-text{
+      font-size: 10px;
+      margin: 0 4px;
+    }
+    .icon-keyboard_arrow_right{
+        position: absolute;
+        right: 12px;
+        top: 8px;
+        font-size: 10px;
+        line-height: 15px;
+    }
   }
 }
 </style>
