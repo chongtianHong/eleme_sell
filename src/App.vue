@@ -26,6 +26,7 @@
 
 <script type="text/ecmascript-6">
 import header from '@/components/header/header.vue';
+const ERR_OK = 0;
 export default {
   name: 'App',
   data () {
@@ -35,7 +36,11 @@ export default {
   },
   created () {
     this.$http.get('/api/seller').then((response) => {
-
+      response = response.body;
+      if (response.errno === ERR_OK) {
+        this.seller = response.data;
+        //console.log(this.seller);
+      }
     });
   },
   components: {
