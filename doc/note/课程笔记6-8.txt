@@ -1,0 +1,33 @@
+外部组件（6）
+
+这部分将给header加背景，背景实际上是avatar这张图片，且有一个模糊效果。
+
+实现方法：通过设置一个img标签，设置它的外层的容器backgroun，设置一个filter:blur(10px)。
+想要将背景设置在容器的底部，则将包含img的外层容器设置为absolute，z-index: -1;宽高撑满header的区域即可。
+
+
+根据思路，开始写结构：
+    <div class="background">
+      <img :src="seller.avatar" width="100%" height="100%"/>
+    </div>
+background和content-wrapper、bulletin-wrapper都是同级的。
+
+开始写样式：
+父级元素header设置position: relative；
+.background{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; // 继承父级元素header的宽
+    height: 100%; // 继承父级元素header的高
+    z-index: -1;
+}
+
+实现了背景图之后，实现模糊效果，通过blur实现，通过给background增加一个filter：
+filter: blur(10px);
+同时，给父级元素header设置背景颜色：
+background: rgba(7,17,27,0.5);
+
+
+已经完成外部组件的样式效果。
+下一小节将开发内部弹层的效果。
