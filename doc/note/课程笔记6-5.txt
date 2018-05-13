@@ -1,0 +1,67 @@
+外部组件（3）
+
+title写完了可以写description的样式。
+发现description和下面的supports有间距，因此要设置margin-bottom值：
+.description{
+        margin-bottom: 10px;
+        font-size: 12px;
+        line-height: 12px;
+}
+
+
+发现头像avatar和左边的内容content不是顶部对齐，
+因此要对avatar设置vertical-align: top;
+
+发现avatar有一个2px的圆角属性，因此对avatar下面的img标签设置样式：
+border-radius: 2px;
+
+
+最后写supports部分（比较复杂）
+首先support左边是一张图片，减、折、保、特、票
+右边是文字描述。
+
+这些图标是根据后端返回的数据的不同而对应显示的。
+先给support写样式。
+.support{
+        .icon{
+          display: inline-block;
+          width: 12px;
+          height: 12px;
+          vertical-align: top; // 文字和图片顶部对齐
+          margin-right: 4px;
+          background-repeat: no-repeat;
+          background-size: cover !important;
+	}
+        .text{
+          font-size: 10px;
+          line-height: 12px;
+        }
+}
+由于icon的background是根据后端返回的数据决定的，因此要通过设置不同的类名来实现。
+.support{
+        .decrease{
+          background: url("decrease_1@2x.png");
+        }
+        .discount{
+          background: url("discount_1@2x.png");
+        }
+        .special{
+          background: url("special_1@2x.png");
+        }
+        .invoice{
+          background: url("invoice_1@2x.png");
+        }
+        .guarantee{
+          background: url("guarantee_1@2x.png");
+        }
+      }
+写完class以后，需要将数据与class对应起来。所以需要给icon的span标签动态绑定一个class。即：
+<span class="icon" :class="classMap[seller.supports[0].type]"></span>
+通过设置：
+created () {
+    this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
+}
+从而实现type和class名的映射。
+
+
+图片和文字顶部对齐，则对图片设置vertical-align: top;
