@@ -1,0 +1,33 @@
+外部组件（4）
+
+接下来写header的浮层入口。外卖01_商品页_spec.png中的header中content-wrapper右下角的"5个"浮层入口。
+
+可以看到浮层入口采用的是绝对定位，定位在右下角。
+<div v-if="seller.supports" class="support-count">
+        <span class="count">{{seller.supports.length}}个</span>
+        <i class="icon-keyboard_arrow_right"> > </i>
+</div>
+
+写完布局开始写样式：
+.support-count{
+      position: absolute;
+      right: 12px;
+      bottom: 14px;
+      padding: 0px 8px;
+      height: 24px;
+      line-height:24px;
+      border-radius: 14px;
+      background: rgba(0,0,0,0.2);
+      text-align: center;
+      .count{
+        font-size: 10px;
+        line-height:12px;
+        margin-right: 2px;
+      }
+      .icon-keyboard_arrow_right{
+        margin-left: 2px;
+        font-size: 10px;
+      }
+}
+
+写完浮层入口的样式，下一节将写header的背景。
