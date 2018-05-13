@@ -1,4 +1,18 @@
-<template>
+外部组件（1）
+
+开发header组件。
+
+已经从后端api获得seller对象，接下来需要将seller对象传递给header组件。
+
+
+v-bind可以简写为:，则有
+<v-header :seller="seller"></v-header>
+seller对象通过props属性传递给header组件。
+<v-header v-bind:子组件的值="父组件的属性"></v-header>
+可以用 v-bind 绑定动态 Props 到父组件的数据。每当父组件的数据变化时，也会传导给子组件
+
+
+将header分为上下两个部分，分别是内容块（左边为头像，右边为内容）和公告块
   <div class="header">
     <div class="content-wrapper">
       <div class="avatar">
@@ -10,7 +24,7 @@
           <span class="name">{{seller.name}}</span>
         </div>
         <div class="description">
-          {{seller.description}}/{{seller.deliveryTime}}鍒嗛挓閫佽揪
+          {{seller.description}}/{{seller.deliveryTime}}分钟送达
         </div>
         <div v-if="seller.supports" class="supports">
           <span class="icon"></span>
@@ -22,20 +36,15 @@
     </div>
     <div class="bulletin-wrapper"></div>
   </div>
-</template>
 
-<script type="text/ecmascript-6">
-export default {
-  name: 'header',
-  props: {
-    seller: {
-      type: Object
-    }
-  }
-};
-</script>
 
-<style lang="stylus" rel="stylesheet/styles">
+<div v-if="seller.supports" class="supports">用到v-if的原因是，
+ajax请求是一个异步过程，当请求数据未返回时，seller是一个空对象，
+因此seller.supports为undefined，所以会报错。
+通过判断当seller.supports存在时才开始渲染，避免报错问题。
+
+
+布局写好了接下来开始写样式。
 .header{
   color:#fff;
   background: #000;
@@ -49,4 +58,3 @@ export default {
     }
   }
 }
-</style>

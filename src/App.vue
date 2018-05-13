@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- 替换div class=“header”里面的内容 -->
-    <v-header></v-header>
+    <v-header :seller="seller"></v-header>
     <!-- div class=“tab”里面的内容 -->
     <div class="tab">
       <!-- 使用 router-link 组件来导航. -->
