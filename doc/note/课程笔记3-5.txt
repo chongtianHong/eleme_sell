@@ -2,7 +2,7 @@ webpack打包（上）：
 
 webpack是当前最火的前端构建工具，可以把各种各样的前端资源编译打包最后输出js、css文件等
 
-可以看到运行的页面有一个html文档和app.js文件。
+可以看到运行的页面有一个html文档和app.js文件。在开发者工具source部分看。
 而观察源码发现并没有app.js文档，而index.html没有引入任何资源，产生这一切的原因，是因为webpack的编译。
 
 
@@ -10,8 +10,6 @@ webpack是当前最火的前端构建工具，可以把各种各样的前端资源编译打包最后输出js、css
 
 
 首先从package.json开始分析：
-
-
 "scripts": {
     
 	"dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
@@ -25,4 +23,4 @@ webpack是当前最火的前端构建工具，可以把各种各样的前端资源编译打包最后输出js、css
 },
 
 
-分析build目录下的webpack.dev.conf.js
+然后分析build目录下的webpack.dev.conf.js

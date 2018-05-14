@@ -1,6 +1,7 @@
 vue-cli项目运行：
 
 从入口文件index.html看，css和js会被动态插入到该文件中。
+build目录  //最终发布的代码存放的位置
 
 页面的入口js文件是main.js。从import App from './App'可以看到main.js是依赖APP.vue这个文件。
 
@@ -12,14 +13,14 @@ asset  //放置一些图片
 components  //组件目录，用于放置一些组件
 router  //路由文件
 App.vue  //项目组件入口，可以将组件都写在里面
-main.js  //项目的核心js文件（入口文件）
+main.js  //项目的核心js文件（入口js文件）
 
 
 export default是vue提供的一个语法糖，可以通过一个{}来定义一个组件。例如：
 export default {
   
 	name: 'HelloWorld',
-  
+  // 组件名称
 	data () {
     
 		return {
@@ -33,14 +34,15 @@ export default {
 }
 
 
-
 router目录下的index.js：先是使用import把需要使用路由的组件引入 需要注意的就是 from 后面需要带上'@/'
 例如：import HelloWorld from '@/components/HelloWorld'
+
 
 在创建的 router 对象中，如果不配置 mode，就会使用默认的 hash 模式，该模式下会将路径格式化为 #! 开头。
 添加 mode: 'history' 之后将使用 HTML5 history 模式，该模式下没有 # 前缀，而且可以使用 pushState 和 replaceState 来管理记录。
 
 
+App.vue中：
 <div id="app">
   <h1>Hello App!</h1>
   <p>

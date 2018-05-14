@@ -2,9 +2,14 @@ webpack打包（中）：
 
 
 webpack.base.conf.js文件中：制定一些webpack的基础配置
+entry: {
+    app: './src/main.js' // 入口文件配置
+  },
 ouput中的：
 publicPath表示请求的静态资源绝对路径
+filename: '[name].js', // 输出文件的名称,name对应的是entry里面的key
 filename输出文件的名称，name对应的是entry里面的key，所以最终生成的文件是app.js
+
 
 resolve关于在代码中通过require或es6或者模块的一些相关配置
 extensions在require的模块路径中自动补全文件名后缀
