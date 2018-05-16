@@ -41,5 +41,14 @@ data () {
 
 现在默认是隐藏浮层，需求是当点击“5个”按钮（.support-count）或公告栏（.bulletin-wrapper），则会弹出浮层。
 因此需要对这两个层添加click事件。
-<div v-if="seller.supports" class="support-count" @click="showDetal">
-<div class="bulletin-wrapper" @click="showDetal">
+<div v-if="seller.supports" class="support-count" @click="showDetail">
+<div class="bulletin-wrapper" @click="showDetail">
+因此需要给vue实例添加一个showDetal方法。
+ methods: {
+    showDetail () {
+      this.detailShow = true;
+    }
+  },
+
+
+以上为层添加了点击展示的功能，之后将为层添加内容。
