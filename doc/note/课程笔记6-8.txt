@@ -28,6 +28,7 @@ filter: blur(10px);
 同时，给父级元素header设置背景颜色：
 background: rgba(7,17,27,0.5);
 
+由于设置了blur会对tab的div区域有影响，因此要对header设置overflow:hidden属性。
 
 已经完成外部组件的样式效果。
 下一小节将开发内部弹层的效果。
