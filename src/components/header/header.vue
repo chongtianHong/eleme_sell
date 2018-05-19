@@ -65,6 +65,17 @@ export default {
 </script>
 
 <style lang="stylus" rel="stylesheet/styles">
+.clearfix{
+  display: inline-block;
+  &:after{
+    display: block;
+    content: ".";
+    height: 0;
+    line-height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}
 .header{
   position: relative;
   color:#fff;
@@ -208,6 +219,9 @@ export default {
     overflow: auto; // 若设置为hidden，则当内容高度超出屏幕高度时不能滚动
     background: rgba(7,17,27,0.8);
     // filter: blur(10px);
+  }
+  .detail-wrapper{ // 外层容器
+    min-height: 100%;
   }
 }
 </style>
