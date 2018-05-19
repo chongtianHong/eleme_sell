@@ -30,7 +30,7 @@ export default {
         display: inline-block;
         background-repeat: no-repeat
     }
-    &.star-48{ 
+    &.star-48{ //与star同级
 
     }
     &.star-36{
