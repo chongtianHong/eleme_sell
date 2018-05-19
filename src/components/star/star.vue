@@ -26,11 +26,11 @@ export default {
 <style lang="stylus" rel="stylesheet/styles">
 .star{
     font-size: 0;
-    .star-item{
+    .star-item{ // 表示每个span的基础class
         display: inline-block;
         background-repeat: no-repeat
     }
-    &.star-48{
+    &.star-48{ 
 
     }
     &.star-36{
