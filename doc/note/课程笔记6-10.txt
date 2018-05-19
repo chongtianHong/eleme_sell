@@ -1,0 +1,23 @@
+详情弹层页（2）- 实现弹出层
+
+接下来将为浮层添加内容。
+
+在写布局之前，首先了解一下什么是sticky footer。
+打开链接：http://www.w3cplus.com/css3/css-secrets/sticky-footers.html
+它可以概括如下：如果页面内容不够长的时候，页脚块粘贴在视窗底部；
+如果内容足够长时，页脚块会被内容向下推送。
+
+
+解决这类问题，Flexbox是最完美的方案。
+我们只需要几行CSS代码就可以完美的实现，而且不需要一些奇怪的计算或添加额外的HTML元素。
+重点是：使用flex弹性盒模型布局，页眉和页脚设置高度
+在页头和页脚设置高度，但主题内容的高度自动伸缩的来适配剩余空间。可以在<main>上设置flex值=1.
+父级元素设置display: flex; flex-flow: column; min-height: 100vh;
+
+项目中使用的方法是：在detail里面定义两个层，分别是存放内容的容器detail-wrapper（需要清除浮动）和定在视窗底部的层detail-close（关闭按钮）
+<div v-show="detailShow" class="detail">
+      <div class="detail-wrapper clearfix">
+        <div class="detail-main"></div>
+      </div>
+      <div class="detail-close"></div>
+</div>
