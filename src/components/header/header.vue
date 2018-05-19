@@ -34,7 +34,7 @@
     <div v-show="detailShow" class="detail">
       <div class="detail-wrapper clearfix">
         <div class="detail-main">
-          
+          <h1 class="name">{{seller.name}}</h1>
         </div>
       </div>
       <div class="detail-close" @click="toggleDetail">×</div>
@@ -223,9 +223,16 @@ export default {
     // filter: blur(10px);
     .detail-wrapper{ // 外层容器
       min-height: 100%;
+      width: 100%;
       .detail-main{
         margin-top: 64px;
         padding-bottom: 64px; // 固定套路
+        .name{
+          font-size: 16px;
+          font-weight 700;
+          line-height: 16px;
+          text-align: center;
+        }
       }
     }
     .detail-close{ // 固定套路
