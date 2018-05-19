@@ -19,12 +19,12 @@
           </span>
         </div>
       </div>
-      <div v-if="seller.supports" class="support-count" @click="showDetail">
+      <div v-if="seller.supports" class="support-count" @click="toggleDetail">
         <span class="count">{{seller.supports.length}}个</span>
         <i class="icon-keyboard_arrow_right"> > </i>
       </div>
     </div>
-    <div class="bulletin-wrapper" @click="showDetail">
+    <div class="bulletin-wrapper" @click="toggleDetail">
       <span class="bulletin-title"></span><span class="bulletin-text">{{seller.bulletin}}</span>
       <i class="icon-keyboard_arrow_right"> > </i>
     </div>
@@ -33,9 +33,11 @@
     </div>
     <div v-show="detailShow" class="detail">
       <div class="detail-wrapper clearfix">
-        <div class="detail-main"></div>
+        <div class="detail-main">
+          
+        </div>
       </div>
-      <div class="detail-close"></div>
+      <div class="detail-close" @click="toggleDetail">×</div>
     </div>
   </div>
 </template>
@@ -54,8 +56,8 @@ export default {
     };
   },
   methods: {
-    showDetail () {
-      this.detailShow = true;
+    toggleDetail () {
+      this.detailShow = !this.detailShow;
     }
   },
   created () {
@@ -219,9 +221,22 @@ export default {
     overflow: auto; // 若设置为hidden，则当内容高度超出屏幕高度时不能滚动
     background: rgba(7,17,27,0.8);
     // filter: blur(10px);
-  }
-  .detail-wrapper{ // 外层容器
-    min-height: 100%;
+    .detail-wrapper{ // 外层容器
+      min-height: 100%;
+      .detail-main{
+        margin-top: 64px;
+        padding-bottom: 64px; // 固定套路
+      }
+    }
+    .detail-close{ // 固定套路
+      position: relative;
+      width: 32px;
+      height: 32px;
+      margin: -64px auto 0 auto;
+      clear: both;
+      font-size: 32px;
+      text-align: center;
+    }
   }
 }
 </style>

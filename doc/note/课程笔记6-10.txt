@@ -2,7 +2,7 @@
 
 接下来将为浮层添加内容。
 
-在写布局之前，首先了解一下什么是sticky footer。
+在写布局之前，首先了解一下什么是sticky footers。
 打开链接：http://www.w3cplus.com/css3/css-secrets/sticky-footers.html
 它可以概括如下：如果页面内容不够长的时候，页脚块粘贴在视窗底部；
 如果内容足够长时，页脚块会被内容向下推送。
@@ -19,5 +19,46 @@
       <div class="detail-wrapper clearfix">
         <div class="detail-main"></div>
       </div>
-      <div class="detail-close"></div>
+      <div class="detail-close">X</div>
 </div>
+接下来可以开始写样式。
+
+clearfix是比较通用的样式
+.clearfix{
+  display: inline-block;
+  &:after{
+    display: block;
+    content: ".";
+    height: 0;
+    line-height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}
+
+detail-wrapper实际上是一个外层容器，其高度时随着其内容的高度而增加的。而最小高度应该是和视窗高度一样高的。
+因此设置
+.detail-wrapper{ // 外层容器
+    min-height: 100%;
+  }
+现在写detail-main里面的样式，查看设计稿发现，需要设置一个magin-top（非sticky-foot必须的）和padding-bottom（sticky-foot必须的）：
+.detail-main{
+      margin-top: 64px;
+      padding-bottom: 64px;
+    }
+使用padding-bottom为×撑开高度，使得×不会覆盖在文字上方。
+
+detail-close实际上是一个×按钮。
+    .detail-close{ // 固定套路
+      position: relative;
+      width: 32px;
+      height: 32px;
+      margin: -64px auto 0 auto;
+      clear: both;
+      font-size: 32px;
+    }
+
+以上则完成了css sticky-footers的布局，如果页面内容不够长的时候，页脚块粘贴在视窗底部；
+如果内容足够长时，页脚块会被内容向下推送。
+
+为×添加点击事件，点击时，关闭浮层。
