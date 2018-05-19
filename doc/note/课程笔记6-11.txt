@@ -1,0 +1,27 @@
+详情弹层页（3）
+
+上一节完成了css sticky-footers的布局，如果页面内容不够长的时候，页脚块粘贴在视窗底部；
+如果内容足够长时，页脚块会被内容向下推送。
+
+接下来写内容部分。即填充detail-main区块。
+包含了标题部分、评星、副标题等。
+
+先写标题部分：
+<div class="detail-main">
+          <h1 class="name">{{seller.name}}</h1>
+</div>
+接下来根据设计稿（记得设计稿中的像素值要除以2），为其写样式：
+先给detail-wrapper写宽度，设置为100%。
+.name{
+          font-size: 16px;
+          font-weight 700;
+          line-height: 16px;
+          text-align: center;
+        }
+
+接下来写评星部分，在data.json里面看到，seller.score=4.2；
+
+发现星星组件在评价页、浮层都有使用，因此可以用组件的形式实现，实现复用。
+接下来则开始实现星星组件：
+
+
