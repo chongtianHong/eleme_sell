@@ -31,7 +31,10 @@ export default {
         background-repeat: no-repeat
     }
     &.star-48{ //与star同级
-
+        .star-item{
+            width: 20px;
+            height: 20px;
+        }
     }
     &.star-36{
         
