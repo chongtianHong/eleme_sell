@@ -1,0 +1,39 @@
+详情弹层页（3）
+
+接上一节的内容
+
+接下来开始写样式：
+.star{
+    font-size: 0;
+    .star-item{ // 表示每个span的基础class
+        display: inline-block;
+        background-repeat: no-repeat
+    }
+    &.star-48{} //与star同级
+    &.star-36{}
+    &.star-24{}
+}
+为 &.star-48{}、&.star-36{}、 &.star-24{}里面的.star-item设置样式。
+打开设计稿，看到start48的尺寸是40×38，设置为20px×20px？
+每个星星之间的横向间距是22px
+&.star-48{ //与star同级
+        .star-item{
+            width: 20px;
+            height: 20px;
+            margin-right: 22px;
+            background-size: 20px 20px;
+        }
+    }
+由于每种size的星星都有不同的3个状态，on、half和off，这是由itemClass来决定的，
+因此给这三种不同的状态写样式。
+&.star-48{ //与star同级
+        &.on{
+            background: url('star48_on@2x.png');
+        }
+        &.half{
+            background: url('star48_half@2x.png');
+        }
+        &.off{
+            background: url('star48_off@2x.png');
+        }
+    }
