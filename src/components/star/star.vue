@@ -34,6 +34,20 @@ export default {
         .star-item{
             width: 20px;
             height: 20px;
+            margin-right: 22px;
+            background-size: 20px 20px;
+        }
+        &:last-child{
+            margin-right: 0;
+        }
+        &.on{
+            background: url('star48_on@2x.png');
+        }
+        &.half{
+            background: url('star48_half@2x.png');
+        }
+        &.off{
+            background: url('star48_off@2x.png');
         }
     }
     &.star-36{
