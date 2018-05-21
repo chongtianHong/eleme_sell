@@ -44,7 +44,8 @@
 </template>
 
 <script type="text/ecmascript-6">
-import star from "@/components/star/star.vue";
+import star from '../star/star';
+
 export default {
   name: 'header',
   props: {

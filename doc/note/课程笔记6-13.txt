@@ -4,5 +4,18 @@
 
 
 写完代码之后，可以将星星组件用起来
+在要调用star组件的.vue文件的<script>标签里面引入star组件，
+这里是在header.vue文件里面引用star组件，所以在header.vue文件的<script>标签的开头引入star.vue文件
 
-回到header组件。
+回到header组件。在里面引用star组件。
+import star from "@/components/star/star.vue";
+同时要对其进行注册：
+components: {
+    star
+  }
+
+vue文档规定使用v-for后最好给它绑定一个key,所以再写个:key="your codes"即可,如：
+<span v-for="(itemClass,index) in itemClasses" :class="itemClass" class="star-item" :key="index"></span>
+
+strings must use singlequote
+字符串必须使用单引号

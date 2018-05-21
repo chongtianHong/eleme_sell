@@ -1,6 +1,6 @@
 <template>
     <div class="star" :class="starType">
-        <span v-for="itemClass in itemClasses" :class="itemClass" class="star-item" track-by="$index"></span>
+        <span v-for="(itemClass,index) in itemClasses" :class="itemClass" class="star-item" :key="index"></span>
     </div>
 </template>
 
@@ -10,7 +10,6 @@ const CLS_ON = "on";
 const CLS_HALF = "half";
 const CLS_OFF = "off";
 export default {
-    name: 'star',
     props: { // 从外层接收两个参数，size和score。
         size: {
             type: Number
@@ -28,13 +27,13 @@ export default {
             let score = Math.floor(this.score * 2) / 2;
             let hasDecimal = score % 1 !== 0;
             let integer = Math.floor(score);
-            for(let i=0; i < integer;i++){
+            for (let i=0; i < integer; i++){
                 result.push(CLS_ON);
             }
-            if(hasDecimal){
+            if (hasDecimal){
                 result.push(CLS_HALF);
             }
-            while(result.length<LENGTH){
+            while (result.length < LENGTH){
                 result.push(CLS_OFF);
             }
             return result;
