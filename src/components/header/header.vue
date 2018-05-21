@@ -35,6 +35,7 @@
       <div class="detail-wrapper clearfix">
         <div class="detail-main">
           <h1 class="name">{{seller.name}}</h1>
+          <star :score="seller.score" :size="48"></star>
         </div>
       </div>
       <div class="detail-close" @click="toggleDetail">×</div>
