@@ -43,7 +43,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-import star from "@/components/star/star.vue"
+import star from "@/components/star/star.vue";
 export default {
   name: 'header',
   props: {
@@ -63,6 +63,9 @@ export default {
   },
   created () {
     this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
+  },
+  components: {
+    star
   }
 };
 </script>
