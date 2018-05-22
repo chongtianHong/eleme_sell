@@ -19,3 +19,17 @@ vue文档规定使用v-for后最好给它绑定一个key,所以再写个:key="your codes"即可,如：
 
 strings must use singlequote
 字符串必须使用单引号
+
+由于vue版本不一样，教程里面同样的代码在本项目中无法实现，暂时无法解决。（评星功能暂时无法实现）
+
+接下来给星星组件写样式，外层用一个class名为star-wrapper的div包装
+.star-wrapper{
+          margin-top: 18px;
+          padding: 2px 0;
+          text-align: center;
+        }
+
+接下来，写其他部分的样式。
+首先写浮层里面两个小标题的样式：
+中间是一个标题，左右有两条自适应的线，文字居中。
+用flex布局。下一节完成。
