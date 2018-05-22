@@ -19,7 +19,7 @@ vue文档规定使用v-for后最好给它绑定一个key,所以再写个:key="your codes"即可,如：
 
 strings must use singlequote
 字符串必须使用单引号
-
+代码必须严格符合eslint的语法规则，否则会报错。
 
 接下来给星星组件写样式，外层用一个class名为star-wrapper的div包装
 .star-wrapper{
