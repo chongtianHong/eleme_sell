@@ -58,15 +58,15 @@ export default {
         &:last-child{
             margin-right: 0;
         }
-        & .on{
+        .on{
             background: url('star48_on@2x.png');
             background-size: cover;
         }
-        & .half{
+        .half{
             background: url('star48_half@2x.png');
             background-size: cover;
         }
-        & .off{
+        .off{
             background: url('star48_off@2x.png');
             background-size: cover;
         }
@@ -80,15 +80,15 @@ export default {
         &:last-child{
             margin-right: 0;
         }
-        & .on{
+        .on{
             background: url('star36_on@2x.png');
             background-size: cover;
         }
-        & .half{
+        .half{
             background: url('star36_half@2x.png');
             background-size: cover;
         }
-        & .off{
+        .off{
             background: url('star36_off@2x.png');
             background-size: cover;
         }
@@ -102,15 +102,15 @@ export default {
         &:last-child{
             margin-right: 0;
         }
-        & .on{
+        .on{
             background: url('star24_on@2x.png');
             background-size: cover;
         }
-        & .half{
+        .half{
             background: url('star24_half@2x.png');
             background-size: cover;
         }
-        & .off{
+        .off{
             background: url('star24_off@2x.png');
             background-size: cover;
         }
