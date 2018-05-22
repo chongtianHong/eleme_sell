@@ -10,35 +10,35 @@ const CLS_ON = 'on';
 const CLS_HALF = 'half';
 const CLS_OFF = 'off';
 export default {
-    props: { // 从外层接收两个参数，size和score。
-        size: {
-            type: Number
-        },
-        score: {
-            type: Number
-        }
+  props: { // 从外层接收两个参数，size和score。
+    size: {
+      type: Number
     },
-    computed: {
-        starType () {
-            return 'star-' + this.size;
-        },
-        itemClasses () {
-            let result = [];
-            let score = Math.floor(this.score * 2) / 2;
-            let hasDecimal = score % 1 !== 0;
-            let integer = Math.floor(score);
-            for (let i=0; i < integer; i++){
-                result.push(CLS_ON);
-            }
-            if (hasDecimal){
-                result.push(CLS_HALF);
-            }
-            while (result.length < LENGTH) {
-                result.push(CLS_OFF);
-            }
-            return result;
-        }
+    score: {
+      type: Number
     }
+  },
+  computed: {
+    starType () {
+      return 'star-' + this.size;
+    },
+    itemClasses () {
+      let result = [];
+      let score = Math.floor(this.score * 2) / 2;
+      let hasDecimal = score % 1 !== 0;
+      let integer = Math.floor(score);
+      for (let i = 0; i < integer; i++) {
+        result.push(CLS_ON);
+      }
+      if (hasDecimal) {
+        result.push(CLS_HALF);
+      }
+      while (result.length < LENGTH) {
+        result.push(CLS_OFF);
+      }
+      return result;
+    }
+  }
 };
 </script>
 
@@ -54,19 +54,21 @@ export default {
             width: 20px;
             height: 20px;
             margin-right: 22px;
-            background-size: 20px 20px;
         }
         &:last-child{
             margin-right: 0;
         }
-        &.on{
+        & .on{
             background: url('star48_on@2x.png');
+            background-size: cover;
         }
-        &.half{
+        & .half{
             background: url('star48_half@2x.png');
+            background-size: cover;
         }
-        &.off{
+        & .off{
             background: url('star48_off@2x.png');
+            background-size: cover;
         }
     }
     &.star-36{
@@ -79,13 +81,13 @@ export default {
         &:last-child{
             margin-right: 0;
         }
-        &.on{
+        & .on{
             background: url('star36_on@2x.png');
         }
-        &.half{
+        & .half{
             background: url('star36_half@2x.png');
         }
-        &.off{
+        & .off{
             background: url('star36_off@2x.png');
         }
     }
@@ -99,16 +101,15 @@ export default {
         &:last-child{
             margin-right: 0;
         }
-        &.on{
+        & .on{
             background: url('star24_on@2x.png');
         }
-        &.half{
+        & .half{
             background: url('star24_half@2x.png');
         }
-        &.off{
+        & .off{
             background: url('star24_off@2x.png');
         }
     }
-    
 }
 </style>
