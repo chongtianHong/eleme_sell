@@ -22,7 +22,6 @@
             width: 20px;
             height: 20px;
             margin-right: 22px;
-            background-size: 20px 20px;
         }
 	&:last-child{
 	    margin-right: 0;
@@ -32,14 +31,17 @@
 由于每种size的星星都有不同的3个状态，on（全星）、half（半星）和off（没星），这是由itemClass来决定的，
 因此给这三种不同的状态写样式。
 &.star-48{ //与star同级
-        &.on{
+        & .on{
             background: url('star48_on@2x.png');
+	    background-size: cover;
         }
-        &.half{
+        & .half{
             background: url('star48_half@2x.png');
+	    background-size: cover;
         }
-        &.off{
+        & .off{
             background: url('star48_off@2x.png');
+	    background-size: cover;
         }
     }
 
