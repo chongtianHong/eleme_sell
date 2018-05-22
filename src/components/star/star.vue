@@ -76,19 +76,21 @@ export default {
             width: 15px;
             height: 15px;
             margin-right: 16px;
-            background-size: 15px 15px;
         }
         &:last-child{
             margin-right: 0;
         }
         & .on{
             background: url('star36_on@2x.png');
+            background-size: cover;
         }
         & .half{
             background: url('star36_half@2x.png');
+            background-size: cover;
         }
         & .off{
             background: url('star36_off@2x.png');
+            background-size: cover;
         }
     }
     &.star-24{
@@ -96,19 +98,21 @@ export default {
             width: 10px;
             height: 10px;
             margin-right: 3px;
-            background-size: 10px 10px;
         }
         &:last-child{
             margin-right: 0;
         }
         & .on{
             background: url('star24_on@2x.png');
+            background-size: cover;
         }
         & .half{
             background: url('star24_half@2x.png');
+            background-size: cover;
         }
         & .off{
             background: url('star24_off@2x.png');
+            background-size: cover;
         }
     }
 }

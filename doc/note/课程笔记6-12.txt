@@ -83,3 +83,6 @@ computed: {
     }
 
 写完代码之后，就可以将星星组件用起来，看看效果。
+
+
+background-size: cover;要在background-image设置之后才能起作用。
