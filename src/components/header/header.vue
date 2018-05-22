@@ -35,7 +35,9 @@
       <div class="detail-wrapper clearfix">
         <div class="detail-main">
           <h1 class="name">{{seller.name}}</h1>
-          <star :score="seller.score" :size="48"></star>
+          <!-- <div class="star-wrapper">
+            <star :score="seller.score" :size="48"></star>
+          </div> -->
         </div>
       </div>
       <div class="detail-close" @click="toggleDetail">×</div>
@@ -44,7 +46,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-import star from '../star/star';
+//import star from '../star/star';
 
 export default {
   name: 'header',
@@ -65,10 +67,11 @@ export default {
   },
   created () {
     this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
-  },
-  components: {
-    star
   }
+  // ,
+  // components: {
+  //   star
+  // }
 };
 </script>
 
@@ -237,6 +240,11 @@ export default {
           font-size: 16px;
           font-weight 700;
           line-height: 16px;
+          text-align: center;
+        }
+        .star-wrapper{
+          margin-top: 18px;
+          padding: 2px 0;
           text-align: center;
         }
       }
