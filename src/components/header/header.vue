@@ -38,6 +38,11 @@
           <div class="star-wrapper">
             <star :score="seller.score" :size="48"></star>
           </div>
+          <div class="title">
+            <div class="line"></div>
+            <div class="text">优惠信息</div>
+            <div class="line"></div>
+          </div>
         </div>
       </div>
       <div class="detail-close" @click="toggleDetail">×</div>
