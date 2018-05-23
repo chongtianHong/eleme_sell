@@ -4,3 +4,33 @@
 首先写浮层里面两个小标题的样式：
 中间是一个标题，左右有两条自适应的线，文字居中。
 用flex布局。下一节完成。
+
+建议去学习阮一峰老师的 《flex布局教程：实例篇》和《flex布局教程：语法篇》
+一般父元素 display：flex
+子元素设置 flex属性
+
+首先开始写结构：
+在star-wrapper下面写：
+<div class="title">
+            <div class="line"></div>
+            <div class="text">优惠信息</div>
+            <div class="line"></div>
+</div>
+为什么line要用div，因为实践中发现，如果使用flex，使用span会有兼容性问题，所以使用div。
+
+写完结构开始写样式（写在star-wrapper下面）：
+.title{
+          display: flex; 
+          width: 80%;
+          margin: 30px auto 24px auto;
+          .line{
+            flex: 1;
+            position: relative;
+            top: -6px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+          }
+          .text{
+            padding: 0 12px;
+            font-size: 14px;
+          }
+}
