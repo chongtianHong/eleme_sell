@@ -43,12 +43,17 @@
             <div class="text">优惠信息</div>
             <div class="line"></div>
           </div>
-          <ul v-if="seller.supports" class="support">
+          <ul v-if="seller.supports" class="supports">
             <li class="support-item" v-for="(item,index) in seller.supports" :key="index">
               <span class="icon" :class="classMap[seller.supports[index].type]"></span>
               <span class="text">{{seller.supports[index].description}}</span>
             </li>
           </ul>
+           <div class="title">
+            <div class="line"></div>
+            <div class="text">商家公告</div>
+            <div class="line"></div>
+          </div>
         </div>
       </div>
       <div class="detail-close" @click="toggleDetail">×</div>
@@ -270,6 +275,46 @@ export default {
             padding: 0 12px;
             font-size: 14px;
             font-weight: 700;
+          }
+        }
+        .supports{
+          width: 80%;
+          margin: 0 auto;
+          .support-item{
+            padding: 0 12px;
+            margin-bottom: 12px;
+            font-size: 0; // 消除行内元素之间的空白间隔
+            &:last-child{
+              margin-bottom: 0;
+            }
+            .icon{
+              display: inline-block;
+              width: 16px;
+              height: 16px;
+              vertical-align: top;
+              margin-right: 6px;
+              background-repeat: no-repeat;
+              background-size: cover !important;
+            }
+            .decrease{
+              background: url("decrease_2@2x.png");
+              }
+            .discount{
+              background: url("discount_2@2x.png");
+            }
+            .special{
+              background: url("special_2@2x.png");
+            }
+            .invoice{
+              background: url("invoice_2@2x.png");
+            }
+            .guarantee{
+              background: url("guarantee_2@2x.png");
+            }
+            .text{
+              font-size: 12px;
+              line-height: 16px;
+            }
           }
         }
       }
