@@ -43,6 +43,9 @@
             <div class="text">优惠信息</div>
             <div class="line"></div>
           </div>
+          <ul v-if="seller.supports" class="supports">
+
+          </ul>
         </div>
       </div>
       <div class="detail-close" @click="toggleDetail">×</div>
