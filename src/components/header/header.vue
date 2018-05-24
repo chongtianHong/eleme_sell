@@ -253,7 +253,7 @@ export default {
         .title{
           display: flex; 
           width: 80%;
-          margin: 30px auto 24px auto;
+          margin: 28px auto 24px auto;
           .line{
             flex: 1;
             position: relative;
@@ -263,6 +263,7 @@ export default {
           .text{
             padding: 0 12px;
             font-size: 14px;
+            font-weight: 700;
           }
         }
       }
