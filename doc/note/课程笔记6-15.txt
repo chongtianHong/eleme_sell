@@ -67,7 +67,7 @@ support与title同级，因此样式写在title下面：
 <div class="bulletin">
             <p class="content">{{seller.bulletin}}</p>
 </div>
-写样式：
+根据设计稿，写样式：
 .bulletin{
           width: 80%;
           margin: 0 auto;
