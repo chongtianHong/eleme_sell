@@ -54,6 +54,9 @@
             <div class="text">商家公告</div>
             <div class="line"></div>
           </div>
+          <div class="bulletin">
+            <p class="content">{{seller.bulletin}}</p>
+          </div>
         </div>
       </div>
       <div class="detail-close" @click="toggleDetail">×</div>
@@ -315,6 +318,17 @@ export default {
               font-size: 12px;
               line-height: 16px;
             }
+          }
+        }
+        .bulletin{
+          width: 80%;
+          margin: 0 auto;
+          .content{
+            padding: 0 12px;
+            font-size: 12px;
+            font-weight: 200;
+            color: #fff;
+            line-height: 24px;
           }
         }
       }
