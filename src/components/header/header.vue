@@ -44,7 +44,7 @@
             <div class="line"></div>
           </div>
           <ul v-if="seller.supports" class="supports">
-
+            <li class="support-item" v-for="(item,index) in seller.supports" :key="index"></li>
           </ul>
         </div>
       </div>
