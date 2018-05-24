@@ -2,4 +2,16 @@
 
 写完小标题的样式，现在写下面的内容：
 
-下面的内容与support有点像，用遍历来实现。
+下面的内容与support有点累死，用遍历列表来实现。
+
+先写结构，在title下面写：
+这里使用v-if来判断，因为有的商家可能没有supports项。
+
+<ul v-if="seller.supports" class="support">
+            <li class="support-item" v-for="(item,index) in seller.supports" :key="index">
+              <span class="icon" :class="classMap[seller.supports[index].type]"></span>
+              <span class="text">{{seller.supports[index].description}}</span>
+            </li>
+</ul>
+
+结构写完，开始写样式：
