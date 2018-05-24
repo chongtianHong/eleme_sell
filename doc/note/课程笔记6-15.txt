@@ -14,4 +14,68 @@
             </li>
 </ul>
 
-结构写完，开始写样式：
+结构写完，查看设计稿发现，使用的icon大小为16x16，
+因此使用图片url为[name]_2@2x.png的图片，存放在header目录下。
+开始写样式。
+support与title同级，因此样式写在title下面：
+.supports{
+          width: 80%;
+          margin: 0 auto;
+          .support-item{
+            padding: 0 12px;
+            margin-bottom: 12px;
+            font-size: 0; // 消除行内元素之间的空白间隔
+            &:last-child{
+              margin-bottom: 0;
+            }
+            .icon{
+              display: inline-block;
+              width: 16px;
+              height: 16px;
+              vertical-align: top;
+              margin-right: 6px;
+              background-repeat: no-repeat;
+              background-size: cover !important;
+            }
+            .decrease{
+              background: url("decrease_2@2x.png");
+              }
+            .discount{
+              background: url("discount_2@2x.png");
+            }
+            .special{
+              background: url("special_2@2x.png");
+            }
+            .invoice{
+              background: url("invoice_2@2x.png");
+            }
+            .guarantee{
+              background: url("guarantee_2@2x.png");
+            }
+            .text{
+              font-size: 12px;
+              line-height: 16px;
+            }
+          }
+}
+接下来完成商家公告部分：
+<div class="title">
+            <div class="line"></div>
+            <div class="text">商家公告</div>
+            <div class="line"></div>
+</div>
+<div class="bulletin">
+            <p class="content">{{seller.bulletin}}</p>
+</div>
+写样式：
+.bulletin{
+          width: 80%;
+          margin: 0 auto;
+          .content{
+            padding: 0 12px;
+            font-size: 12px;
+            font-weight: 200;
+            color: #fff;
+            line-height: 24px;
+          }
+}
