@@ -1,0 +1,18 @@
+详情弹层页（6）
+
+实现了浮层的样式，接下来完成点击浮层的×关闭浮层。
+
+data () {
+    return {
+      detailShow: false
+    };
+  },
+
+<div class="detail-close" @click="toggleDetail">×</div>
+
+toggleDetail () {
+      this.detailShow = !this.detailShow;
+}
+
+浮层弹出的效果太生硬了。接下来实现渐变弹层的实现。
+使用css3动画。
