@@ -245,13 +245,14 @@ export default {
     width: 100%;
     height: 100%;
     overflow: auto; // 若设置为hidden，则当内容高度超出屏幕高度时不能滚动
-    // filter: blur(10px);
+    transition: all 0.5s; // 对所有属性渐变
     &.fade-transition{
       opacity: 1;
       background: rgba(7,17,27,0.8);
     }
-    &.fade-enter{
-      
+    &.fade-enter, &.fade-leave{
+      opacity: 0;
+      background: rgba(7,17,27,0);
     }
     .detail-wrapper{ // 外层容器
       min-height: 100%;
