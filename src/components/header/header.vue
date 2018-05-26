@@ -249,6 +249,7 @@ export default {
     overflow: auto; // 若设置为hidden，则当内容高度超出屏幕高度时不能滚动
     transition: all 0.5s; // 对所有属性渐变
     background: rgba(7,17,27,0.8);
+    backdrop-filter: blur(10px);
     &.fade-transition{
       opacity: 1;
     }
