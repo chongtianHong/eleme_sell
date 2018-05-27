@@ -57,10 +57,37 @@ export default {
       height: 54px;
       width: 56px;
       padding: 0 12px;
-      font-size: 12px;
-      color: rgb(240,20,20);
-      font-weight: 200;
-      line-height: 14px;
+      .icon{
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        vertical-align: middle; // table布局中的垂直居中
+        margin-right: 2px;
+        background-repeat: no-repeat;
+        background-size: cover !important;
+      }
+      .decrease{
+        background: url("decrease_3@2x.png");
+      }
+      .discount{
+        background: url("discount_3@2x.png");
+      }
+      .special{
+        background: url("special_3@2x.png");
+      }
+      .invoice{
+        background: url("invoice_3@2x.png");
+      }
+      .guarantee{
+        background: url("guarantee_3@2x.png");
+      }
+      .text{
+        display: table-cell;
+        width: 56px;
+        vertical-align: middle; // table布局中的垂直居中
+        font-size: 12px;
+        font-weight: 200;
+      }
     }
   }
   .foods-wrapper{
