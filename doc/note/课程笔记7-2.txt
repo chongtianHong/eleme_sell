@@ -5,6 +5,62 @@
 左侧侧边栏实际上是一个列表。
 <div class="menu-wrapper">
       <ul>
-        <li v-for="(item,index) in goods" :key="index"></li>
+        <li v-for="(item,index) in goods" :key="index">
+          <span class="text">
+            {{item.name}}
+          </span>
+        </li>
       </ul>
 </div>
+同时注意到有一个type字段，当type大于0，则商品类型前面有个icon。因此有：
+<li v-for="(item,index) in goods" :key="index" class="menu-item">
+          <span class="text border-bottom">
+            <span v-show="item.type>0" class="icon" :class="classMap[item.type]"></span>
+            {{item.name}}
+          </span>
+</li>
+在created里面定义classMap：
+this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
+class为icon的span内容变为：
+<span v-show="item.type>0" class="icon" :class="classMap[item.type]"></span>
+
+接下来开始写样式：
+看到每个li，可能有两行或三行，需要文字垂直居中。如果通过line-height不能实现。
+因此使用display：table布局。
+icon样式实际上是对应[name]_3@2x.png的图片。因此将图片拷贝到目录下。
+      .icon{
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        vertical-align: top;
+        margin-right: 2px;
+        background-repeat: no-repeat;
+        background-size: cover !important;
+      }
+      .decrease{
+        background: url("decrease_3@2x.png");
+      }
+      .discount{
+        background: url("discount_3@2x.png");
+      }
+      .special{
+        background: url("special_3@2x.png");
+      }
+      .invoice{
+        background: url("invoice_3@2x.png");
+      }
+      .guarantee{
+        background: url("guarantee_3@2x.png");
+      }
+文字的样式。
+.text{
+        display: table-cell;
+        width: 56px;
+        vertical-align: middle; // table布局中的垂直居中
+        font-size: 12px;
+        line-height: 14px;
+        font-weight: 200;
+      }
+
+发现下面的商品类别没法显示，我们要求是可以滚动的，而且点选选中时，样式需要发生改变。
+商品右侧也有一个联动的效果，接下来将对其进行实现。

@@ -3,7 +3,8 @@
     <div class="menu-wrapper">
       <ul>
         <li v-for="(item,index) in goods" :key="index" class="menu-item">
-          <span v-show="item.type>0" class="icon" :class="classMap[item.type]"></span><span class="text">
+          <span class="text border-bottom">
+            <span v-show="item.type>0" class="icon" :class="classMap[item.type]"></span>
             {{item.name}}
           </span>
         </li>
@@ -41,6 +42,22 @@ export default {
 </script>
 
 <style lang="stylus" rel="stylesheet/styles">
+.border-bottom{position: relative;border-top: none !important;}
+.border-bottom:after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #D5D5D6;
+  -webkit-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transform: scaleY(0.5);
+  -ms-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+}
 .goods{
   display: flex;
   position: absolute;
@@ -87,6 +104,8 @@ export default {
         vertical-align: middle; // table布局中的垂直居中
         font-size: 12px;
         font-weight: 200;
+        line-height:14px;
+        color: #495060;
       }
     }
   }
