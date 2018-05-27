@@ -54,7 +54,7 @@ export default {
   .tab{
     display: flex;
     width: 100%;
-    height: 40px;
+    height: 39px;
     line-height: 40px;
     border-bottom: 1px solid rgba(7, 17, 27, 0.1);
     .tab-item{
