@@ -2,7 +2,7 @@
   <div class="goods">
     <div class="menu-wrapper">
       <ul>
-        <li v-for="(item,index) in goods" :key="index">
+        <li v-for="(item,index) in goods" :key="index" class="menu-item">
           <span v-show="item.type>0" class="icon" :class="classMap[item.type]"></span><span class="text">
             {{item.name}}
           </span>
@@ -52,6 +52,16 @@ export default {
     width: 80px;
     // flex: 0 0 80px;
     background: #f3f5f7;
+    .menu-item{
+      display: table;
+      height: 54px;
+      width: 56px;
+      padding: 0 12px;
+      font-size: 12px;
+      color: rgb(240,20,20);
+      font-weight: 200;
+      line-height: 14px;
+    }
   }
   .foods-wrapper{
     flex: 1;
