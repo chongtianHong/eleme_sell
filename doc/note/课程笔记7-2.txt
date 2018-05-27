@@ -1,0 +1,10 @@
+左侧menu布局
+
+接下来将goods数据应用到左边的侧边栏上。
+
+左侧侧边栏实际上是一个列表。
+<div class="menu-wrapper">
+      <ul>
+        <li v-for="(item,index) in goods" :key="index"></li>
+      </ul>
+</div>

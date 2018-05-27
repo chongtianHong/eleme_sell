@@ -1,6 +1,10 @@
 <template>
   <div class="goods">
-    <div class="menu-wrapper"></div>
+    <div class="menu-wrapper">
+      <ul>
+        <li v-for="(item,index) in goods" :key="index"></li>
+      </ul>
+    </div>
     <div class="foods-wrapper"></div>
   </div>
 </template>
@@ -16,7 +20,7 @@ export default {
   },
   data () {
     return {
-      goods: {}
+      goods: []
     };
   },
   created () {

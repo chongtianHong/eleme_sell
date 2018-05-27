@@ -57,7 +57,7 @@ created () {
 这里获得的goods需要用data来做一个绑定：
 data () {
     return {
-      goods: {}
+      goods: []
     };
   },
 因此就可以将goods数据应用到左边的侧边栏上。
