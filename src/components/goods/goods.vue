@@ -7,7 +7,15 @@
 
 <script type="text/ecmascript-6">
 export default {
-  name: 'goods'
+  name: 'goods',
+  props: {
+    seller: {
+      type: Object
+    }
+  },
+  created () {
+
+  }
 };
 </script>
 
@@ -20,6 +28,9 @@ export default {
   width: 100%;
   overflow: hidden;
   .menu-wrapper{
+    width: 80px;
+    // flex: 0 0 80px;
+    background: #f3f5f7;
   }
   .foods-wrapper{
     flex: 1;
