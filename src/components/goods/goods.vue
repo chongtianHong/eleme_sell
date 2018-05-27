@@ -6,6 +6,7 @@
 </template>
 
 <script type="text/ecmascript-6">
+const ERR_OK = 0;
 export default {
   name: 'goods',
   props: {
@@ -13,8 +14,19 @@ export default {
       type: Object
     }
   },
+  data () {
+    return {
+      goods: {}
+    };
+  },
   created () {
-
+    this.$http.get('/api/goods').then((response) => {
+      response = response.body;
+      if (response.errno === ERR_OK) {
+        this.goods = response.data;
+        //console.log(this.goods);
+      }
+    });
   }
 };
 </script>
