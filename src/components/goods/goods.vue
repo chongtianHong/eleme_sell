@@ -10,7 +10,19 @@
         </li>
       </ul>
     </div>
-    <div class="foods-wrapper"></div>
+    <div class="foods-wrapper">
+      <ul>
+        <li v-for="(item,index) in goods" :key="index" class="food-list">
+          <h1 class="title">{{item.name}}</h1>
+          <ul>
+            <li v-for="(food,idx) in item.foods" :key="idx" class="food-item">
+              <div></div>
+              <div></div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
