@@ -16,7 +16,21 @@
           <h1 class="title">{{item.name}}</h1>
           <ul>
             <li v-for="(food,idx) in item.foods" :key="idx" class="food-item">
-              <div></div>
+              <div class="icon">
+                <img :src="food.icon"/>
+              </div>
+              <div class="content">
+                <h2 class="name">{{food.name}}</h2>
+                <p class="desc">{{food.description}}</p>
+                <div class="extra">
+                  <span>月售{{food.sellCount}}份</span>
+                  <span>好评率{{food.rating}}%</span>
+                </div>
+                <div class="price">
+                  <span>￥{{food.price}}</span>
+                  <span v-show="food.oldPrice">￥{{food.oldPrice}}</span>
+                </div>
+              </div>
               <div></div>
             </li>
           </ul>
