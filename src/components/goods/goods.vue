@@ -17,7 +17,7 @@
           <ul>
             <li v-for="(food,idx) in item.foods" :key="idx" class="food-item border-bottom">
               <div class="icon">
-                <img :src="food.icon"/>
+                <img width="57" :src="food.icon"/>
               </div>
               <div class="content">
                 <h2 class="name">{{food.name}}</h2>
@@ -148,11 +148,20 @@ export default {
       }
       .food-item{
         display: flex;
-        margin: 18px;
+        padding: 18px;
         .icon{
+          flex: 0 0 57px;
+          margin-right: 10px;
         }
         .content{
           flex: 1;
+          .name{
+            margin: 2px 0 8px 0;
+            height: 14px;
+            line-height: 14px;
+            font-size: 14px;
+            color: rgb(7,17,27);
+          }
         }
       }
     }
