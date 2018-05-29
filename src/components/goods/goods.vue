@@ -15,7 +15,7 @@
         <li v-for="(item,index) in goods" :key="index" class="food-list">
           <h1 class="title">{{item.name}}</h1>
           <ul>
-            <li v-for="(food,idx) in item.foods" :key="idx" class="food-item">
+            <li v-for="(food,idx) in item.foods" :key="idx" class="food-item border-bottom">
               <div class="icon">
                 <img :src="food.icon"/>
               </div>
@@ -145,6 +145,15 @@ export default {
         font-size: 12px;
         color: rgb(147,153,159);
         background: #f3f5f7;
+      }
+      .food-item{
+        display: flex;
+        margin: 18px;
+        .icon{
+        }
+        .content{
+          flex: 1;
+        }
       }
     }
   }
