@@ -4,3 +4,48 @@
 每个商品分为左右两侧，左边是商品图片，右侧为商品描述。右下角有一个添加购买的按钮。
 
 上一小节写好了右侧商品的列表布局结构，写好以后，可以看到内容都可以显示在页面中，接下来将开始对其写样式。
+首先写标题的样式：
+.foods-wrapper{
+    flex: 1;
+    .food-list{
+      .title{
+        height: 26px;
+        padding-left: 14px;
+        line-height: 26px;
+        font-size: 12px;
+        color: rgb(147,153,159);
+        border-left: 2px solid #d9dde1;
+        background: #f3f5f7;
+      }
+    }
+  }
+接下来写商品图片和内容部分。
+图片左边宽度固定，内容部分宽度自适应，因此用到了flex布局。
+
+<div class="icon">
+    <img width="57" :src="food.icon"/>
+</div>
+
+.food-item{
+        display: flex;
+        padding: 18px;
+        .icon{
+          flex: 0 0 57px;
+          margin-right: 10px;
+        }
+        .content{
+          flex: 1;
+        }
+}
+
+接下来写content里面的文字样式。
+.content{
+          flex: 1;
+          .name{
+            margin: 2px 0 8px 0;
+            height: 14px;
+            line-height: 14px;
+            font-size: 14px;
+            color: rgb(7,17,27);
+          }
+}
