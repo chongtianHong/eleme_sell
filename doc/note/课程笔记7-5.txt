@@ -1,0 +1,47 @@
+右侧食品列表布局（3）
+
+商品列表是与左侧的商品分类对应的。每一个分类有一个标题，还有该分类下的所有商品。
+每个商品分为左右两侧，左边是商品图片，右侧为商品描述。右下角有一个添加购买的按钮。
+
+上一小节写好了右侧商品的列表布局结构，写好以后，可以看到内容都可以显示在页面中，接下来将开始对其写样式。
+
+接下来写content里面的文字样式。
+.content{
+          flex: 1;
+          .name{
+            margin: 2px 0 8px 0;
+            height: 14px;
+            line-height: 14px;
+            font-size: 14px;
+            color: rgb(7, 17, 27);
+          }
+          .desc, .extra{
+            line-height: 10px;
+            font-size: 10px;
+            color: rgb(147, 153, 159);
+          }
+          .desc{
+            margin-bottom: 8px;
+          }
+          .extra{
+            .count{
+              margin-right: 12px;
+            }
+          }
+          .price{
+            font-weight: 700;
+            line-heigt: 24px;
+            .now{
+              margin-right: 8px;
+              font-size: 14px;
+              color: rgb(240, 20, 20);
+            }
+            .old{
+              text-decoration: line-through;
+              font-size: 10px;
+              color: rgb(147, 153, 149);
+            }
+          }
+}
+
+后面的小节将实现滚动效果。
