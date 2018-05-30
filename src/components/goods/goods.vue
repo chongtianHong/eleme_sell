@@ -143,7 +143,7 @@ export default {
         line-height: 26px;
         border-left: 2px solid #d9dde1;
         font-size: 12px;
-        color: rgb(147,153,159);
+        color: rgb(147, 153, 159);
         background: #f3f5f7;
       }
       .food-item{
@@ -160,12 +160,12 @@ export default {
             height: 14px;
             line-height: 14px;
             font-size: 14px;
-            color: rgb(7,17,27);
+            color: rgb(7, 17, 27);
           }
           .desc, .extra{
             line-height: 10px;
             font-size: 10px;
-            color: rgb(147,153,159);
+            color: rgb(147, 153, 159);
           }
           .desc{
             margin-bottom: 8px;
@@ -181,12 +181,12 @@ export default {
             .now{
               margin-right: 8px;
               font-size: 14px;
-              color: rgb(240,20,20);
+              color: rgb(240, 20, 20);
             }
             .old{
               text-decoration: line-through;
               font-size: 10px;
-              color: rgb(147,153,149);
+              color: rgb(147, 153, 149);
             }
           }
         }
