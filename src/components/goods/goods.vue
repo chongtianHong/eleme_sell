@@ -162,6 +162,11 @@ export default {
             font-size: 14px;
             color: rgb(7,17,27);
           }
+          .desc{
+            margin-bottom: 8px;
+            line-height: 10px;
+            font-size: 10px;
+          }
         }
       }
     }
