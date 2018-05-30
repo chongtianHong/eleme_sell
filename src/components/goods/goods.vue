@@ -166,6 +166,12 @@ export default {
             margin-bottom: 8px;
             line-height: 10px;
             font-size: 10px;
+            color: rgb(147,153,159);
+          }
+          .extra{
+            line-height: 10px;
+            font-size: 10px;
+            color: 10px;
           }
         }
       }
