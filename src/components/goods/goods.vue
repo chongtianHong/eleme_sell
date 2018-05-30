@@ -23,7 +23,7 @@
                 <h2 class="name">{{food.name}}</h2>
                 <p class="desc">{{food.description}}</p>
                 <div class="extra">
-                  <span>月售{{food.sellCount}}份</span>
+                  <span class="count">月售{{food.sellCount}}份</span>
                   <span>好评率{{food.rating}}%</span>
                 </div>
                 <div class="price">
@@ -162,16 +162,18 @@ export default {
             font-size: 14px;
             color: rgb(7,17,27);
           }
-          .desc{
-            margin-bottom: 8px;
+          .desc, .extra{
             line-height: 10px;
             font-size: 10px;
             color: rgb(147,153,159);
           }
+          .desc{
+            margin-bottom: 8px;
+          }
           .extra{
-            line-height: 10px;
-            font-size: 10px;
-            color: 10px;
+            &.count{
+              margin-right: 12px;
+            }
           }
         }
       }
