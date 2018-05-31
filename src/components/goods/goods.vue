@@ -1,6 +1,6 @@
 <template>
   <div class="goods">
-    <div class="menu-wrapper" v-el:menu-wrapper>
+    <div class="menu-wrapper" ref="menuWrapper">
       <ul>
         <li v-for="(item,index) in goods" :key="index" class="menu-item">
           <span class="text border-bottom">
@@ -10,7 +10,7 @@
         </li>
       </ul>
     </div>
-    <div class="foods-wrapper" v-el:foods-wrapper>
+    <div class="foods-wrapper" ref="foodsWrapper">
       <ul>
         <li v-for="(item,index) in goods" :key="index" class="food-list">
           <h1 class="title">{{item.name}}</h1>
@@ -61,13 +61,21 @@ export default {
       if (response.errno === ERR_OK) {
         this.goods = response.data;
         //console.log(this.goods);
+        this.$nextTick(() => {
+          this._initScroll();
+        });
       }
     });
   },
   methods: {
     _initScroll () {
-      this.menuScroll = new BScroll(this.$els.foodWrapper, {});
-      this.foodsScroll = new BScroll(this.$)
+      this.menuScroll = new BScroll(this.$refs.menuWrapper, {
+        click: true
+      });
+      this.foodScroll = new BScroll(this.$refs.foodsWrapper, {
+        probeType: 3,
+        click: true
+      });
     }
   }
 };
