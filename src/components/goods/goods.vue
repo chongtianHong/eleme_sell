@@ -69,13 +69,8 @@ export default {
   },
   methods: {
     _initScroll () {
-      this.menuScroll = new BScroll(this.$refs.menuWrapper, {
-        click: true
-      });
-      this.foodScroll = new BScroll(this.$refs.foodsWrapper, {
-        probeType: 3,
-        click: true
-      });
+      this.menuScroll = new BScroll(this.$refs.menuWrapper, {});
+      this.foodScroll = new BScroll(this.$refs.foodsWrapper, {});
     }
   }
 };
