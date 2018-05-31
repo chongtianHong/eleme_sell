@@ -1,6 +1,6 @@
 <template>
   <div class="goods">
-    <div class="menu-wrapper">
+    <div class="menu-wrapper" v-el:menu-wrapper>
       <ul>
         <li v-for="(item,index) in goods" :key="index" class="menu-item">
           <span class="text border-bottom">
@@ -10,7 +10,7 @@
         </li>
       </ul>
     </div>
-    <div class="foods-wrapper">
+    <div class="foods-wrapper" v-el:foods-wrapper>
       <ul>
         <li v-for="(item,index) in goods" :key="index" class="food-list">
           <h1 class="title">{{item.name}}</h1>
@@ -63,6 +63,12 @@ export default {
         //console.log(this.goods);
       }
     });
+  },
+  methods: {
+    _initScroll () {
+      this.menuScroll = new BScroll(this.$els.foodWrapper, {});
+      this.foodsScroll = new BScroll(this.$)
+    }
   }
 };
 </script>
