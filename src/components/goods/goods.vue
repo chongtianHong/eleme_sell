@@ -177,6 +177,7 @@ export default {
           }
           .desc{
             margin-bottom: 8px;
+            line-height: 12px;
           }
           .extra{
             .count{
@@ -185,7 +186,7 @@ export default {
           }
           .price{
             font-weight: 700;
-            line-heigt: 24px;
+            line-height: 24px;
             .now{
               margin-right: 8px;
               font-size: 14px;
