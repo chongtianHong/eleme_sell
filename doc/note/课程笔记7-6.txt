@@ -3,4 +3,39 @@ better-scroll运用（1）
 接下来的小节将实现滚动效果。
 所依赖的库是better-scroll，github地址为：https://github.com/ustbhuangyi/better-scroll
 
-在package.json里面添加better-scroll的版本信息，使用npm install安装它。
+在package.json里面添加better-scroll依赖的的版本信息，使用npm install安装它。
+回到goods.vue中使用它。
+
+在js开始import它。
+import BScroll from 'better-scroll';
+
+它和iscroll一样，在实例化的过程中接受两个参数，第一个参数需要传入一个dom。第二个参数是一个obj对象。
+因此要在获取数据以后，调用_initScroll方法。
+
+
+<div class="menu-wrapper" ref="menuWrapper">
+_initScroll () {
+      this.menuScroll = new BScroll(this.$refs.menuWrapper, {}); // 先拿左侧栏
+}
+
+<div class="foods-wrapper" ref="foodsWrapper">
+_initScroll () {
+      this.foodScroll = new BScroll(this.$refs.foodsWrapper, {});// 再拿右侧栏
+}
+
+然后在钩子函数中调用this.initScroll();
+this.$nextTick(() => {
+          this._initScroll();
+});
+这是因为我们再初始化BScroll的时候，在计算高度的时候，vue在更新dom的时候是异步的。
+也就是说，vue里面有个nextTick接口，用于更新dom，执行异步操作后的回调。
+这样才能正确地计算出ul的高度。
+
+
+接下来看看效果。左右栏都能滚动。
+
+接下来实现滚动右栏，左栏对应的分类高亮。
+而左栏支持点击，右栏滑动到对应的位置。
+即实现左右的联动。
+
+后面的小节将实现这个功能。
