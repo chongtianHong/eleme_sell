@@ -9,4 +9,41 @@ better-scroll运用（2）
 而左栏支持点击，右栏滑动到对应的位置。
 即实现左右的联动。
 
+效果：当滚动右侧的时候，左侧能跟着变化。点击左侧时，右侧也能滚动到相应的位置。
+右侧滚动实时变动的y值（纵坐标落到哪个区间），左边对应地就显示哪个区间。
 
+所以要知道每个区间的高度。
+
+首先先计算右侧索引的高度。
+
+计算高度的时机也是在nextTick里面。
+this.$nextTick(() => {
+          this._initScroll();
+          this._calculateHeight();
+});
+
+data () {
+    return {
+      goods: [],
+      listHeight: []
+    };
+  },
+
+需要通过dom获得子元素，给class名为food-list的li定义一个class名为food-list-hook：
+<li v-for="(item,index) in goods" :key="index" class="food-list food-list-hook">
+使用name-hook指的是这个css选择器只是用来被js选中，并没有实际的样式效果。
+
+在methods里面定义_calculateHeight方法：
+_calculateHeight () {
+        let foodList = this.$refs.foodsWrapper.getElementsByClassName('food-list-hook');
+        let height = 0;
+        this.listHeight.push(height);
+        for(let i = 0; i < foodList.length; i++){
+          let item = foodList[i];
+          height += item.clientHeight;
+          this.listHeight.push(height);
+        }
+    }
+
+接下来在data里面定义一个scrollY的变量。
+scrollY: 0
