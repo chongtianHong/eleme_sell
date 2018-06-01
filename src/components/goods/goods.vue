@@ -61,6 +61,7 @@ export default {
         //console.log(this.goods);
         this.$nextTick(() => {
           this._initScroll();
+          this._calculateHeight();
         });
       }
     });
@@ -69,6 +70,9 @@ export default {
     _initScroll () {
       this.menuScroll = new BScroll(this.$refs.menuWrapper, {});
       this.foodScroll = new BScroll(this.$refs.foodsWrapper, {});
+    },
+    _calculateHeight () {
+
     }
   }
 };
