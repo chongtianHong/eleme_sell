@@ -1,0 +1,12 @@
+better-scroll运用（2）
+
+接下来的小节将实现滚动效果。
+所依赖的库是better-scroll，github地址为：https://github.com/ustbhuangyi/better-scroll
+
+上一小节使用了better-scroll。左右栏都能滚动。
+
+接下来实现滚动右栏，左栏对应的分类高亮。
+而左栏支持点击，右栏滑动到对应的位置。
+即实现左右的联动。
+
+
