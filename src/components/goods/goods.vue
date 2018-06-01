@@ -56,10 +56,10 @@ export default {
   },
   computed: {
     currentIndex () {
-      for(let i = 0; i < this.listHeight.length; i++){
+      for (let i = 0; i < this.listHeight.length; i++) {
         let height1 = this.listHeight[i];
-        let height2 = this.listHeight[i+1];
-        if(!height2 || (this.scrollY > height1 && this.scrollY < height2)){
+        let height2 = this.listHeight[i + 1];
+        if (!height2 || (this.scrollY > height1 && this.scrollY < height2)) {
           return i;
         }
       }
@@ -89,17 +89,17 @@ export default {
 
       this.foodScroll.on('scroll', (pos) => {
         this.scrollY = Math.abs(Math.round(pos.y));
-      })
+      });
     },
     _calculateHeight () {
-        let foodList = this.$refs.foodsWrapper.getElementsByClassName('food-list-hook');
-        let height = 0;
+      let foodList = this.$refs.foodsWrapper.getElementsByClassName('food-list-hook');
+      let height = 0;
+      this.listHeight.push(height);
+      for (let i = 0; i < foodList.length; i++) {
+        let item = foodList[i];
+        height += item.clientHeight;
         this.listHeight.push(height);
-        for(let i = 0; i < foodList.length; i++){
-          let item = foodList[i];
-          height += item.clientHeight;
-          this.listHeight.push(height);
-        }
+      }
     }
   }
 };
