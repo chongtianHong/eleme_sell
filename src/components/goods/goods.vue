@@ -97,7 +97,7 @@ export default {
       this.listHeight.push(height);
       for (let i = 0; i < foodList.length; i++) {
         let item = foodList[i];
-        height += item.clientHeight;
+        height += item.clientHeight; // 每一个food-list的高度是包括标题和内容区域
         this.listHeight.push(height);
       }
     }

@@ -12,16 +12,22 @@ better-scroll运用（2）
 效果：当滚动右侧的时候，左侧能跟着变化。点击左侧时，右侧也能滚动到相应的位置。
 右侧滚动实时变动的y值（纵坐标落到哪个区间），左边对应地就显示哪个区间。
 
-所以要知道每个区间的高度。
+如何计算y值落到哪个区间，所以要知道每个区间的高度。
+首先要计算整体区间的高度，把每个区间的最大高度记录下来（数组），
+记录数组后，在监听滚动时能拿到实时的Y坐标，然后去对比坐标落到哪个区间，就能得到当前左侧应该高亮的索引值。
+然后利用vue的class绑定，实现高亮的效果。
+
 
 首先先计算右侧索引的高度。
 
 计算高度的时机也是在nextTick里面。
+在methods里面定义_calculateHeight方法。
 this.$nextTick(() => {
           this._initScroll();
           this._calculateHeight();
 });
 
+这个方法需要用一个变量存储，因此挂到data里面，listHeight: []
 data () {
     return {
       goods: [],
@@ -29,7 +35,7 @@ data () {
     };
   },
 
-需要通过dom获得子元素，给class名为food-list的li定义一个class名为food-list-hook：
+需要通过dom获得子元素高度，给class名为food-list的li定义一个class名为food-list-hook：
 <li v-for="(item,index) in goods" :key="index" class="food-list food-list-hook">
 使用name-hook指的是这个css选择器只是用来被js选中，并没有实际的样式效果。
 
@@ -40,10 +46,40 @@ _calculateHeight () {
         this.listHeight.push(height);
         for(let i = 0; i < foodList.length; i++){
           let item = foodList[i];
-          height += item.clientHeight;
+          height += item.clientHeight; // 每一个food-list的高度是包括标题和内容区域
           this.listHeight.push(height);
         }
     }
+因此listHeight就构造好了，是一个递增的数组。
+表示每个区间所对应的高度。
 
-接下来在data里面定义一个scrollY的变量。
+接下来要实时拿到当前右侧纵轴的值，和左侧的索引做一个映射。
+因此在data里面定义一个scrollY的变量。
 scrollY: 0
+scrollY的变化，利用了better-scroll的一个接口。
+this.foodScroll = new BScroll(this.$refs.foodsWrapper, {
+        probeType: 3
+});
+传递这个属性的意思是：希望scroll在滚动的时候，能试试告诉我们实时滚动的位置。
+
+接下来通过foodScroll这个对象，来监听一个事件，
+this.foodScroll.on('scroll', (pos) => {
+        this.scrollY = Math.abs(Math.round(pos.y));//回调函数的参数，就是一个位置，为小数和负数
+});
+
+接下来就要将scrollY和左侧的索引做一个映射。
+这里用到vue的一个特性，计算属性，
+在计算属性里面定义一个方法：currentIndex：
+computed: {
+    currentIndex () {
+      for (let i = 0; i < this.listHeight.length; i++) {
+        let height1 = this.listHeight[i];    //区间的上界
+        let height2 = this.listHeight[i + 1];//区间的下界
+        if (!height2 || (this.scrollY > height1 && this.scrollY < height2)) {
+          return i;
+        }
+      }
+      return 0;
+    }
+  },
+当scrollY变化时，computed的currentIndex就会实时发生变化。
