@@ -2,7 +2,7 @@
   <div class="goods">
     <div class="menu-wrapper" ref="menuWrapper">
       <ul>
-        <li v-for="(item,index) in goods" :key="index" class="menu-item">
+        <li v-for="(item,index) in goods" :key="index" class="menu-item" :class="{'current':currentIndex === index}">
           <span class="text border-bottom">
             <span v-show="item.type>0" class="icon" :class="classMap[item.type]"></span>
             {{item.name}}
@@ -138,6 +138,13 @@ export default {
       height: 54px;
       width: 56px;
       padding: 0 12px;
+      &.current{
+        position: relative;
+        z-index: 10;
+        margin-top: 1px;
+        background: #fff;
+        font-weight: 700;
+      }
       .icon{
         display: inline-block;
         width: 12px;
