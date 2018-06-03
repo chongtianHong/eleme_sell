@@ -36,10 +36,10 @@ export default {};
             .logo-wrapper{
                 display: inline-block;
                 position: relative;
-                top: -10px;
-                margin: 0 12px;
+                top: -10px; // (116-96)/2
+                margin: 0 12px; // (36-12)/2
                 padding: 6px;
-                width: 56px;
+                width: 56px; // (88+24)/2
                 height: 56px;
                 box-sizing: border-box;
                 vertical-align: top;
@@ -69,6 +69,7 @@ export default {};
                 border-right: 1px solid rgba(255,255,255,0.1);
                 font-size: 16px;
                 font-weight: 700;
+                color: rgba(255,255,255,0.4);
             }
             .desc{
                 display: inline-block;
