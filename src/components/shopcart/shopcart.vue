@@ -20,14 +20,6 @@ export default {};
 </script>
 
 <style lang="stylus" rel="stylesheet/styles">
-.icon-shopping_cart{
-    display: inline-block;
-    color:#80858a;
-    width: 100%;
-    height: 100%;
-    background-image : url("cart.png.png");
-    background-size: cover;
-}
 .shopcart{
     position: fixed;
     left: 0;
@@ -53,6 +45,18 @@ export default {};
                 vertical-align: top;
                 border-radius: 50%;
                 background: #141d27;
+                .logo{
+                    width: 100%;
+                    height: 100%;
+                }
+                .icon-shopping_cart{
+                    display: inline-block;
+                    color:#80858a;
+                    width: 100%;
+                    height: 100%;
+                    background-image : url("cart.png.png");
+                    background-size: cover;
+                }
             }
             .price{
                 display: inline-block;
