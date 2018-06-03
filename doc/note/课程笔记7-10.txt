@@ -1,0 +1,77 @@
+shopcart购物车组件（2）
+
+上一小节完成了购物车组件的定位和外层shopcart的样式。
+接下来完成其内部div的样式。
+
+.content{
+    display: flex;
+    background: #141d27;
+    .content-left{
+        flex: 1;
+	.logo-wrapper{}
+	.price{}
+	.desc{}
+    }
+    .content-right{
+        width: 105px;
+    }
+}
+.logo-wrapper{
+            display: inline-block;
+        }
+        .price{
+            display: inline-block;
+        }
+        .desc{
+            display: inline-block;
+        }
+设置了inline-block的子元素其父元素要设置font-size：0；
+.content-left{
+        font-size: 0;
+}
+
+.content-left{
+            flex: 1;
+            font-size: 0;
+            .logo-wrapper{
+                display: inline-block;
+                position: relative;
+                top: -10px;
+                margin: 0 12px;
+                padding: 6px;
+                width: 56px;
+                height: 56px;
+                box-sizing: border-box;
+                vertical-align: top;
+                border-radius: 50%;
+                background: #141d27;
+            }
+        }
+接下来设置logo。
+.logo{
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                    background: #2b343c;
+                    .icon-shopping_cart{
+                        display: inline-block;
+                        color:#80858a;
+                        width: 100%;
+                        height: 100%;
+                        background-image : url("cart.png.png");
+                        background-size: cover;
+                    }
+}
+
+接下来写price的样式：
+.price{
+                display: inline-block;
+                vertical-align: top;
+                margin-top: 12px
+                line-height: 24px;
+                padding-right: 12px;
+                box-sizing: border-box;
+                border-right: 1px solid rgba(255,255,255,0.1);
+                font-size: 16px;
+                font-weight: 700;
+}
