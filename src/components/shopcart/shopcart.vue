@@ -10,7 +10,7 @@
               <div class="price"></div>
               <div class="desc"></div>
           </div>
-          <div class="contentright"></div>
+          <div class="content-right"></div>
       </div>
   </div>
 </template>
@@ -21,12 +21,12 @@ export default {};
 
 <style lang="stylus" rel="stylesheet/styles">
 .icon-shopping_cart{
-  display: inline-block;
-  color:#80858a;
-  width: 100%;
-  height: 100%;
-  background-image : url("cart.png.png");
-  background-size: cover;
+    display: inline-block;
+    color:#80858a;
+    width: 100%;
+    height: 100%;
+    background-image : url("cart.png.png");
+    background-size: cover;
 }
 .shopcart{
     position: fixed;
@@ -35,6 +35,36 @@ export default {};
     z-index: 50;
     width: 100%;
     height: 48px;
-    background: #000;
+    .content{
+        display: flex;
+        background: #141d27;
+        .content-left{
+            flex: 1;
+            font-size: 0;
+            .logo-wrapper{
+                display: inline-block;
+                position: relative;
+                top: -10px;
+                margin: 0 12px;
+                padding: 6px;
+                width: 56px;
+                height: 56px;
+                box-sizing: border-box;
+                vertical-align: top;
+                border-radius: 50%;
+                background: #141d27;
+            }
+            .price{
+                display: inline-block;
+            }
+            .desc{
+                display: inline-block;
+            }
+        }
+        .content-right{
+            width: 105px;
+        }
+    }
 }
+
 </style>
