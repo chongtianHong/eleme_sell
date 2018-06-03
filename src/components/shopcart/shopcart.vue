@@ -21,11 +21,20 @@ export default {};
 
 <style lang="stylus" rel="stylesheet/styles">
 .icon-shopping_cart{
-    display: inline-block;
-    color:#80858a;
+  display: inline-block;
+  color:#80858a;
+  width: 100%;
+  height: 100%;
+  background-image : url("cart.png.png");
+  background-size: cover;
+}
+.shopcart{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 50;
     width: 100%;
-    height: 100%;
-    background-image : url("cart.png.png") ;
-    background-size: cover;
-  }
+    height: 48px;
+    background: #000;
+}
 </style>
