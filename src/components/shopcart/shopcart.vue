@@ -7,7 +7,7 @@
                       <span class="icon-shopping_cart"></span>
                   </div>
               </div>
-              <div class="price"></div>
+              <div class="price">￥0</div>
               <div class="desc"></div>
           </div>
           <div class="content-right"></div>
@@ -48,18 +48,27 @@ export default {};
                 .logo{
                     width: 100%;
                     height: 100%;
-                }
-                .icon-shopping_cart{
-                    display: inline-block;
-                    color:#80858a;
-                    width: 100%;
-                    height: 100%;
-                    background-image : url("cart.png.png");
-                    background-size: cover;
+                    border-radius: 50%;
+                    background: #2b343c;
+                    .icon-shopping_cart{
+                        display: inline-block;
+                        width: 100%;
+                        height: 100%;
+                        background-image : url("cart.png.png");
+                        background-size: cover;
+                    }
                 }
             }
             .price{
                 display: inline-block;
+                vertical-align: top;
+                margin-top: 12px
+                line-height: 24px;
+                padding-right: 12px;
+                box-sizing: border-box;
+                border-right: 1px solid rgba(255,255,255,0.1);
+                font-size: 16px;
+                font-weight: 700;
             }
             .desc{
                 display: inline-block;
