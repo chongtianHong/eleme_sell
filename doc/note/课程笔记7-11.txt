@@ -1,0 +1,49 @@
+shopcart购物车组件（3）
+
+.price{
+                display: inline-block;
+                vertical-align: top;
+                margin-top: 12px
+                line-height: 24px;
+                padding-right: 12px;
+                box-sizing: border-box;
+                border-right: 1px solid rgba(255,255,255,0.1);
+                font-size: 16px;
+                font-weight: 700;
+                color: rgba(255,255,255,0.4);
+}
+这里使用margin-top: 12px和line-height: 24px;使得price字体垂直居中。
+单纯使用line-height: 48px;也能实现垂直居中。
+然而，因为这里通过border-right: 1px solid rgba(255,255,255,0.1);产生一个竖线。
+如果使用line-height: 48px;竖线长度就会过长。不符合要求。
+
+接下来写描述部分。
+<div class="desc">另需配送费￥4元</div>
+由于这个配送费是seller对象里面的属性。
+
+因为shopcart是goods组件的子组件，因此，goods组件在使用shopcart组件时，可以通过props传入两个参数。
+<shopcart :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
+且需要接收App.vue传进来的seller：
+props: {
+    seller: {
+      type: Object
+    }
+  },
+同时在shopcart的vue实例中使用props去接受这两个变量：
+props: {
+    deliveryPrice: {
+      type: Number,
+      default: 0
+    },
+    minPrice: {
+      type: Number,
+      default: 0
+    }
+  }
+还要在App.vue里面将seller传入router-view中。
+<router-view :seller="seller"></router-view>
+
+因此就可以在shopcart组件里面使用其父组件传进来的两个props：
+<div class="desc">另需配送费￥{{deliveryPrice}}元</div>
+
+最后写结算的样式：
