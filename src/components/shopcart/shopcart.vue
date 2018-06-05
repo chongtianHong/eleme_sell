@@ -8,7 +8,7 @@
                   </div>
               </div>
               <div class="price">￥0</div>
-              <div class="desc"></div>
+              <div class="desc">另需配送费￥4元</div>
           </div>
           <div class="content-right"></div>
       </div>
@@ -74,6 +74,10 @@ export default {};
             .desc{
                 display: inline-block;
                 vertical-align: top;
+                margin: 12px 0 0 12px;
+                line-height: 24px;
+                font-size: 10px;
+                color: rgba(255,255,255,0.4);
             }
         }
         .content-right{
