@@ -16,7 +16,18 @@
 </template>
 
 <script type="text/ecmascript-6">
-export default {};
+export default {
+  props: {
+    deliveryPrice: {
+      type: Number,
+      default: 0
+    },
+    minPrice: {
+      type: Number,
+      default: 0
+    }
+  }
+};
 </script>
 
 <style lang="stylus" rel="stylesheet/styles">
