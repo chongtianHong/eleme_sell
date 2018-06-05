@@ -19,7 +19,15 @@ shopcart购物车组件（3）
 
 接下来写描述部分。
 <div class="desc">另需配送费￥4元</div>
-由于这个配送费是seller对象里面的属性。
+.desc{
+                display: inline-block;
+                vertical-align: top;
+                margin: 12px 0 0 12px;
+                line-height: 24px;
+                font-size: 10px;
+                color: rgba(255,255,255,0.4);
+}
+写完样式，发现这个配送费是seller对象里面的属性。
 
 因为shopcart是goods组件的子组件，因此，goods组件在使用shopcart组件时，可以通过props传入两个参数。
 <shopcart :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
@@ -46,4 +54,4 @@ props: {
 因此就可以在shopcart组件里面使用其父组件传进来的两个props：
 <div class="desc">另需配送费￥{{deliveryPrice}}元</div>
 
-最后写结算的样式：
+下一小节将写结算的样式
