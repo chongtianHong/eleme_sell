@@ -8,7 +8,7 @@
                   </div>
               </div>
               <div class="price">￥0</div>
-              <div class="desc">另需配送费￥4元</div>
+              <div class="desc">另需配送费￥{{deliveryPrice}}元</div>
           </div>
           <div class="content-right"></div>
       </div>
