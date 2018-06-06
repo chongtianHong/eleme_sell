@@ -49,6 +49,13 @@ export default {
         total += food.price * food.count;
       });
       return total;
+    },
+    totalCount () {
+      let count = 0;
+      this.selectFoods.forEach((food) => {
+        count += food.count;
+      });
+      return count;
     }
   }
 };
