@@ -10,7 +10,11 @@
               <div class="price">￥0</div>
               <div class="desc">另需配送费￥{{deliveryPrice}}元</div>
           </div>
-          <div class="content-right"></div>
+          <div class="content-right">
+              <div class="pay">
+                  ￥{{minPrice}}元起送
+              </div>
+          </div>
       </div>
   </div>
 </template>
@@ -41,6 +45,7 @@ export default {
     .content{
         display: flex;
         background: #141d27;
+        color: rgba(255,255,255,0.4);
         .content-left{
             flex: 1;
             font-size: 0;
@@ -80,7 +85,6 @@ export default {
                 border-right: 1px solid rgba(255,255,255,0.1);
                 font-size: 16px;
                 font-weight: 700;
-                color: rgba(255,255,255,0.4);
             }
             .desc{
                 display: inline-block;
@@ -88,11 +92,16 @@ export default {
                 margin: 12px 0 0 12px;
                 line-height: 24px;
                 font-size: 10px;
-                color: rgba(255,255,255,0.4);
             }
         }
         .content-right{
             width: 105px;
+            .pay{
+                height: 48px;
+                line-height: 48px;
+                text-align: center;
+                font-size: 12px;
+            }
         }
     }
 }
