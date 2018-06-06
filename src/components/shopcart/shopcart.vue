@@ -22,6 +22,12 @@
 <script type="text/ecmascript-6">
 export default {
   props: {
+    selectFoods: {
+      type: Array,
+      default () {
+        return [];
+      }
+    },
     deliveryPrice: {
       type: Number,
       default: 0
@@ -101,6 +107,8 @@ export default {
                 line-height: 48px;
                 text-align: center;
                 font-size: 12px;
+                font-weight: 700;
+                background: #2b333b;
             }
         }
     }
