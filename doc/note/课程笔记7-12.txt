@@ -1,0 +1,59 @@
+shopcart购物车组件（4）
+
+接下来将写结算的结构：
+<div class="content-right">
+      <div class="pay">
+          ￥{{minPrice}}元起送
+      </div>
+</div>
+
+样式：
+.content-right{
+            width: 105px;
+            .pay{
+                height: 48px;
+                line-height: 48px;
+                text-align: center;
+                font-size: 12px;
+                font-weight: 700;
+                background: #2b333b;
+            }
+}
+
+购物车主要是对选择商品的映射。
+选择多少商品主要是goods组件通过props传给购物车组件。
+所以要在shopcart.vue里面传入一个props：
+selectFoods: {
+      type: Array,
+      default () {
+        return [
+          {
+            price: 10,
+            count: 1
+          }
+        ];
+      }
+    },
+这个selectFoods是一个数组，发现在goods组件下，每个item.foods下都有一个food。
+
+selectFoods（依赖）和totalPrice的关系，通过shopcart组件的computed属性来计算：
+computed: {
+      totalPrice () {
+        let total = 0;
+        this.selectFoods.forEach((food)=>{
+          total += food.price * food.count;
+        });
+      return total;
+}
+
+购物车的状态变化都是selectFoods决定的。
+接下来计算totalCount().
+totalCount () {
+      let count = 0;
+      this.selectFoods.forEach((food) => {
+        count += food.count;
+      });
+      return count;
+    }
+因此在模板中就可以使用totalCount，表示选择商品的总和，
+因此可以对logo进行修改。
