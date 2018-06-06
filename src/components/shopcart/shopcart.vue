@@ -7,7 +7,7 @@
                       <span class="icon-shopping_cart"></span>
                   </div>
               </div>
-              <div class="price">￥0</div>
+              <div class="price">￥{{totalPrice}}</div>
               <div class="desc">另需配送费￥{{deliveryPrice}}元</div>
           </div>
           <div class="content-right">
@@ -25,7 +25,12 @@ export default {
     selectFoods: {
       type: Array,
       default () {
-        return [];
+        return [
+          {
+            price: 10,
+            count: 1
+          }
+        ];
       }
     },
     deliveryPrice: {
@@ -35,6 +40,15 @@ export default {
     minPrice: {
       type: Number,
       default: 0
+    }
+  },
+  computed: {
+    totalPrice () { // 所有商品的总价
+      let total = 0;
+      this.selectFoods.forEach((food) => {
+        total += food.price * food.count;
+      });
+      return total;
     }
   }
 };
