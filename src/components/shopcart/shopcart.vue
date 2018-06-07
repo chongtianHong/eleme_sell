@@ -14,7 +14,7 @@
           </div>
           <div class="content-right">
               <div class="pay">
-                  ￥{{minPrice}}元起送
+                  {{payDesc}}
               </div>
           </div>
       </div>
@@ -65,6 +65,16 @@ export default {
         return 'highLight';
       } else {
         return 'icon-shopping_cart';
+      }
+    },
+    payDesc () {
+      if (this.totalPrice === 0) {
+        return `￥${this.minPrice}元起送`;
+      } else if (this.totalPrice < this.minPrice) {
+        let diff = this.minPrice - this.totalPrice;
+        return `还差${diff}元起送`;
+      } else {
+        return '去结算';
       }
     }
   }
@@ -174,7 +184,13 @@ export default {
                 text-align: center;
                 font-size: 12px;
                 font-weight: 700;
-                background: #2b333b;
+                &.not-enough{
+                    background: #2b333b;
+                }
+                &.enough{
+                    background: #00b43c;
+                    color: #fff;
+                }
             }
         }
     }
