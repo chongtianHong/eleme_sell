@@ -14,3 +14,70 @@ totalCount () {
 
 新建一个class为num的div用于存放totalCount：
 <div class="num">{{totalCount}}</div>
+
+接下来写这个div的样式：绝对定位在logo-wrapper的右上角。
+在设计稿 外卖03_商品页_购物车详情_spec.png里面看。
+.num{
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    width: 24px;
+                    height: 16px;
+                    line-height: 16px;
+                    text-align: center;
+                    border-radius: 16px;
+                    font-size: 9px;
+                    font-weight: 700;
+                    color: #fff;
+                    background: rgb(240, 20, 20);
+                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+}
+设计稿中，当商品数目大于1时，图标变成蓝色。
+因此在.logo-wrapper下定义一个.highLight的样式：
+.highLight {
+                    display: inline-block;
+                    color: #80858a;
+                    width: 100%;
+                    height: 100%;
+                    background-image: url('cat2.png');
+                    background-size: cover;
+}
+当totalCount>=1时，icon-shopping_cart对应要变成另一个样式：
+<span :class="cat"></span>
+在computed里面写：
+cat () {
+      if (this.totalPrice > 0) {
+        return 'highLight';
+      } else {
+        return 'icon-shopping_cart';
+      }
+}
+同时看到，当totalCount>0时，购物车旁边的价格字体也会发生变化。
+因此要给价格字体写一个高亮的样式。
+<div class="price" :class="{'highPrice':totalCount>0}">￥{{totalPrice}}</div>
+因此在price下写highPrice：
+.price {
+                display: inline-block;
+                vertical-align: top;
+                margin-top: 12px;
+                line-height: 24px; // (116-44-24)/2
+                padding-right: 12px;
+                box-sizing: border-box;
+                border-right: 1px solid rgba(255, 255, 255, 0.1);
+                font-size: 16px;
+                font-weight: 700;
+                &.highPrice{
+                    color: #fff;
+                }
+}
+
+通过新修改props里面selectFoods的default值，发现当count=0时，绝对定位在logo-wrapper的右上角的num div依旧存在，因此要使用v-show加一个限制，当totalCount=0时隐藏。
+<div class="num" v-show="totalCount>0">{{totalCount}}</div>
+
+现在的区块还差右侧状态的变化。
+描述一共有3种状态。
+1.如果没有购买商品时，显示的是￥{{minPrice}}元起送
+2.如果购买了商品，达到起送费时，显示的是去结算
+3.如果购买了商品，没有达到起送费时，显示的是还差￥{{minPrice}}元起送
+
+下一小节将写这一块的逻辑。
