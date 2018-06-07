@@ -7,9 +7,9 @@
                       <!-- <span class="icon-shopping_cart" :class="{'hightLight':totalCount>0}"></span> -->
                       <span :class="cat"></span>
                   </div>
-                  <div class="num">{{totalCount}}</div>
+                  <div class="num" v-show="totalCount>0">{{totalCount}}</div>
               </div>
-              <div class="price">￥{{totalPrice}}</div>
+              <div class="price" :class="{'highPrice':totalPrice>0}">￥{{totalPrice}}</div>
               <div class="desc">另需配送费￥{{deliveryPrice}}元</div>
           </div>
           <div class="content-right">
@@ -151,6 +151,9 @@ export default {
                 border-right: 1px solid rgba(255, 255, 255, 0.1);
                 font-size: 16px;
                 font-weight: 700;
+                &.highPrice{
+                    color: #fff;
+                }
             }
 
             .desc {
