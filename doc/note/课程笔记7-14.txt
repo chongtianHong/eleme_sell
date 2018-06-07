@@ -1,0 +1,70 @@
+shopcart购物车组件（6）
+
+现在的区块还差右侧状态的变化。
+描述一共有3种状态。
+1.如果没有购买商品时，显示的是￥{{minPrice}}元起送
+2.如果购买了商品，达到起送费时，显示的是去结算
+3.如果购买了商品，没有达到起送费时，显示的是还差￥{{minPrice}}元起送
+所有的状态变化都依赖于selectFoods。
+
+接下来将写这一块的逻辑。
+
+写一个计算属性：
+payDesc () {
+      if (this.totalPrice === 0) {
+        return `￥${this.minPrice}元起送`;
+      } else if (this.totalPrice < this.minPrice) {
+        let diff = this.minPrice - this.totalPrice;
+        return `还差${diff}元起送`;
+      } else {
+        return '去结算';
+      }
+}
+然后将计算属性与class为pay的div绑定：
+<div class="pay">
+                  {{payDesc}}
+</div>
+当改变selectFoods中的price或count时，也可以看到内容相应改变。
+
+接下来改变其样式：
+.content-right {
+            width: 105px;
+
+            .pay {
+                height: 48px;
+                line-height: 48px;
+                text-align: center;
+                font-size: 12px;
+                font-weight: 700;
+                &.not-enough{
+                    background: #2b333b;
+                }
+                &.enough{
+                    background: #00b43c;
+                    color: #fff;
+                }
+            }
+}
+
+接下来给它绑定一个payClass变量，用于改变样式：
+<div class="content-right">
+              <div class="pay" :class="payClass">
+                  {{payDesc}}
+              </div>
+</div>
+在计算属性中写：
+payClass () {
+      if (this.totalPrice < this.minPrice) {
+        return 'not-enough';
+      } else {
+        return 'enough';
+      }
+}
+
+
+整体的思路：
+shopCart的状态都是围绕selectFoods的变化而变化的。
+selectFoods是通过父组件传递过来的。
+把计算属性表达式写好了以后，通过改变selectFoods，就能实现样式和内容的改变。这是vue的好处。
+
+之后要进行开发添加和删除的购物按钮。
