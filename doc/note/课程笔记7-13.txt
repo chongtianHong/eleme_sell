@@ -1,0 +1,16 @@
+shopcart购物车组件（5）
+
+购物车的状态变化都是selectFoods决定的。
+接下来计算totalCount().
+totalCount () {
+      let count = 0;
+      this.selectFoods.forEach((food) => {
+        count += food.count;
+      });
+      return count;
+    }
+因此在模板中就可以使用totalCount，表示选择商品的总和，
+因此可以对logo进行修改。
+
+新建一个class为num的div用于存放totalCount：
+<div class="num">{{totalCount}}</div>

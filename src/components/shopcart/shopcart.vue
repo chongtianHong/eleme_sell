@@ -7,6 +7,7 @@
                       <span class="icon-shopping_cart"></span>
                   </div>
               </div>
+              <div class="num">{{totalCount}}</div>
               <div class="price">￥{{totalPrice}}</div>
               <div class="desc">另需配送费￥{{deliveryPrice}}元</div>
           </div>
