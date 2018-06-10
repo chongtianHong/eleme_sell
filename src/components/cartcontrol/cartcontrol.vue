@@ -35,7 +35,6 @@ export default {
     border-radius: 50%;
   }
   .cart-decrease{
-    // padding: 6px;
     background-image: url("jian.png");
     background-size: cover;
     transition: all .2s linear;
