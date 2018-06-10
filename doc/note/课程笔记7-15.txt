@@ -1,0 +1,116 @@
+cartcontrol组件（1）
+
+接下来要进行开发添加和删除的购物按钮。
+可以看到，购物车按钮在多个位置重复出现，说明可以复用，所以可以抽象成一个组件。
+
+因此在component目录下创建一个cartcontrol组件。
+首先先写布局。
+<template>
+<div class="cartcontrol"></div>
+</template>
+
+然后将组件导出，即在script标签中使用：
+export default {}
+
+因为cartcontrol是和每个商品做关联的。关联的即为商品的购买次数。
+因此这里的cartcontrol就要接受一个数据，因此定义一个props属性，用于接收父组件传过来的数据。
+
+在调用购买控件的时候，一定要传入关联的food，因为在增加或减少商品的个数的时候，都是给这个组件传入每一个food。
+
+组件的内容包括三部分，减少按钮、数字、增加按钮：
+<div class="cart-decrease"></div>
+<div class="cart-count"></div>
+<div class="cart-add"></div>
+当count为0时，.cart-decrease和.cart-count是不会被显示的，因此要使用v-show控制它的显示。
+<div class="cart-decrease" v-show="food.count>0"></div>
+<div class="cart-count" v-show="food.count>0">{{food.count}}</div>
+
+接下来不写样式，先在goods组件中引入cart-control组件：
+import cartcontrol from '../cartcontrol/cartcontrol';
+接着在components中注册这个组件：
+components: {
+    shopcart,
+    cartcontrol
+  },
+因此就可以在模板中使用。
+
+每个food都应该有一个cartcontrol的组件，
+因此在content下的price下面定义一个wrapper，便于控制组件的定位。
+<div class="cartcontrol-wrapper">
+   <cartcontrol :food="food"></cartcontrol>
+</div>
+
+接下来要把food对象传入到cartcontrol中。因为cartcontrol会关联每一个具体的商品，
+<cartcontrol :food="food"></cartcontrol>
+
+
+回到cartcontrol.vue组件。
+新建一个钩子函数，在created的时候，看看效果。
+created () {
+    console.log(this.food);
+  }
+
+接下来给cartcontrol写样式：
+.cartcontrol{
+  font-size: 0;
+  .cart-decrease{
+    display: inline-block;
+  }
+  .cart-count{
+    display: inline-block;
+  }
+  .cart-add{
+    display: inline-block;
+  }
+}
+
+这个cart-decrease和cart-add，我们希望点击区域边框，按钮小是为了ui设计美观，因此可以增加padding
+.cart-decrease{
+    display: inline-block;
+    // padding: 6px;
+    background-image: url("jian.png");
+    background-size: cover;
+    width: 10px;
+    height: 10px;
+    border: 2px solid #00a0dc ;
+    border-radius: 50%;
+    transition: all .2s linear;
+  }
+
+接下来到goods组件下面写.cartcontrol-wrapper的样式：
+.cartcontrol-wrapper{
+            position: absolute;
+            right: 0;
+            bottom: 24px;
+}
+
+再回到cartcontrol组件中写样式：
+.cartcontrol{
+  font-size: 0;
+  .cart-decrease,.cart-add{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border: 2px solid #00a0dc ;
+    border-radius: 50%;
+  }
+  .cart-decrease{
+    // padding: 6px;
+    background-image: url("jian.png");
+    background-size: cover;
+    transition: all .2s linear;
+  }
+  .cart-count{
+    display: inline-block;
+  }
+  .cart-add{
+    background-image: url("jia.png");
+    background-size: cover;
+  }
+}
+
+可以看到按钮可以正常的显示出来。
+接下来写逻辑。当点击+号按钮时，显示数字和减号按钮：
+<div class="cart-add" @click="addCart()"></div>
+增加一个addCart方法用于增加一个商品。
+
