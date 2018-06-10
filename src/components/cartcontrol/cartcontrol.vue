@@ -20,5 +20,24 @@ export default {
 </script>
 
 <style lang="stylus" rel="stylesheet/styles">
-
+.cartcontrol{
+  font-size: 0;
+  .cart-decrease{
+    display: inline-block;
+    // padding: 6px;
+    background-image: url("jian.png");
+    background-size: cover;
+    width: 10px;
+    height: 10px;
+    border: 2px solid #00a0dc ;
+    border-radius: 50%;
+    transition: all .2s linear;
+  }
+  .cart-count{
+    display: inline-block;
+  }
+  .cart-add{
+    display: inline-block;
+  }
+}
 </style>
