@@ -46,6 +46,12 @@ export default {
   }
   .cart-count{
     display: inline-block;
+    width: 24px;
+    padding-top: 6px;
+    line-height: 8px;
+    text-align: center;
+    font-size: 15px;
+    color:rgb(147,153,159);
   }
   .cart-add{
     background-image: url("jia.png");
