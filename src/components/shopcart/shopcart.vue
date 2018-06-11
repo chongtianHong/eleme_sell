@@ -3,7 +3,7 @@
       <div class="content">
           <div class="content-left">
               <div class="logo-wrapper">
-                  <div class="logo">
+                  <div :class="logo">
                       <!-- <span class="icon-shopping_cart" :class="{'hightLight':totalCount>0}"></span> -->
                       <span :class="cat"></span>
                   </div>
@@ -67,6 +67,13 @@ export default {
         return 'icon-shopping_cart';
       }
     },
+    logo () {
+      if (this.totalPrice > 0) {
+        return 'logo-blue';
+      } else {
+        return 'logo';
+      }
+    },
     payDesc () {
       if (this.totalPrice === 0) {
         return `￥${this.minPrice}元起送`;
@@ -124,22 +131,29 @@ export default {
                     height: 100%;
                     border-radius: 50%;
                     background: #2b343c;
-
-                    .icon-shopping_cart {
-                        display: inline-block;
-                        width: 100%;
-                        height: 100%;
-                        background-image: url('cart.png.png');
-                        background-size: cover;
-                    }
-                    .highLight {
-                        display: inline-block;
-                        color: #80858a;
-                        width: 100%;
-                        height: 100%;
-                        background-image: url('cat2.png');
-                        background-size: cover;
-                    }
+                }
+                .logo-blue {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                    background: rgb(0,160,220);
+                    overflow: hidden;
+                }
+                .icon-shopping_cart {
+                    display: inline-block;
+                    width: 100%;
+                    height: 100%;
+                    background-image: url('cart.png.png');
+                    background-size: cover;
+                }
+                .highLight {
+                    display: inline-block;
+                    color: #80858a;
+                    width: 83%;
+                    height: 85%;
+                    background-image: url('cat2.png');
+                    background-position: 4px 7px;
+                    background-size: cover;
                 }
                 .num {
                     position: absolute;
@@ -184,7 +198,6 @@ export default {
 
         .content-right {
             width: 105px;
-
             .pay {
                 height: 48px;
                 line-height: 48px;
