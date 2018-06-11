@@ -13,11 +13,11 @@ export default {
       type: Object
     }
   },
-  created () {
-    console.log(this.food);
-  },
   methods: {
-    addCart () {
+    addCart (event) {
+      if(!event._constructed) {
+        return;
+      }
       if (!this.food.count) {
         this.food.count = 1;
       } else {

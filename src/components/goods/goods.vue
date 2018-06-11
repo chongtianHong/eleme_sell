@@ -105,6 +105,7 @@ export default {
         click: true
       });
       this.foodScroll = new BScroll(this.$refs.foodsWrapper, {
+        click: true,
         probeType: 3
       });
 
@@ -259,8 +260,8 @@ export default {
           }
           .cartcontrol-wrapper{
             position: absolute;
-            right: 0;
-            bottom: 12px;
+            right: 15px;
+            bottom: 24px;
           }
         }
       }
