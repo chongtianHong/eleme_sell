@@ -18,7 +18,11 @@ export default {
   },
   methods: {
     addCart () {
-      method
+      if (!this.food.count) {
+        this.food.count = 1;
+      } else {
+        this.food.count++;
+      }
     }
   }
 };
