@@ -74,7 +74,7 @@ export default {
   .cart-add{
     background-image: url("jia.png");
     background-size: cover;
-  }  
+  }
   .cart-count{
     display: inline-block;
     width: 24px;
