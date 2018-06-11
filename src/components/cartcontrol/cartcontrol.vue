@@ -1,7 +1,7 @@
 <template>
 <div class="cartcontrol">
     <transition name="fade">
-    <div class="cart-decrease" @click="decCart" v-show="food.count>0"></div>
+        <div class="cart-decrease" @click="decCart" v-show="food.count>0"></div>
     </transition>
     <div class="cart-count" v-show="food.count>0">{{food.count}}</div>
     <div class="cart-add" @click="addCart"></div>
@@ -41,13 +41,13 @@ export default {
 
 <style lang="stylus" rel="stylesheet/styles">
 .cartcontrol .fade-enter-active, .fade-leave-active {
-  transition: all 0.4s linear
+  transition: all 0.2s linear
 }
 
 .cartcontrol .fade-enter, .fade-leave-to {
   opacity: 0;
   transform :translate3d(24px, 0, 0);
-  transform: rotate(360deg);
+  transform: rotate(180deg);
 }
 .cartcontrol{
   font-size: 0;
