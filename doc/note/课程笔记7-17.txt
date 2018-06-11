@@ -1,0 +1,72 @@
+cartcontrol组件（3）
+
+上一小节给class=cart-decrease的div绑定了一个点击decCart方法。
+decCart (event) {
+      if (!event._constructed) { // 去掉自带click事件的点击
+        return;
+      }
+      if (this.food.count) {
+        this.food.count--;
+      }
+}
+
+为了实现点击加号，减号按钮可以从右到左滚动过去。
+因此需要两个动画效果，一个是平移，一个是滚动。同时还需要一个透明度渐变的过程。
+
+使用vue的动画效果。
+<transition name="fade">
+        <div class="cart-decrease" @click="decCart" v-show="food.count>0"></div>
+</transition>
+
+.cart-decrease{
+    background-image: url("jian.png");
+    background-size: cover;
+    transition: all .2s linear;
+  }
+  .cart-decrease .move-transition{
+    opacity: 1;
+    transform: rotateZ(0);
+  }
+.cart-decrease .move-enter  {
+    opacity: 0;
+    transform: rotateZ(180deg);
+  }
+实现了平移效果
+
+接下来实现旋转效果
+.cartcontrol .fade-enter-active, .fade-leave-active {
+  transition: all 0.4s linear
+}
+
+.cartcontrol .fade-enter, .fade-leave-to {
+  opacity: 0;
+  transform :translate3d(24px, 0, 0);
+  transform: rotate(180deg);
+}
+
+动画现在已经实现。
+
+由于cartcontrol修改的是food.count属性。
+food实际上是父组件传过来的对象。
+由于在cartcontrol中修改了food对象，因此就会影响到goods组件。
+
+现在在调用shopcart的时候需要调用一个selectFoods。
+因此在goods组件里面写。
+在这里，selectFoods也是一个计算属性。
+因此在computed项中写：
+selectFoods () {
+      let foods = [];
+      this.goods.forEach((good) => {
+        good.foods.forEach((food) => {
+          if (food.count) {
+            foods.push(food);
+          }
+        });
+      });
+      return foods;
+}
+然后将selectFoods传给shopcart：
+<shopcart :select-foods="selectFoods" :deliveryPrice="seller.deliveryPrice" :minPrice="seller.minPrice"></shopcart>
+可见就实现了商品和购物车的联动效果。
+
+接下来实现购物车小球的动画效果。
