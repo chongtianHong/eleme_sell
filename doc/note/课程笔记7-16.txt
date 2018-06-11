@@ -1,0 +1,63 @@
+cartcontrol组件（2）
+
+上一小节的实现使得按钮可以正常的显示出来。
+接下来写逻辑。当点击+号按钮时，显示数字和减号按钮：
+<div class="cart-add" @click="addCart()"></div>
+增加一个addCart方法用于增加一个商品。
+
+首先判断当前food.count是否存在。
+addCart (event) {
+      if (!event._constructed) {
+        return;
+      }
+      if (!this.food.count) {
+        this.food.count = 1;
+      } else {
+        this.food.count++;
+      }
+}
+到页面中点击发现，点击事件并没有生效。
+原因:carcontrol是处在foods-wrapper面板里面，当时使用better-scroll。
+在better-scroll下要实现移动端的点击效果。
+因此在初始化时候需要传一个参数，将click改为true。
+因此去到goods.vue组件下，
+this.foodScroll = new BScroll(this.$refs.foodsWrapper, {
+        click: true,
+        probeType: 3
+      });
+
+发现点击事件生效以后，减号按钮和商品数量并没有显示。
+即当food.count>0并不能生效。
+这是因为vue.js的一个特性。
+当给一个观测对象添加一个不存在的字段的时候，直接赋值是不可以的。
+      if (!this.food.count) {
+        this.food.count = 1;
+      } else {
+        this.food.count++;
+      }
+defineproperty检测不到新增的变化。
+因此，需要使用vue的一个接口。
+通过import Vue from 'vue';
+Vue.set(this.food, 'count', 1);
+因此this.food.count的变化就能被监听到。
+
+由于没给商品数量的文字设置样式，因此看不到数字。
+  .cart-count{
+    display: inline-block;
+    width: 24px;
+    line-height: 8px;
+    text-align: center;
+    font-size: 15px;
+    color:rgb(147,153,159);
+  }
+
+接下来给class=cart-decrease的div绑定一个点击decCart方法。
+decCart (event) {
+      if (!event._constructed) { // 去掉自带click事件的点击
+        return;
+      }
+      if (this.food.count) {
+        this.food.count--;
+      }
+}
+
