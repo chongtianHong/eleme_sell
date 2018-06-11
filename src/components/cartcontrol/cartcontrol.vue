@@ -2,11 +2,12 @@
 <div class="cartcontrol">
     <div class="cart-decrease" v-show="food.count>0"></div>
     <div class="cart-count" v-show="food.count>0">{{food.count}}</div>
-    <div class="cart-add" @click="addCart()"></div>
+    <div class="cart-add" @click="addCart"></div>
 </div>
 </template>
 
 <script type="text/ecmascript-6">
+import Vue from 'vue';
 export default {
   props: {
     food: {
@@ -15,11 +16,11 @@ export default {
   },
   methods: {
     addCart (event) {
-      if(!event._constructed) {
+      if (!event._constructed) { // 去掉自带click事件的点击
         return;
       }
       if (!this.food.count) {
-        this.food.count = 1;
+        Vue.set(this.food, 'count', 1);
       } else {
         this.food.count++;
       }
