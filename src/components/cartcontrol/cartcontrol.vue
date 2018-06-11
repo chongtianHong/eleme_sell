@@ -1,6 +1,6 @@
 <template>
 <div class="cartcontrol">
-    <div class="cart-decrease" v-show="food.count>0"></div>
+    <div class="cart-decrease" @click="decCart" v-show="food.count>0"></div>
     <div class="cart-count" v-show="food.count>0">{{food.count}}</div>
     <div class="cart-add" @click="addCart"></div>
 </div>
@@ -23,6 +23,14 @@ export default {
         Vue.set(this.food, 'count', 1);
       } else {
         this.food.count++;
+      }
+    },
+    decCart (event) {
+      if (!event._constructed) { // 去掉自带click事件的点击
+        return;
+      }
+      if (this.food.count) {
+        this.food.count--;
       }
     }
   }
@@ -47,7 +55,6 @@ export default {
   .cart-count{
     display: inline-block;
     width: 24px;
-    padding-top: 6px;
     line-height: 8px;
     text-align: center;
     font-size: 15px;
