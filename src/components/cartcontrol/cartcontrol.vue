@@ -40,6 +40,15 @@ export default {
 </script>
 
 <style lang="stylus" rel="stylesheet/styles">
+.cartcontrol .fade-enter-active, .fade-leave-active {
+  transition: all 0.4s linear
+}
+
+.cartcontrol .fade-enter, .fade-leave-to {
+  opacity: 0;
+  transform :translate3d(24px, 0, 0);
+  transform: rotate(360deg);
+}
 .cartcontrol{
   font-size: 0;
   .cart-decrease,.cart-add{
@@ -54,6 +63,18 @@ export default {
     background-size: cover;
     transition: all .2s linear;
   }
+  .cart-decrease .move-transition{
+    opacity: 1;
+    transform: rotateZ(0);
+  }
+  .cart-decrease .move-enter  {
+    opacity: 0;
+    transform: rotateZ(180deg);
+  }
+  .cart-add{
+    background-image: url("jia.png");
+    background-size: cover;
+  }  
   .cart-count{
     display: inline-block;
     width: 24px;
@@ -61,10 +82,6 @@ export default {
     text-align: center;
     font-size: 15px;
     color:rgb(147,153,159);
-  }
-  .cart-add{
-    background-image: url("jia.png");
-    background-size: cover;
   }
 }
 </style>
