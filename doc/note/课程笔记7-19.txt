@@ -1,0 +1,11 @@
+购物车小球动画实现（2）
+
+记录一下用到的知识点吧，不照着做了。
+
+在vue父组件里面访问到子组件。
+可以使用vue的一个v-ref接口。
+通过在父组件的shopcart标签里面使用ref属性，
+即<shopcart ref="shopcart">
+就可以在js里面，通过this.$refs.shopcart来访问到子组件。
+访问dom也可以使用这样的接口。
+
