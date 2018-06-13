@@ -9,3 +9,53 @@
 就可以在js里面，通过this.$refs.shopcart来访问到子组件。
 访问dom也可以使用这样的接口。
 
+https://www.jb51.net/article/115983.htm
+
+Vue 2中ref属性的使用方法及注意事项
+ref被用来给元素或子组件注册引用信息。引用信息将会注册在父组件的$refs对象上。
+如果在普通的DOM元素上使用，引用指向的就是DOM元素。
+如果用在子组件上，引用就指向组件实例。
+
+关于ref注册时间的重要说明：
+因为ref本身是作为渲染结果被创建的，在初始渲染的时候不能访问它们，因为它们还不存在。
+$refs也不是响应式的，因此不应该试图用它在模板中做数据绑定。
+
+当v-for用于元素或组件的时候，引用信息将是包含DOM节点或组件实例的数组。
+
+// html
+<ul>
+　　<li ref="refCon">1</li>
+　　<li ref="refCon">2</li>
+</ul>
+// js
+created: function() {
+　　this.$nextTick(() => {
+　　　　console.log(this.$refs.refCon) 
+　　　　// 打印结果：<li>2</li> 本以为会获得一个数组
+　　 })
+}
+
+而采用v-for以后：
+// html
+<ul>
+ <li v-for="(item,index) in people" :key="index" ref="refContent">{{item}}</li>
+</ul>
+
+// js
+data: {
+ people:['三姑','四婶','五叔','六姨','七舅姥爷']
+},
+created: function() {
+ this.$nextTick(() => {
+  console.log(this.$refs.refContent)
+ })
+}
+若没采用this.$nextTick,则访问不到$refs对象：
+// js
+data: {
+ people:['三姑','四婶','五叔','六姨','七舅姥爷']
+},
+created: function() {
+ console.log(this.$refs.refContent)
+ // undefined
+}
