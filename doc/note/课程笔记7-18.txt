@@ -4,5 +4,64 @@
 当点选每个加号按钮，每个小球的初始位置都是与按钮相关的位置，
 最终的落点都是同个位置。
 而且当连续按加号按钮时，小球的动画是连续的。即在空中有多个小球飞入。
+小球飞入实际上也是横轴纵轴的飞入。横轴是从右到左，纵轴是先往上再往下。
+实际上就是实现一个缓动函数的效果。
 
-这个功能在当前版本下比较难实现。所以放弃这个动画效果的实现。
+实现原理需要两个层，外层控制一个方向的变化，内层控制另一个方向的变化。
+难点在于必须知道小球开始的位置。
+
+在shopcart.vue组件里面写代码。
+首先在这个组件里定义小球。（与content同级）
+<div class="ball-container"></div>
+ball-container里面需要存放若干个小球。
+因此需要新建一个data存放一个小球数组：
+  data () {
+    return {
+      balls: [
+        {
+          show: false
+        },
+        {
+          show: false
+        },
+        {
+          show: false
+        },
+        {
+          show: false
+        },
+        {
+          show: false
+        }
+      ]
+    };
+  },
+数组里面存放的元素是用来维护每个小球当前的状态。
+去到vue的官网看到transition的过渡特性介绍。只有与v-if、v-show、v-for这些指令配合的时候，
+才会触发到其缓动动画。
+<div class="ball-container">
+        <div v-for="(ball,index) in balls" :key="index" v-show="ball.show" transition="drop" class="ball">
+            <div class="inner"></div>
+        </div>
+</div>
+小球的布局就完成了，接下来来写样式。
+.ball-container{
+        .ball{
+            position: fixed;
+            left: 32px;
+            bottom: 22px;
+            z-index: 200;
+            &.drop-transition{
+                transition: all 0.4s;
+                .inner{
+                    width: 16px;
+                    height: 16px;
+                    border-radius: 50%;
+                    background: rgb(0,160,220);
+                    transition: all 0.4s;
+                }
+            }
+        }
+    }
+
+（这个功能在当前版本下比较难实现。所以有点想放弃这个动画效果的实现。）
