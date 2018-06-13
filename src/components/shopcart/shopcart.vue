@@ -19,6 +19,9 @@
           </div>
       </div>
       <div class="ball-container">
+        <div v-for="(ball,index) in balls" :key="index" v-show="ball.show" transition="drop" class="ball">
+            <div class="inner"></div>
+        </div>
       </div>
   </div>
 </template>
