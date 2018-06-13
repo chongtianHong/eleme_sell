@@ -13,10 +13,12 @@
               <div class="desc">另需配送费￥{{deliveryPrice}}元</div>
           </div>
           <div class="content-right">
-              <div class="pay" :class="payClass">
-                  {{payDesc}}
-              </div>
+            <div class="pay" :class="payClass">
+                {{payDesc}}
+            </div>
           </div>
+      </div>
+      <div class="ball-container">
       </div>
   </div>
 </template>
@@ -43,6 +45,27 @@ export default {
       type: Number,
       default: 0
     }
+  },
+  data () {
+    return {
+      balls: [
+        {
+          show: false
+        },
+        {
+          show: false
+        },
+        {
+          show: false
+        },
+        {
+          show: false
+        },
+        {
+          show: false
+        }
+      ]
+    };
   },
   computed: {
     totalPrice () {
