@@ -1,0 +1,96 @@
+购物车详情页（2）
+
+接下来要完成购物车组件的最后一个部分。
+当点击购物车组件黑色区块时，如果购物车里面有商品，
+显示购物车里面的详情，同时在里面还可以进行增加或删除商品的操作。
+
+上一小节完成了购物车详情页的结构。
+接下来看效果。
+可以看到页面结构中出现了shopcart-list的div块。
+当选择商品之后，其中的ul中就有li项。否则li为空。
+
+购物车详情页是根据listShow来控制其显隐。
+listShow可以用计算属性。
+listShow的值是取决于当前totalCount是否大于0（大条件）.而且是否为折叠状态。当点击时是一个来回收起或展开的状态。
+
+首先在data里面定义一个变量：fold: true
+然后再计算属性里面写listShow。
+listShow () {
+      if (!this.totalCount) {
+        // 计算属性内不应该对属性值做变更
+        // eslint-disable-next-line
+        this.fold = true;
+        return false;
+      } else {
+        let show = !this.fold;
+        return show;
+      }
+    }
+
+接下来实现通过点击控制显隐。给购物车的content绑定一个click事件。
+<div class="content" @click="toggleList">
+toggleList的方法在methods里面定义。
+toggleList () {
+      if (!this.totalCount) { // 当购物车为0时，点击无效
+        return;
+      }
+      this.fold = !this.fold;
+    }
+
+以上则完成了对购物车详情页的控制。
+接下来则开始写样式，将列表展现出来。
+
+.shopcart-list{
+      position: absolute;
+      top:0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+}
+接下来实现一个动画效果。
+给shopcart-list外层套一个<transition name="fold"> 
+.shopcart-list {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    transition: all 0.5s;
+    transform: translate3d(0, -100%, 0);
+
+    .fold-enter-active, .fold-leave-active {
+      transition: all 0.5s linear;
+      transform: translate3d(0, -100%, 0);
+    }
+
+    .fold-enter, .fold-leave-to {
+      transition: all 0.5s;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+实现了动画效果。
+接下来写详情页的样式：
+.list-header{
+      height: 40px;
+      line-height: 40px;
+      padding: 0 18px;
+      background: #f3f5f7;
+      border-bottom: 1px solid rgb(7,17,27,0.1);
+      .title{
+        float: left;
+        font-size: 14px;
+        color: rbg(7,17,27);
+      }
+      .empty{
+        float: right;
+        font-size: 12px;
+        color: rgb(0,160,220);
+      }
+    }
+header的头部样式就写好了。
+接下来写列表的样式：
+.list-content{
+      padding: 0 18px;
+      max-height: 217px;
+      background: #f3f5f7;
+    }
