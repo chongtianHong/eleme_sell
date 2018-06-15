@@ -47,6 +47,7 @@
 </template>
 
 <script type="text/ecmascript-6">
+import cartcontrol from '../cartcontrol/cartcontrol';
 export default {
   props: {
     selectFoods: {
@@ -68,6 +69,9 @@ export default {
       type: Number,
       default: 0
     }
+  },
+  components: {
+    cartcontrol
   },
   data () {
     return {
