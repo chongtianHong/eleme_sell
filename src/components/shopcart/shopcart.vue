@@ -1,6 +1,6 @@
 <template>
   <div class="shopcart">
-      <div class="content">
+      <div class="content" @click="toggleList">
           <div class="content-left">
               <div class="logo-wrapper">
                   <div :class="logo">
@@ -144,12 +144,22 @@ export default {
     },
     listShow () {
       if (!this.totalCount) {
+        // eslint-disable-next-line
+        // 计算属性内不应该对属性值做变更
         this.fold = true;
         return false;
-      } else{
+      } else {
         let show = !this.fold;
         return show;
       }
+    }
+  },
+  methods: {
+    toggleList () {
+      if (!this.totalCount) { // 当购物车为0时，点击无效
+        return;
+      }
+      this.fold = !this.fold;
     }
   }
 };
