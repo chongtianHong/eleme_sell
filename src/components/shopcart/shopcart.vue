@@ -18,11 +18,11 @@
             </div>
           </div>
       </div>
-      <div class="ball-container">
+      <!-- <div class="ball-container">
         <div v-for="(ball,index) in balls" :key="index" v-show="ball.show" transition="drop" class="ball">
             <div class="inner"></div>
         </div>
-      </div>
+      </div> -->
       <div class="shopcart-list" v-show="listShow">
         <div class="list-header">
           <h1 class="title">购物车</h1>
@@ -42,6 +42,7 @@
             </li>
           </ul>
         </div>
+      </div>
   </div>
 </template>
 
