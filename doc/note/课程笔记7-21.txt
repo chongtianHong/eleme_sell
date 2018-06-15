@@ -3,3 +3,32 @@
 接下来要完成购物车组件的最后一个部分。
 当点击购物车组件黑色区块时，如果购物车里面有商品，
 显示购物车里面的详情，同时在里面还可以进行增加或删除商品的操作。
+
+布局：
+顶部是一个标题区域，左边是一个标题，右边的按钮可以情况当前的购物车。
+下面是一个列表。
+列表具有一个最大高度，超过这个高度的时候，列表可以滚动。
+如果列表高度不满足最大高度时，高度只能靠内容撑高。
+
+接下来开始在shopcart.vue里面写结构。
+<div class="shopcart-list" v-show="listShow">
+        <div class="list-header">
+          <h1 class="title">购物车</h1>
+          <span class="empty">清空</span>
+        </div>
+        <div class="list-content">
+          <ul>
+            <li class="food" v-for="(food,index) in selectFoods" :key="index">
+              <!-- li下面分为左右两列 -->
+              <span class="name">{{food.name}}</span>
+              <div class="price">
+                <span>￥{{food.price*food.count}}</span>
+              </div>
+              <div class="cartcontrol-wrapper">
+                <cartcontrol :food="food"></cartcontrol>
+              </div>
+            </li>
+          </ul>
+        </div>
+</div>
+发现购物车中没有对cartcontrol进行引入和注册。因此在script里面进行引用和注册。
