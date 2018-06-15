@@ -91,7 +91,8 @@ export default {
         {
           show: false
         }
-      ]
+      ],
+      fold: true
     };
   },
   computed: {
@@ -139,6 +140,15 @@ export default {
         return 'not-enough';
       } else {
         return 'enough';
+      }
+    },
+    listShow () {
+      if (!this.totalCount) {
+        this.fold = true;
+        return false;
+      } else{
+        let show = !this.fold;
+        return show;
       }
     }
   }
