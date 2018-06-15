@@ -23,6 +23,25 @@
             <div class="inner"></div>
         </div>
       </div>
+      <div class="shopcart-list" v-show="listShow">
+        <div class="list-header">
+          <h1 class="title">购物车</h1>
+          <span class="empty">清空</span>
+        </div>
+        <div class="list-content">
+          <ul>
+            <li class="food" v-for="(food,index) in selectFoods" :key="index">
+              <!-- li下面分为左右两列 -->
+              <span class="name">{{food.name}}</span>
+              <div class="price">
+                <span>￥{{food.price*food.count}}</span>
+              </div>
+              <div class="cartcontrol-wrapper">
+                <cartcontrol :food="food"></cartcontrol>
+              </div>
+            </li>
+          </ul>
+        </div>
   </div>
 </template>
 
@@ -236,6 +255,25 @@ export default {
                 &.enough{
                     background: #00b43c;
                     color: #fff;
+                }
+            }
+        }
+    }
+
+    .ball-container{
+        .ball{
+            position: fixed;
+            left: 32px;
+            bottom: 22px;
+            z-index: 200;
+            &.drop-transition{
+                transition: all 0.4s;
+                .inner{
+                    width: 16px;
+                    height: 16px;
+                    border-radius: 50%;
+                    background: rgb(0,160,220);
+                    transition: all 0.4s;
                 }
             }
         }
