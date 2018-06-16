@@ -68,3 +68,6 @@ pay () {
 在vue中提供了<div class="content-right" @click.stop.prevent="pay">来阻止默认事件或冒泡。
 
 以上则完成了购物车组件的功能。
+
+接下来将实现点击具体的food，弹出商品的详情页。
+即开发商品的详情页。
