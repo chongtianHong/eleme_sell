@@ -362,6 +362,25 @@ export default {
         padding: 12px 0;
         box-sizing: border-box;
         border-bottom: 1px solid rgba(7,17,27,.2);
+        .name{
+          line-height: 24px;
+          font-size: 14px;
+          color: rgb(7,17,27);
+        }
+        .price{
+          position: absolute;
+          right: 90px;
+          bottom: 12px;
+          line-height: 24px;
+          font-size: 14px;
+          font-weight: 700;
+          color: rgb(240,20,20);
+        }
+        .cartcontrol-wrapper{
+          position: absolute;
+          right: 0;
+          bottom: 17px;
+        }
       }
     }
   }
