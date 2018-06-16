@@ -321,18 +321,16 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: -50;
+    z-index: -1;
     width: 100%;
     transition: all 0.5s;
     transform: translate3d(0, -100%, 0);
 
     &.fold-enter-active, &.fold-enter-to {
-      transition: all 0.5s linear;
-      transform: translate3d(0, -100%, 0);
+      transform: translate3d(0, 0, 0);
     }
 
     &.fold-leave-active, &.fold-leave-to {
-      transition: all 0.5s linear;
       transform: translate3d(0, 0, 0);
     }
 
@@ -341,7 +339,7 @@ export default {
       line-height: 40px;
       padding: 0 18px;
       background: #f3f5f7;
-      border-bottom: 1px solid rgb(7,17,27,0.1);
+      border-bottom: 1px solid rgba(7,17,27,0.1);
       .title{
         float: left;
         font-size: 14px;
@@ -359,6 +357,12 @@ export default {
       max-height: 217px;
       overflow: hidden; // 指定最大高度，超出隐藏
       background: #fff;
+      .food{
+        position: relative;
+        padding: 12px 0;
+        box-sizing: border-box;
+        border-bottom: 1px solid rgba(7,17,27,.2);
+      }
     }
   }
 }
