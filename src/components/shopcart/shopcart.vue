@@ -321,18 +321,18 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: -1;
+    z-index: -50;
     width: 100%;
     transition: all 0.5s;
     transform: translate3d(0, -100%, 0);
 
-    .fold-enter-active, .fold-leave-active {
+    &.fold-enter-active, &.fold-enter-to {
       transition: all 0.5s linear;
       transform: translate3d(0, -100%, 0);
     }
 
-    .fold-enter, .fold-leave-to {
-      transition: all 0.5s;
+    &.fold-leave-active, &.fold-leave-to {
+      transition: all 0.5s linear;
       transform: translate3d(0, 0, 0);
     }
 
@@ -357,7 +357,8 @@ export default {
     .list-content{
       padding: 0 18px;
       max-height: 217px;
-      background: #f3f5f7;
+      overflow: hidden; // 指定最大高度，超出隐藏
+      background: #fff;
     }
   }
 }
