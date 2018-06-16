@@ -1,0 +1,127 @@
+购物车详情页（2）
+
+接下来要完成购物车组件的最后一个部分。
+当点击购物车组件黑色区块时，如果购物车里面有商品，
+显示购物车里面的详情，同时在里面还可以进行增加或删除商品的操作。
+
+前面的动画效果写错了，重新修改成：
+    &.fold-enter-active, &.fold-enter-to {
+      transform: translate3d(0, 0, 0);
+    }
+
+    &.fold-leave-active, &.fold-leave-to {
+      transform: translate3d(0, 0, 0);
+    }
+
+上一小节写好了header的头部样式
+接下来写列表的样式：
+.list-content{
+      padding: 0 18px;
+      max-height: 217px;
+      overflow: hidden; // 指定最大高度，超出隐藏
+      background: #fff;
+      .food{
+        position: relative;
+        padding: 12px 0;
+        box-sizing: border-box;
+        border-bottom: 1px solid rgba(7,17,27,.2);
+        .name{
+          line-height: 24px;
+          font-size: 14px;
+          color: rgb(7,17,27);
+        }
+        .price{
+          position: absolute;
+          right: 90px;
+          bottom: 12px;
+          line-height: 24px;
+          font-size: 14px;
+          font-weight: 700;
+          color: rgb(240,20,20);
+        }
+        .cartcontrol-wrapper{
+          position: absolute;
+          right: 0;
+          bottom: 17px;
+        }
+      }
+    }
+以上则实现了列表的样式。
+目前实现的列表有几个问题，
+首先底下后面有个半透明背景，需要加
+然后，点击购物车加减按钮实现删加商品
+最后是清空功能没有实现。
+
+理论上购物车详情页里面的购物车加减按钮是一个组件，
+对于之前实现的商品列表里面的组件可以点击，
+现在的购物车详情页里面的购物车加减按钮也应该是可以点击的。
+接下来去cart-control.vue里面定位问题。
+addCart (event) {
+      if (!event._constructed) { // 去掉自带click事件的点击
+        return;
+      }
+      if (!this.food.count) {
+        Vue.set(this.food, 'count', 1);
+      } else {
+        this.food.count++;
+      }
+    },
+是因为better-scroll的问题。在点击的时候判断这个event._constructed存在否。不存在则return。
+只有通过better-scroll去派发一个事件的时候点击事件才能生效。
+正好购物车详情页这里也需要使用better-scroll来实现滚动效果。
+因此，在shopcart.vue里面引入better-scroll这个模块：
+import BScroll from 'better-scroll';
+
+应该在listShow()里面做初始化，因为只有当列表展示的时候，才需要给better-scroll做初始化。
+listShow () {
+      if (!this.totalCount) {
+        // 计算属性内不应该对属性值做变更
+        // eslint-disable-next-line
+        this.fold = true;
+        return false;
+      } else {
+        let show = !this.fold;
+        if (show) {
+          this.$nextTick(() => {
+            this.scroll = new BScroll()
+          });
+        }
+        return show;
+      }
+    }
+在这里，传入new BScroll()的对象应该是list-content这个dom对象。因此给它定义一个ref属性：
+<div class="list-content" ref="listContent">
+因此，就可以通过this.$refs.listContent访问到这个对象。
+this.$nextTick(() => {
+            this.scroll = new BScroll(this.$refs.listContent,{
+              click: true
+            })
+          });
+这时better-scroll的初始化就完成了。
+
+但是listShow是不断变化的，不希望当每次listShow变化时better-scroll都要进行初始化
+因此要加个判断，当this.scroll不存在时才进行初始化。
+listShow () {
+      if (!this.totalCount) {
+        // 计算属性内不应该对属性值做变更
+        // eslint-disable-next-line
+        this.fold = true;
+        return false;
+      } else {
+        let show = !this.fold;
+        if (show) {
+          this.$nextTick(() => {
+            if (!this.scroll) {
+              // eslint-disable-next-line
+              this.scroll = new BScroll(this.$refs.listContent, {
+                click: true
+              });
+            } else {
+              this.scroll.refresh();
+            }
+          });
+        }
+        return show;
+      }
+    }
+接下来看看效果。组件的点击效果就实现了。
