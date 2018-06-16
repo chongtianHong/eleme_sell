@@ -1,5 +1,6 @@
 <template>
   <div class="shopcart">
+    <div class="shopcart-container">
       <div class="content" @click="toggleList">
           <div class="content-left">
               <div class="logo-wrapper">
@@ -45,6 +46,8 @@
           </div>
         </div>
       </transition>
+    </div>
+    <div class="list-mask"></div>
   </div>
 </template>
 
@@ -187,7 +190,7 @@ export default {
 </script>
 
 <style lang="stylus" rel="stylesheet/styles">
-.shopcart {
+.shopcart-container {
   position: fixed;
   left: 0;
   bottom: 0;
