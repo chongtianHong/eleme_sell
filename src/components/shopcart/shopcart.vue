@@ -47,7 +47,9 @@
         </div>
       </transition>
     </div>
-    <div class="list-mask"></div>
+    <transition name="fade">
+      <div class="list-mask" v-show="listShow"></div>
+    </transition>
   </div>
 </template>
 
@@ -404,6 +406,23 @@ export default {
         }
       }
     }
+  }
+}
+.list-mask{
+  position: fixed; // 相对屏幕进行定位
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 40; // 小于shopcart-container的z-index
+  backdrop-filter: blur(10px);
+  // 动画的最终状态
+  transition: all 0.5s;
+  opacity: 1;
+  background: rgba(7,17,27,0.6);
+  &.fade-enter, &.fade-leave{ // 动画一开始的状态
+    opacity: 0;
+    background: rgba(7,17,27,0);
   }
 }
 </style>
