@@ -13,7 +13,7 @@
               <div class="price" :class="{'highPrice':totalPrice>0}">￥{{totalPrice}}</div>
               <div class="desc">另需配送费￥{{deliveryPrice}}元</div>
           </div>
-          <div class="content-right">
+          <div class="content-right" @click="pay">
             <div class="pay" :class="payClass">
                 {{payDesc}}
             </div>
@@ -189,6 +189,12 @@ export default {
     },
     hideList () {
       this.fold = true;
+    },
+    pay () {
+      if (this.totalPrice < this.minPrice) {
+        return;
+      }
+      window.alert(`支付${this.totalPrice}元`);
     }
   }
 };
