@@ -27,7 +27,7 @@
         <div class="shopcart-list" v-show="listShow">
           <div class="list-header">
             <h1 class="title">购物车</h1>
-            <span class="empty">清空</span>
+            <span class="empty" @click="empty">清空</span>
           </div>
           <div class="list-content" ref="listContent">
             <ul>
@@ -176,6 +176,11 @@ export default {
         return;
       }
       this.fold = !this.fold;
+    },
+    empty () { // 购物车清空效果
+      this.selectFoods.forEach((food) => {
+        food.count = 0;
+      });
     }
   }
 };
