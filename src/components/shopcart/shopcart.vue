@@ -49,6 +49,7 @@
 </template>
 
 <script type="text/ecmascript-6">
+import BScroll from 'better-scroll';
 import cartcontrol from '../cartcontrol/cartcontrol';
 export default {
   props: {
