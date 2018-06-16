@@ -29,7 +29,7 @@
             <h1 class="title">购物车</h1>
             <span class="empty">清空</span>
           </div>
-          <div class="list-content">
+          <div class="list-content" ref="listContent">
             <ul>
               <li class="food" v-for="(food,index) in selectFoods" :key="index">
                 <!-- li下面分为左右两列 -->
@@ -153,6 +153,18 @@ export default {
         return false;
       } else {
         let show = !this.fold;
+        if (show) {
+          this.$nextTick(() => {
+            if (!this.scroll) {
+              // eslint-disable-next-line
+              this.scroll = new BScroll(this.$refs.listContent, {
+                click: true
+              });
+            } else {
+              this.scroll.refresh();
+            }
+          });
+        }
         return show;
       }
     }
