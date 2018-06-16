@@ -367,7 +367,7 @@ export default {
 
     .list-content{
       padding: 0 18px;
-      max-height: 217px;
+      max-height: 197px;
       overflow: hidden; // 指定最大高度，超出隐藏
       background: #fff;
       .food{
