@@ -44,5 +44,19 @@ export default {
     &.move-enter, &.move-leave{ // 开始的位置和最终离开的位置
         transform: translate3d(100%,0,0); // 相对自身宽度平移100%，则从右向左
     }
+    .image-header{
+        position: relative;
+        width: 100%;
+        height: 0;
+        /*黑魔法*/
+        padding-top: 100%;// 当给padding值设置百分值时，是相对于盒子宽度去计算的
+        img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
 }
 </style>
