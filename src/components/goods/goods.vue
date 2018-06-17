@@ -48,6 +48,7 @@
 import BScroll from 'better-scroll';
 import shopcart from '../shopcart/shopcart';
 import cartcontrol from '../cartcontrol/cartcontrol';
+import food from '../food/food';
 const ERR_OK = 0;
 export default {
   name: 'goods',
@@ -58,7 +59,8 @@ export default {
   },
   components: {
     shopcart,
-    cartcontrol
+    cartcontrol,
+    food
   },
   data () {
     return {
