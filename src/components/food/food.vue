@@ -22,7 +22,7 @@
                 <div class="cartcontrol-wrapper">
                     <cartcontrol  :food="food"></cartcontrol>
                 </div>
-                <div class="buy"></div>
+                <div class="buy" v-show="!food.count || food.count===0" @click="addFirst">加入购物车</div>
             </div>
         </div>
     </transition>
@@ -31,6 +31,7 @@
 <script type="text/ecmascript-6">
 import BScroll from 'better-scroll';
 import cartcontrol from '../cartcontrol/cartcontrol';
+import Vue from 'vue';
 export default {
   props: {
     food: {
@@ -60,6 +61,12 @@ export default {
     },
     goBack () {
       this.showFlag = false;
+    },
+    addFirst (event) {
+      if (!event._constructed) { // 去掉自带click事件的点击
+        return;
+      }
+      Vue.set(this.food, 'count', 1);
     }
   }
 };
@@ -141,6 +148,25 @@ export default {
               color: rgb(147, 153, 149);
             }
         }
+    }
+    .cartcontrol-wrapper{
+        position: absolute;
+        right: 24px;
+        bottom: 24px;
+    }
+    .buy{
+        position: absolute;
+        right: 22px;
+        bottom: 22px;
+        z-index: 10;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 12px;
+        box-sizing: border-box;
+        border-radius: 12px;
+        font-size: 10px;
+        color: #fff;
+        background: rgb(0,160,220);
     }
 }
 </style>
