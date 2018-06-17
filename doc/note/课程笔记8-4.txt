@@ -1,0 +1,89 @@
+商品详情页实现（4）
+
+接下来将实现点击具体的food，弹出商品的详情页。
+即开发商品的详情页。
+
+接下来写content的样式：
+.content{
+        padding: 18px;
+        .title{
+            line-height: 14px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            color: rgb(7,17,27);
+        }
+        .detail{
+            margin-bottom: 18px;
+            line-height: 10px;
+            height: 10px;
+            font-size: 0;
+            .sell-count, .rating{
+                font-size: 10px;
+                color: rgb(147,153,159);
+            }
+            .sell-count{
+                margin-right: 12px;
+            }
+        }
+        .price{
+            font-size: 0;
+            font-weight: 700;
+            line-height: 24px;
+            .now{
+              margin-right: 8px;
+              font-size: 14px;
+              color: rgb(240, 20, 20);
+            }
+            .old{
+              text-decoration: line-through;
+              font-size: 10px;
+              color: rgb(147, 153, 149);
+            }
+        }
+    }
+
+商品详情页的高度很有可能会超过屏幕的高度。因此可以使用better-scroll实现滚动效果。
+所以在这里引入一个better-scroll：
+import BScroll from 'better-scroll';
+
+初始化better-scroll的时机：
+将better-scroll绑定在<div class="food" v-show="showFlag">元素上。
+因此，在该元素上增加一个ref属性：
+<div class="food" v-show="showFlag" ref="food">
+在show方法里面添加better-scroll。
+show () {
+      this.showFlag = true;
+      this.$nextTick(() => {
+        if (!this.scroll) { // 因为这个组件会出现多次，better-scroll只需要初始化一次。
+          this.scroll = new BScroll(this.$refs.food, {
+            click: true
+          });
+        } else {
+          this.scroll.refresh();
+        }
+      });
+    },
+
+发现点击商品的购物车cartcontrol按钮时，会弹出商品详情页。因此要阻止冒泡事件，
+在cartcontrol里面：
+<div class="cart-add" @click.stop.prevent="addCart"></div>
+同时减号按钮也要阻止冒泡：
+<div class="cart-decrease" @click.stop.prevent="decCart" v-show="food.count>0"></div>
+
+
+接下来实现加入购物车按钮。
+当购买商品为空时，出现加入购物车按钮，即buy结构。
+当购买商品个数不为0时，出现购物车cartcontrol组件，即cartcontrol-wrapper结构。
+在food.vue里面写着两个结构。
+先引入cartcontrol：
+import cartcontrol from '../cartcontrol/cartcontrol';
+并在vue中注册它：
+components: {
+    cartcontrol
+  },
+接下来写cartcontrol-wrapper和buy的结构，与content平级：
+<div class="cartcontrol-wrapper">
+       <cartcontrol  :food="food"></cartcontrol>
+</div>
+<div class="buy"></div>
