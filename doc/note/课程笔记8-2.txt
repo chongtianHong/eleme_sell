@@ -1,0 +1,72 @@
+商品详情页实现（2）
+
+接下来将实现点击具体的food，弹出商品的详情页。
+即开发商品的详情页。
+
+实现food组件内容之前，要实现点选商品列表里面的某个商品时，展开商品详情页。
+可以通过给food组件设计一个show 方法。
+data () {
+    return {
+      showFlag: false
+    }
+  },
+  methods: {
+    show () {
+      this.showFlag = true;    
+    }
+  }
+以下划线开始命名的方法，都是组件内部私有的方法。
+如果要提供一个方法，可以在组件外被调用，则命名首个字符不能为下划线。
+
+接下来到good组件中调用food组件的show方法。
+通过给food标签增加一个ref属性。
+<food :food="selectedFood" ref="food"></food>
+则在script中可以通过this.$refs.food.show()拿到food子组件的show方法。
+selectFood (food, event) {
+      if (!event._constructed) { // better-scroll派发的事件
+        return;
+      }
+      this.selectedFood = food;
+      this.$refs.food.show();
+    },
+给food层的展开做一个从右到左飞入的动画。
+到food.vue中，
+<template>
+    <transition name="move">
+        <div class="food" v-show="showFlag"></div>
+    </transition>
+</template>
+接下来写class样式：
+.food{
+    position: fixed; // 相对于整个屏幕进行定位
+    left: 0;
+    top: 0;
+    bottom: 48px; // 因为底部有一个购物车
+    z-index: 30; // 小于底部的购物车，也要小于购物车详情页层
+    width: 100%;
+    background: #fff;
+    transition: all 0.2s linear;
+    transform: translate3d(0,0,0);
+    &.move-enter, &.move-leave{
+        transform: translate3d(100%,0,0);
+    }
+}
+translate3d() CSS 函数在3D空间内移动一个元素的位置。
+这个移动由一个三维向量来表达，分别表示他在三个方向上移动的距离。
+
+以上则实现了从右到左飞入的动画。
+
+
+接下来给food组件里面增添内容。
+<template>
+    <transition name="move">
+        <div class="food" v-show="showFlag">
+            <div class="food-content">
+                <div class="image-header">
+                    <img :src="food.image"/>
+                </div>
+            </div>
+        </div>
+    </transition>
+</template>
+为了防止图片还未加载，等到加载完成后产生一个抖动效果，因此要给图片提前设置一个宽高。
