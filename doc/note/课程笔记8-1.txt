@@ -1,0 +1,73 @@
+商品详情页实现（1）
+
+接下来将实现点击具体的food，弹出商品的详情页。
+即开发商品的详情页。
+
+首先打开外卖04_商品页面_商品详情_spec.png看设计稿。
+
+首先头图是一张宽高相等的图片，由屏幕宽度决定。
+大头图下面是关于商品的详细介绍。这里还有一个加入购物车的按钮。
+如果已经购买了，则显示为之前的cartcontrol组件。即加减按钮。
+如果还没购买，则显示为 加入购物车。
+接下来是商品的介绍和评价。评价类型有3中，全部、推荐、吐槽。
+这里所有数据都是在data.json里面找到。
+
+将商品详情页抽象为一个组件。新建一个food目录，里面放置food.vue
+接下来开始对其写布局。
+<template>
+    <div class="food" v-show="showFlag"></div>
+</template>
+将其导出，由于商品详情页关联的数据就是商品本身。
+也就是商品详情页组件维护的就是food，因此在这里通过props接收一个food。
+export default {
+    props: {
+        food: {
+          type: Object
+        }
+    }
+  };
+接下来对其写样式。
+.food{
+    position: fixed; // 相对于整个屏幕进行定位
+    left: 0;
+    top: 0;
+    bottom: 48px; // 因为底部有一个购物车
+    z-index: 30; // 小于底部的购物车，也要小于购物车详情页层
+    width: 100%;
+    background: #fff;
+}
+
+因此可以在goods组件中引用food组件。
+import food from '../food/food';
+components: {
+    shopcart,
+    cartcontrol,
+    food
+  },
+注册完food组件后，则可以模板中通过<food>引用组件。
+<template>
+  <div class="goods">
+    <div class="goods-container">...</div>  之前的goods组件内容
+    <food :food="selectedFood"></food>
+  </div>
+</template>
+这里的selectFood一开始用data去做关联。
+data () {
+    return {
+      goods: [],
+      listHeight: [],
+      scrollY: 0,
+      selectedFood: {}
+    };
+  },
+当点选每个food层时，调用一个click事件,使得其能选中一个food。
+因为在这里foodsWrapper，因此点击也要拿到一个event（better-scroll相关）
+<li @click="selectFood(food,$event)" v-for="(food,idx) in item.foods" :key="idx" class="food-item border-bottom">
+接下来在methods里面实现selectFood。
+selectFood (food, event) {
+      if (!event._constructed) { // better-scroll派发的事件
+        return;
+      }
+      this.selectedFood = food;
+    },
+接下来看看效果。
