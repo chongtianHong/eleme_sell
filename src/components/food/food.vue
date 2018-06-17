@@ -4,6 +4,9 @@
             <div class="food-content">
                 <div class="image-header">
                     <img :src="food.image"/>
+                    <div class="back">
+                        <div class="icon-arrow_lift" @click="goBack"> &lt; </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -25,6 +28,9 @@ export default {
   methods: {
     show () {
       this.showFlag = true;
+    },
+    goBack () {
+      this.showFlag = false;
     }
   }
 };
@@ -41,7 +47,7 @@ export default {
     background: #fff;
     transition: all 0.2s linear;
     transform: translate3d(0,0,0);
-    &.move-enter, &.move-leave{ // 开始的位置和最终离开的位置
+    &.move-enter, &.move-leave-active{ // 开始的位置和最终离开的位置
         transform: translate3d(100%,0,0); // 相对自身宽度平移100%，则从右向左
     }
     .image-header{
@@ -56,6 +62,17 @@ export default {
             left: 0;
             width: 100%;
             height: 100%;
+        }
+    }
+    .back{
+        position: absolute;
+        top: 10px;
+        left: 0;
+        .icon-arrow_lift{
+            display: block;
+            padding: 10px; // 使得点击区域变大
+            font-size: 20px;
+            color: #fff;
         }
     }
 }
