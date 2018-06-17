@@ -1,0 +1,84 @@
+商品详情页实现（3）
+
+接下来将实现点击具体的food，弹出商品的详情页。
+即开发商品的详情页。
+
+接下来给food组件里面增添内容。
+<template>
+    <transition name="move">
+        <div class="food" v-show="showFlag">
+            <div class="food-content">
+                <div class="image-header">
+                    <img :src="food.image"/>
+                </div>
+            </div>
+        </div>
+    </transition>
+</template>
+为了防止图片还未加载，等到加载完成后产生一个抖动效果，因此要给图片提前设置一个宽高。
+
+接下来开始写样式
+.image-header{
+        position: relative;
+        width: 100%;
+        height: 0;
+        /*黑魔法*/
+        padding-top: 100%;// 当给padding值设置百分值时，是相对于盒子宽度去计算的
+        img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+以上则实现了图片一开始限制高度的效果。
+
+实现了头图，接下来实现一个返回的按钮。
+<div class="food-content">
+       <div class="image-header">
+             <img :src="food.image"/>
+             <div class="back">
+                  <div class="icon-arrow_lift"> &lt; </div>
+             </div>
+       </div>
+ </div>
+写样式：
+.back{
+        position: absolute;
+        top: 10px;
+        left: 0;
+        .icon-arrow_lift{
+            display: block;
+            padding: 10px; // 使得点击区域变大
+            font-size: 20px;
+            color: #fff;
+        }
+}
+接下来点击返回按钮实现返回效果。
+<div class="icon-arrow_lift" @click="goBack"> &lt; </div>
+写goBack方法：
+goBack () {
+      this.showFlag = false;
+}
+
+当前vue版本，好像&.move-leave的动画效果设置无效。
+通过改成&.move-leave-active则能实现返回也有动画效果。
+
+接下来开始实现下面的区块。
+开始写布局：
+            <div class="food-content">
+                <div class="image-header">...</div>
+                <div class="content">
+                    <h1 class="title">{{food.name}}</h1>
+                    <div class="detail">
+                        <span class="sell-count">月售{{food.sellCount}}份</span>
+                        <span class="rating">好评率{{food.rating}}</span>
+                    </div>
+                    <div class="price">
+                        <span class="now">￥{{food.price}}</span>
+                        <span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
+                    </div>
+                </div>
+            </div>
+之后将完成样式。
