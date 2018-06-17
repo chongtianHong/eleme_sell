@@ -1,6 +1,7 @@
 <template>
-    <div class="food" v-show="showFlag">
-    </div>
+    <transition name="move">
+        <div class="food" v-show="showFlag"></div>
+    </transition>
 </template>
 
 <script type="text/ecmascript-6">
@@ -32,5 +33,10 @@ export default {
     z-index: 30; // 小于底部的购物车，也要小于购物车详情页层
     width: 100%;
     background: #fff;
+    transition: all 0.2s linear;
+    transform: translate3d(0,0,0);
+    &.move-enter, &.move-leave{ // 开始的位置和最终离开的位置
+        transform: translate3d(100%,0,0); // 相对自身宽度平移100%，则从右向左
+    }
 }
 </style>
