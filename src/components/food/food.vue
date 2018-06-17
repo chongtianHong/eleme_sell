@@ -1,6 +1,6 @@
 <template>
     <transition name="move">
-        <div class="food" v-show="showFlag">
+        <div class="food" v-show="showFlag" ref="food">
             <div class="food-content">
                 <div class="image-header">
                     <img :src="food.image"/>
@@ -25,6 +25,7 @@
 </template>
 
 <script type="text/ecmascript-6">
+import BScroll from 'better-scroll';
 export default {
   props: {
     food: {
@@ -39,6 +40,15 @@ export default {
   methods: {
     show () {
       this.showFlag = true;
+      this.$nextTick(() => {
+        if (!this.scroll) {
+          this.scroll = new BScroll(this.$refs.food, {
+            click: true
+          });
+        } else {
+          this.scroll.refresh();
+        }
+      });
     },
     goBack () {
       this.showFlag = false;
