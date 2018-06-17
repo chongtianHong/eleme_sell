@@ -9,6 +9,16 @@ export default {
     food: {
       type: Object
     }
+  },
+  data () {
+    return {
+      showFlag: false
+    };
+  },
+  methods: {
+    show () {
+      this.showFlag = true;
+    }
   }
 };
 </script>
