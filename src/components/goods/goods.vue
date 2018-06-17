@@ -40,7 +40,7 @@
       </div>
       <shopcart :select-foods="selectFoods" :deliveryPrice="seller.deliveryPrice" :minPrice="seller.minPrice"></shopcart>
     </div>
-    <food :food="selectFood"></food>
+    <food :food="selectedFood"></food>
   </div>
 </template>
 
@@ -65,7 +65,7 @@ export default {
       goods: [],
       listHeight: [],
       scrollY: 0,
-      selectFood: {}
+      selectedFood: {}
     };
   },
   computed: {
@@ -114,6 +114,12 @@ export default {
       let el = foodList[index];
       this.foodScroll.scrollToElement(el, 300);
       //console.log(index);
+    },
+    selectFood (food, event) {
+      if (!event._constructed) { // better-scroll派发的事件
+        return;
+      }
+      this.selectedFood = food;
     },
     _initScroll () {
       this.menuScroll = new BScroll(this.$refs.menuWrapper, {
