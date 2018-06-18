@@ -10,6 +10,18 @@ viewModelÁ¬½ÓviewºÍmodelµÄÖÐ¼äÏß£¬ÊÓÍ¼ºÍÊý¾ÝÎÞ·¨Ö±½ÓÍ¨Ñ¶£¬Í¨¹ýviewModelÀ´ÊµÏÖË«Ï
 viewModelÍ¨³£ÒªÊµÏÖÒ»¸öobserver¹Û²ìÕß£¬µ±Êý¾Ý·¢Éú±ä»¯£¬viewmodelÄÜ¹Û²ìµ½Êý¾ÝµÄ±ä»¯£¬È»ºóÍ¨Öªµ½¶ÔÓ¦µÄÊÓÍ¼ÊµÏÖ×Ô¶¯¸üÐÂ¡£
 ¶øµ±ÓÃ»§²Ù×÷ÊÓÍ¼£¬viewmodelÒ²ÄÜ¼àÌýµ½ÊÓÍ¼µÄ±ä»¯£¬È»ºóÍ¨ÖªÊý¾Ý×ö¸Ä¶¯£¬Òò´ËÊµÏÖÁËÊý¾ÝµÄË«Ïò°ó¶¨¡£
 
+Vue Ìá¹©ÁË v-model Ö¸Áî£¬ËüÄÜÇáËÉÊµÏÖ±íµ¥ÊäÈëºÍÓ¦ÓÃ×´Ì¬Ö®¼äµÄË«Ïò°ó¶¨¡£
+<div id="app-6">
+  <p>{{ message }}</p>
+  <input v-model="message">
+</div>
+var app6 = new Vue({
+  el: '#app-6',
+  data: {
+    message: 'Hello Vue!'
+  }
+})
+
 MVVMµÄÓ¦ÓÃ³¡¾°
 1 Õë¶Ô¾ßÓÐ¸´ÔÓ½»»¥Âß¼­µÄÇ°¶ËÓ¦ÓÃ
 2 Ìá¹©»ù´¡µÄ¼Ü¹¹³éÏó
