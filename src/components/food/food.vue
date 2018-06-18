@@ -22,7 +22,9 @@
                 <div class="cartcontrol-wrapper">
                     <cartcontrol  :food="food"></cartcontrol>
                 </div>
-                <div class="buy" v-show="!food.count || food.count===0" @click="addFirst">加入购物车</div>
+                <transition name="fade">
+                    <div class="buy" v-show="!food.count || food.count===0" @click.stop.prevent="addFirst">加入购物车</div>
+                </transition>
             </div>
         </div>
     </transition>
@@ -167,6 +169,11 @@ export default {
         font-size: 10px;
         color: #fff;
         background: rgb(0,160,220);
+        transition: all 0.2s linear;
+        opacity: 1;
+        &.fade-enter,&.fade-leave{
+            opacity: 0;
+        }
     }
 }
 </style>
