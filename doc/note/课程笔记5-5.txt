@@ -1,5 +1,6 @@
 vue-router（下）
 
+配置路由在router/index.js里面配置。
 // 先是使用import把需要使用路由的组件引入, 需要注意的就是 from 后面需要带上'@/'
 这是因为webpack.base.conf.js里面resolve里面配置了一个别名alias。
 alias: { // 路径别名
@@ -11,11 +12,14 @@ alias: { // 路径别名
 }
 所以使用import goods from '@/components/goods/goods';则会将@替换成src目录。
 （webpack配置的技巧）
+也可以使用相对路径的方式
 
 
 当运行项目时，默认打开http://localhost:8080的页面，
 如果想要默认运行显示商品的页面，即http://localhost:8080/goods。
-vue-router提供了一个api，在main.js文件里面设置。router.push('/goods');则能实现默认打开/goods路径。
+vue-router提供了一个api，在main.js文件里面设置:
+router.push('/goods');
+则能实现默认打开/goods路径。
 相当于改变哈希，每次点击对应的按钮都会跳转到不同路径的页面。
 
 
