@@ -16,3 +16,13 @@ webpack打包（下）：
 </html>
 
 app.js没有在项目中看到，因为中间件是将编译好的文件放到内存里，都是对内存进行访问。
+
+
+在webpack.base.config.js中设置了，因此，把项目当成一个整体，通过指定main.js文件，将项目打包成app.js文件。
+module.exports = {
+  entry: {
+    app: './src/main.js' // 入口文件配置
+  },
+  output: {
+    filename: '[name].js', // 输出文件的名称,name对应的是entry里面的key
+  },

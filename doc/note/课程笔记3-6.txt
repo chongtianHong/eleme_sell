@@ -11,12 +11,12 @@ filename: '[name].js', // 输出文件的名称,name对应的是entry里面的key
 filename输出文件的名称，name对应的是entry里面的key，所以最终生成的文件是app.js
 
 
-resolve关于在代码中通过require或es6或者模块的一些相关配置
+resolve关于在代码中通过require或es6或者模块的一些相关配置:
 extensions在require的模块路径中自动补全文件名后缀
 fallback指向node_modules这个模块
 alias指定别名
 
-module包含一个preLoaders和一个loaders。
+module包含一个preLoaders和一个loaders:
 preLoaders和loaders作用类似，对某种类型的文件利用某一个loader去做处理。
 preLoaders会在loaders之前处理
 include是对指定目录下的文件进行编译。exclude是排除指定目录下的文件。
