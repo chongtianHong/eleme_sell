@@ -3,9 +3,10 @@
 main.js入口文件
 App.vue整个页面的vue实例文件，把整个页面看成是vue的大组件
 
-src目录下有两个子目录。
+src目录下有三个子目录。
 components目录，包含一些组件资源。一般是一个组件拥有单独一个目录。
 common目录包含一些公共的资源。
+router目录下的index.js用来规定vue的路由规则。
 
 
 开发方式前后端分离。

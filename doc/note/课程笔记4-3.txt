@@ -7,3 +7,24 @@ IcoMoon   https://icomoon.io
 
 
 制作完将fonts目录下的所有文件和style.css拷贝到项目中使用
+
+
+自动生成文件时，icon.styl中路径默认为:
+src:  url('fonts/sell-icon.eot?2f8f02');  
+ src:  url('fonts/sell-icon.eot?2f8f02#iefix') format('embedded-opentype'),  
+   url('onts/sell-icon.ttf?2f8f02') format('truetype'),  
+   url('fonts/sell-icon.woff?2f8f02') format('woff'),  
+   url('onts/sell-icon.svg?2f8f02#sell-icon') format('svg')  
+ font-weight: normal  
+ font-style: normal  
+
+将路径改成当前项目下的路径即可，改为：
+@font-face   
+  font-family: 'sell-icon'  
+  src:  url('../fonts/sell-icon.eot?2f8f02');  
+  src:  url('../fonts/sell-icon.eot?2f8f02#iefix') format('embedded-opentype'),  
+    url('../fonts/sell-icon.ttf?2f8f02') format('truetype'),  
+    url('../fonts/sell-icon.woff?2f8f02') format('woff'),  
+    url('../fonts/sell-icon.svg?2f8f02#sell-icon') format('svg')  
+  font-weight: normal  
+  font-style: normal  
