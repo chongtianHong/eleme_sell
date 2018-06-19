@@ -2,10 +2,26 @@
 
 把整个页面看成是app.vue的大组件
 
-header组件
-nav导航组件：包括商品，评论和商家三个组件。三个区块的切换基于vue.router来实现。
+1. header组件 
+<v-header :seller="seller"></v-header>
+2. nav导航组件：包括商品，评论和商家三个组件。三个区块的切换基于vue.router来实现。
+<div class="tab">
+      <div class="tab-item">
+        <router-link to="/goods">商品</router-link>
+      </div>
+      <div class="tab-item">
+        <router-link to="/ratings">评价</router-link>
+      </div>
+      <div class="tab-item">
+        <router-link to="/seller">商家</router-link>
+      </div>
+    </div>
+    <router-view :seller="seller"></router-view>
+</div>
 
-在static目录下引入css目录，里面包含reset.css文件。index.html入口html文件：
+
+index.html入口html文件：
+在static目录下引入css目录，里面包含reset.css文件。
 <link rel="stylesheet" type="text/css" href="static/css/reset.css"/>
 
 
@@ -14,3 +30,6 @@ ESlint是es6代码风格检查工具。如果要修改检查风格，则到.eslintrc.js中的rules里面去
 main.js里面有这句话：/* eslint-disable no-new */ 单独给这行代码添加这行注释，可以跳过该校验
 ESlint里面规定如果在js要使用new关键字，一定要赋值给某一个变量。而使用vue实例化是不需要赋值的。
 
+
+使用// eslint-disable-next-line
+可以对接下来的一行代码跳过ESlint校验。
