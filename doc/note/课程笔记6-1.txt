@@ -3,24 +3,9 @@ vue-resource应用（上）
 开始开发header组件。
 可以看到header组件有很多关于商家的数据。这些数据的来源是异步请求后端的数据接口获得的。
 header组件则负责接收这些数据并进行渲染。
-因此可以在App.vue组件即父组件中，去通过发送ajax请求来获取商家的相关数据，
-data () {
-    return {
-      seller: {}
-    };
-  },
-created () {
-    this.$http.get('/api/seller').then((response) => {
-      response = response.body;
-      if (response.errno === ERR_OK) {
-        this.seller = response.data;
-        //console.log(this.seller);
-      }
-    });
-  },
+因此可以在App.vue组件即父组件中，去通过在created中发送ajax请求来获取商家的相关数据，
 然后把数据通过header的prop属性传递给<v-header>这个组件
 <v-header :seller="seller"></v-header>
-
 
 
 首先要给App.vue定义一个seller对象。通过data方法。
@@ -50,4 +35,18 @@ vuejs社区有一个vue-resource插件，用来处理一些前后端请求数据交互的。
 
 由于需要使用vue-resource发起一个ajax请求，我们知道vue有生命周期，
 其中就有一个钩子函数created。
-在created中发起ajax请求。
+在created中发起ajax请求。将请求回来的值赋值给data里面的seller。
+data () {
+    return {
+      seller: {}
+    };
+  },
+created () {
+    this.$http.get('/api/seller').then((response) => {
+      response = response.body;
+      if (response.errno === ERR_OK) {
+        this.seller = response.data;
+        //console.log(this.seller);
+      }
+    });
+  },
