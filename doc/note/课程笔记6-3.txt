@@ -5,14 +5,22 @@
 已经从后端api获得seller对象，接下来需要将seller对象传递给header组件。
 
 
+可以用 v-bind 绑定动态 Props 到父组件的数据。每当父组件的数据变化时，也会传导给子组件
 v-bind可以简写为:，则有
 <v-header :seller="seller"></v-header>
 seller对象通过props属性传递给header组件。
 <v-header v-bind:子组件的值="父组件的属性"></v-header>
-可以用 v-bind 绑定动态 Props 到父组件的数据。每当父组件的数据变化时，也会传导给子组件
+同时需要在header.vue组件声明一个props属性：
+props: {
+    seller: {
+      type: Object
+    }
+  },
+因此就可以在子组件中使用父组件传过来的seller。
 
 
-将header分为上下两个部分，分别是内容块（左边为头像，右边为内容）和公告块
+将header分为上下两个部分，分别是content-wrapper内容块（左边为头像，右边为内容）和bulletin-wrapper公告块
+首先先写content-wrapper内容块的结构：
   <div class="header">
     <div class="content-wrapper">
       <div class="avatar">

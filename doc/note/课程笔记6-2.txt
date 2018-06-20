@@ -29,4 +29,5 @@ created () {
 
 接下来需要做的就是将this.seller对象传递给header组件，然后进行数据渲染。
 通过props属性：
+<v-header v-bind:子组件的值="父组件的属性"></v-header>
 <v-header :seller="seller"></v-header>
