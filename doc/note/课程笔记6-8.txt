@@ -1,19 +1,23 @@
 外部组件（6）
 
-这部分将给header加背景，背景实际上是avatar这张图片，且有一个模糊效果。
+这部分将给header加背景，背景实际上是使用avatar这张图片作为背景，且有一个模糊效果。
 
-实现方法：通过设置一个img标签，设置它的外层的容器backgroun，设置一个filter:blur(10px)。
+实现方法：通过设置一个img标签，在它的外层套一个background容器，
+结构如下：
+<div class="background">
+      <img :src="seller.avatar" width="100%" height="100%"/>
+</div>
+设置一个filter:blur(10px)。
 想要将背景设置在容器的底部，则将包含img的外层容器设置为absolute，z-index: -1;宽高撑满header的区域即可。
 
 
-根据思路，开始写结构：
-    <div class="background">
-      <img :src="seller.avatar" width="100%" height="100%"/>
-    </div>
-background和content-wrapper、bulletin-wrapper都是同级的。
+接下来开始写样式：
 
-开始写样式：
-父级元素header设置position: relative；
+给父级元素header设置position: relative；
+同时，给父级元素header设置背景颜色：background: rgba(7,17,27,0.5);
+
+实现了背景图之后，实现模糊效果，通过blur实现，通过给background增加一个filter：
+filter: blur(10px);
 .background{
     position: absolute;
     top: 0;
@@ -21,12 +25,8 @@ background和content-wrapper、bulletin-wrapper都是同级的。
     width: 100%; // 继承父级元素header的宽
     height: 100%; // 继承父级元素header的高
     z-index: -1;
+    filter: blur(10px);
 }
-
-实现了背景图之后，实现模糊效果，通过blur实现，通过给background增加一个filter：
-filter: blur(10px);
-同时，给父级元素header设置背景颜色：
-background: rgba(7,17,27,0.5);
 
 由于设置了blur会对tab的div区域有影响，因此要对header设置overflow:hidden属性。
 

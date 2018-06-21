@@ -234,8 +234,8 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100%; // 继承父级元素header的宽
+    height: 100%; // 继承父级元素header的高
     z-index: -1;
     filter: blur(10px);
   }
