@@ -15,12 +15,18 @@
   }
 }
 
-发现avatar和content之间有一个空白字符的间隔，因此父级元素.content-wrapper设置font-size:0;
+发现avatar和content设置了inline-block之后，它们之间有一个空白字符的间隔，
+因此通过给它们的父级元素.content-wrapper设置font-size:0;即可消除空白字符的间隔。
 
-接下来写title部分。title由brand和text组成。在img/里面找到图片，拷贝到header组件的目录下。
+接下来写title部分。title由brand和text组成。
+<div class="title">
+          <span class="brand"></span>
+          <span class="name">{{seller.name}}</span>
+</div>
+在resource/img/里面找到图片，拷贝到header组件的目录下。
 组件设计原则是组件依赖的图片都要放到组件中去维护。
 
-由于brand是一个span，指定宽高没用，所以要设置成inline-block：
+由于brand是一个span，由于行内元素指定宽高没用，所以要设置成inline-block：
 .content{
       display: inline-block;
       margin-left: 16px;
@@ -59,5 +65,11 @@ vertical-align:top;
 
 
 title写完了可以写description的样式。
+<div class="description">
+          {{seller.description}}/{{seller.deliveryTime}}分钟送达
+</div>
+
 在reset.css里面设置body，html的默认样式，例如font-weight:200等，就不用每次都要对各个元素设置font-weight值
+在项目的入口html文件index.html中，可以看到其中对reset.css进行引用。
+<link rel="stylesheet" type="text/css" href="static/css/reset.css"/>
 
