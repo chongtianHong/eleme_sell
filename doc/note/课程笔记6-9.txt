@@ -5,7 +5,7 @@
 这个浮层本身的高度会高于手机的高度，因此会产生一个上下滚动条，
 而关闭的按钮是定位在页面底部，如果我们使用普通的position：fixed布局的话，当内容较长的时候，由于fixed布局是针对于窗口，
 而当页面高度超过页面窗口时，因此关闭的按钮会覆盖在文字上面，这不是我们期望的。
-因此要使用一个css sticky footers的布局。
+因此关闭的按钮部分要使用一个css sticky footers的布局。
 
 介绍布局之前，先把浮层大体写下来。这个浮层要相对窗口的fixed布局。
 
@@ -27,10 +27,7 @@
 <div v-show="detailShow" class="detail"></div>
 为了使其生效，必须在vue实例中加一个data选项，用于定义detailShow变量。
 data选项最好使用函数的形式：
-data () {
-    return {}
-  },
-obj里面存放的是vue需要跟踪依赖的一些变量
+返回的对象里面存放的是vue需要跟踪依赖的一些变量
 data () {
     return {
       detailShow: false
@@ -39,7 +36,7 @@ data () {
 也就是在vue实例化的时候，会对data里面的属性进行遍历，observer原理。。
 
 
-现在默认是隐藏浮层，需求是当点击“5个”按钮（.support-count）或公告栏（.bulletin-wrapper），则会弹出浮层。
+现在默认是隐藏浮层，需求是当点击“5个”按钮（.support-count）或公告栏（.bulletin-wrapper）时，则会弹出浮层。
 因此需要对这两个层添加click事件。
 <div v-if="seller.supports" class="support-count" @click="showDetail">
 <div class="bulletin-wrapper" @click="showDetail">
