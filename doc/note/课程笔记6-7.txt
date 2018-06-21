@@ -1,28 +1,25 @@
 外部组件（5）
 
 写完浮层入口的样式，接下来将写header的公告部分。
-公告部分也是点击 > 则会弹出浮层。
-公告的文字超出可显示的范围则用...代替，设置
+公告部分也是点击 bulletin-wrapper 则会弹出浮层。
+    <div class="bulletin-wrapper" @click="toggleDetail">
+      <span class="bulletin-title"></span><span class="bulletin-text">{{seller.bulletin}}</span>
+      <i class="icon-keyboard_arrow_right"> > </i>
+    </div>
+公告的文字超出可显示的范围则用...代替，设置样式的关键点在于：
 white-space: nowrap;
 overflow: hidden;
 text-overflow: ellipsis;
-如果父级元素设置font-size:0;则...会消失，
-所以为了消除行内、行内块级元素之间的空白间隔，要使用别的方法：
-解决方法:
-1.	给父元素设置font-size:0px
-2.	取消掉换行符，如这样：<span>aaaa</span><span>aaaa</span><span>aaaa</span>连续。
-3.	使用margin负值。
-4.	使用浮动。（块元素同行显示：①display：inline-block②float：left）
-5.	另外还有使用letter-spacing、word-spacing等方法。
-
-
+整体的样式为：
 .bulletin-wrapper{
+    position: relative;
     height: 28px;
     line-height: 28px;
     padding: 0 22px 0 12px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    background: rgba(7,17,27,0.2);
     .bulletin-title{
       display: inline-block;
       vertical-align: top;
@@ -36,7 +33,27 @@ text-overflow: ellipsis;
       font-size: 10px;
       margin: 0 4px;
     }
+    .icon-keyboard_arrow_right{
+        position: absolute;
+        right: 12px;
+        top: 8px;
+        font-size: 10px;
+        line-height: 15px;
+    }
 }
+
+所以为了消除行内、行内块级元素之间的空白间隔，
+而如果采用给父级元素bulletin-wrapper设置font-size:0;则...会消失，
+因此要使用别的方法：
+解决方法:
+1.	给父元素设置font-size:0px
+2.	取消掉换行符，如这样：<span>aaaa</span><span>aaaa</span><span>aaaa</span>连续。
+3.	使用margin负值。
+4.	使用浮动。（块元素同行显示：①display：inline-block②float：left）
+5.	另外还有使用letter-spacing、word-spacing等方法。
+这里采用取消换行符的方法：
+<span class="bulletin-title"></span><span class="bulletin-text">{{seller.bulletin}}</span>
+
 
 .icon-keyboard_arrow_right使用绝对定位。不占据文档流。设置样式：
 .icon-keyboard_arrow_right{
