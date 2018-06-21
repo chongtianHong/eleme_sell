@@ -9,18 +9,26 @@ title写完了可以写description的样式。
 }
 
 
-发现头像avatar和左边的内容content不是顶部对齐，
+发现头像avatar和右边的内容content不是顶部对齐，
 因此要对avatar设置vertical-align: top;
+一般都是给图片设置vertical-align
 
 发现avatar有一个2px的圆角属性，因此对avatar下面的img标签设置样式：
 border-radius: 2px;
 
 
 最后写supports部分（比较复杂）
-首先support左边是一张图片，减、折、保、特、票
-右边是文字描述。
-
+<div v-if="seller.supports" class="support">
+          <span class="icon" :class="classMap[seller.supports[0].type]"></span>
+          <span class="text">
+            {{seller.supports[0].description}}
+          </span>
+</div>
+首先support左边是一张icon图片，有可能是“减、折、保、特、票”其中的一个
+而右边是文字描述text。
 这些图标是根据后端返回的数据的不同而对应显示的。
+将seller对象中supports数组的第一个元素的type对应的icon显示出来。
+
 先给support写样式。
 .support{
         .icon{
