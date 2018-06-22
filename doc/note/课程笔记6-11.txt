@@ -32,7 +32,8 @@
 <div class="star" :class="starType">
         <span v-for="(itemClass,index) in itemClasses" :class="itemClass" class="star-item" :key="index"></span>
 </div>
-
+vue文档规定使用v-for后最好给它绑定一个key,所以再写个:key="your codes"即可,如：
+<span v-for="(itemClass,index) in itemClasses" :class="itemClass" class="star-item" :key="index"></span>
 
 由于star有不同的大小尺寸，这是外部传进来的，因此应该提供一个对外传入的接口，使用props属性来定义。
 在header组件中，将size="48"传递给star组件：
