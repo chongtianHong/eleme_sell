@@ -2,9 +2,9 @@
 
 写完小标题的样式，现在写下面的内容：
 
-下面的内容与support有点累死，用遍历列表来实现。
+下面的内容与class为support的div有点类似，用遍历列表来实现。
 
-先写结构，在title下面写：
+先写结构，在title下面写，
 这里使用v-if来判断，因为有的商家可能没有supports项。
 
 <ul v-if="seller.supports" class="support">
