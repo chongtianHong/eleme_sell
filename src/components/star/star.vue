@@ -24,16 +24,16 @@ export default {
     },
     itemClasses () {
       let result = [];
-      let score = Math.floor(this.score * 2) / 2;
+      let score = Math.floor(this.score * 2) / 2; // Math.floor下舍入，取小于等于 x，且与 x 最接近的整数。
       let hasDecimal = score % 1 !== 0;
-      let integer = Math.floor(score);
+      let integer = Math.floor(score); // 全星个数
       for (let i = 0; i < integer; i++) {
         result.push(CLS_ON);
       }
       if (hasDecimal) {
-        result.push(CLS_HALF);
+        result.push(CLS_HALF); // 半星
       }
-      while (result.length < LENGTH) {
+      while (result.length < LENGTH) { // 不满足长度的push进去off星
         result.push(CLS_OFF);
       }
       return result;

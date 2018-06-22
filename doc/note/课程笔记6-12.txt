@@ -31,15 +31,15 @@
 由于每种size的星星都有不同的3个状态，on（全星）、half（半星）和off（没星），这是由itemClass来决定的，
 因此给这三种不同的状态写样式。
 &.star-48{ //与star同级
-        & .on{
+        .on{
             background: url('star48_on@2x.png');
 	    background-size: cover;
         }
-        & .half{
+        .half{
             background: url('star48_half@2x.png');
 	    background-size: cover;
         }
-        & .off{
+        .off{
             background: url('star48_off@2x.png');
 	    background-size: cover;
         }
@@ -54,33 +54,30 @@ itemClass是通过遍历itemClasses得到的
 
 由于总共五颗星，所以要定义一个常量，
 const LENGTH = 5;
-const CLS_ON = "on";
-const CLS_HALF = "half";
-const CLS_OFF = "off";
+const CLS_ON = "on"; // 大于等于1
+const CLS_HALF = "half"; // 大于等于0.5小于1
+const CLS_OFF = "off";// 小于0.5
 使用定义常量的原因是，之后代码如果要改动的话，只需要初始化的数值即可，不需要改动所有的代码。
 itemClasses是一个数组。通过分数score算出这样的一个数组。
 分数通过this.score得到。
 computed: {
-        starType () {
-            return "star-" + this.size;
-        },
         itemClasses () {
             let result = [];
-            let score = Math.floor(this.score * 2) / 2;
+            let score = Math.floor(this.score * 2) / 2; // Math.floor下舍入，取小于等于 x，且与 x 最接近的整数。
             let hasDecimal = score % 1 !== 0;
-            let integer = Math.floor(score);
+            let integer = Math.floor(score); // 全星个数
             for(let i=0; i < integer;i++){
                 result.push(CLS_ON);
             }
             if(hasDecimal){
-                result.push(CLS_HALF);
+                result.push(CLS_HALF); // 半星
             }
-            while(result.length<LENGTH){
+            while(result.length<LENGTH){ // 不满足长度的push进去off星
                 result.push(CLS_OFF);
             }
             return result;
         }
-    }
+}
 
 写完代码之后，就可以将星星组件用起来，看看效果。
 
