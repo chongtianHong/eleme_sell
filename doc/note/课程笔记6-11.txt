@@ -23,16 +23,23 @@
 
 发现星星组件在评价页、浮层都有使用，因此可以用组件的形式实现，实现复用。
 接下来则开始实现星星组件，在components下创建一个star目录。
-接下来在star.vue里面写样式。
+接下来在star.vue里面写结构和样式。
+
 切入点：使用vue的v-for的属性，实现星星数量的灵活展示。
 由于star有不同的尺寸，所以要给class名为star的标签绑定一个starType的class。
-而里面的内容是span，通过v-for去遍历一个itemClasses的数组。然后为每个span绑定对应的itemClass的类名。还有统一的一个class名为star-item
+而里面的内容是span，通过v-for去遍历一个itemClasses的数组。
+然后为每个span绑定对应的itemClass的类名。每个span还有统一的一个class名为star-item
 <div class="star" :class="starType">
-        <span v-for="itemClass in itemClasses" :class="itemClass" class="star-item"></span>
+        <span v-for="(itemClass,index) in itemClasses" :class="itemClass" class="star-item" :key="index"></span>
 </div>
 
 
 由于star有不同的大小尺寸，这是外部传进来的，因此应该提供一个对外传入的接口，使用props属性来定义。
+在header组件中，将size="48"传递给star组件：
+<div class="star-wrapper">
+            <star :score="seller.score" :size="48"></star>
+</div>
+而在star组件中，定义props项：
 props: { // 从外层接收两个参数，size和score。
         size: {
             type: Number
@@ -56,7 +63,28 @@ computed: {
         display: inline-block;
         background-repeat: no-repeat
     }
-    &.star-48{} //与star同级
+    &.star-48{ //与star同级
+        .star-item{
+            width: 20px;
+            height: 20px;
+            margin-right: 22px;
+        }
+        &:last-child{
+            margin-right: 0;
+        }
+        .on{
+            background: url('star48_on@2x.png');
+            background-size: cover;
+        }
+        .half{
+            background: url('star48_half@2x.png');
+            background-size: cover;
+        }
+        .off{
+            background: url('star48_off@2x.png');
+            background-size: cover;
+        }
+    }
     &.star-36{}
     &.star-24{}
 }

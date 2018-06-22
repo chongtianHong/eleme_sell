@@ -54,7 +54,7 @@ detail-wrapper实际上是一个外层容器，其高度时随着其内容的高度而增加的。而最小高度
 现在写detail-main里面的样式，查看设计稿发现，需要设置一个magin-top（非sticky-foot布局必须的）和padding-bottom（sticky-foot必须的）：
 .detail-main{
       margin-top: 64px;
-      padding-bottom: 64px;
+      padding-bottom: 64px; // 固定套路
     }
 使用padding-bottom为×撑开高度，使得×不会覆盖在文字上方。
 
