@@ -17,8 +17,11 @@ toggleDetail () {
 浮层弹出的效果太生硬了。接下来实现渐变弹层的实现。
 使用css3动画。
 
-直接在下面的层定义一个transition="fade"
-<div v-show="detailShow" class="detail" transition="fade">
+直接在<div v-show="detailShow" class="detail" transition="fade">层的外层套一个<transition name="fade">，即
+<transition name="fade">
+	<div v-show="detailShow" class="detail" transition="fade">
+</transition>
+
 接下来在css中定义fade的样式：（教程里面的实现）
 .detail{
     position: fixed;
@@ -29,23 +32,12 @@ toggleDetail () {
     height: 100%;
     overflow: auto; // 若设置为hidden，则当内容高度超出屏幕高度时不能滚动
     transition: all 0.5s; // 对所有属性渐变
+    background: rgba(7,17,27,0.8);
+    backdrop-filter: blur(10px);
     &.fade-transition{
       opacity: 1;
-      background: rgba(7,17,27,0.8);
     }
-    &.fade-enter, &.fade-leave{
-      opacity: 0;
-      background: rgba(7,17,27,0);
-    }
-}
-但是发现并不能实现渐变效果。
-通过百度，通过在.detail外包一个transition的标签：
-<transition name="fade">
-然后写样式：
-&.fade-transition{
-      opacity: 1;
-    }
-&.fade-enter, &.fade-leave{ //当进入和离开时触发
+    &.fade-enter, &.fade-leave{ //当进入和离开时触发
       opacity: 0;
       background: rgba(7,17,27,0);
 }

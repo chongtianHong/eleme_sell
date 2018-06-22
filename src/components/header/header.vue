@@ -253,7 +253,7 @@ export default {
     &.fade-transition{
       opacity: 1;
     }
-    &.fade-enter, &.fade-leave{
+    &.fade-enter, &.fade-leave{ // 当进入和离开时触发
       opacity: 0;
       background: rgba(7,17,27,0);
     }
