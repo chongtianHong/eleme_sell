@@ -14,12 +14,15 @@
 在页头和页脚设置高度，但主题内容的高度自动伸缩的来适配剩余空间。可以在<main>上设置flex值=1.
 父级元素设置display: flex; flex-flow: column; min-height: 100vh;
 
-项目中使用的方法是：在detail里面定义两个层，分别是存放内容的容器detail-wrapper（需要清除浮动）和定在视窗底部的层detail-close（关闭按钮）
+项目中使用的方法是：
+需要三个层：一个层detail包内容，一个内容detail-wrapper，一个层底部detail-close
+在detail里面定义两个层，
+分别是存放内容的容器detail-wrapper（需要清除浮动）和定在视窗底部的层detail-close（关闭按钮）
 <div v-show="detailShow" class="detail">
       <div class="detail-wrapper clearfix">
         <div class="detail-main"></div>
       </div>
-      <div class="detail-close">X</div>
+      <div class="detail-close">×</div>
 </div>
 接下来可以开始写样式。
 
@@ -35,13 +38,20 @@ clearfix是比较通用的样式
     visibility: hidden;
   }
 }
+不是很清楚为啥这里要清除浮动，因为类名为detail-main的元素也没使用float浮动。
+发现将<div class="detail-wrapper clearfix">中的clearfix类名去掉，detail-wrapper整个层向下发生了偏移。
+clearfix复习：
+在一个有float 属性元素的外层增加一个拥有clearfix属性的div包裹，
+可以保证外部div的height，即清除"浮动元素脱离了文档流，
+包围图片和文本的 div 不占据空间"的问题。在标准浏览器下，
+.clearfix:after这个伪类会在应用到.clearfix的元素后面插入一个clear: both的块级元素，从而达到清除浮动的作用。
 
 detail-wrapper实际上是一个外层容器，其高度时随着其内容的高度而增加的。而最小高度应该是和视窗高度一样高的。
 因此设置
 .detail-wrapper{ // 外层容器
     min-height: 100%;
   }
-现在写detail-main里面的样式，查看设计稿发现，需要设置一个magin-top（非sticky-foot必须的）和padding-bottom（sticky-foot必须的）：
+现在写detail-main里面的样式，查看设计稿发现，需要设置一个magin-top（非sticky-foot布局必须的）和padding-bottom（sticky-foot必须的）：
 .detail-main{
       margin-top: 64px;
       padding-bottom: 64px;
