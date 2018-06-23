@@ -33,6 +33,7 @@
                 <split></split>
                 <div class="rating">
                     <h1 class="title">商品评价</h1>
+                    <ratingselect></ratingselect>
                 </div>
             </div>
         </div>
@@ -44,6 +45,7 @@ import BScroll from 'better-scroll';
 import cartcontrol from '../cartcontrol/cartcontrol';
 import Vue from 'vue';
 import split from '../split/split';
+import ratingselect from '../ratingselect/ratingselect';
 export default {
   props: {
     food: {
@@ -52,7 +54,8 @@ export default {
   },
   components: {
     cartcontrol,
-    split
+    split,
+    ratingselect
   },
   data () {
     return {

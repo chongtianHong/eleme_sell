@@ -13,7 +13,9 @@
 </template>
 
 <script type="text/ecmascript-6">
+// eslint-disable-next-line
 const POSITIVE = 0;
+// eslint-disable-next-line
 const NEGATIVE = 1;
 const ALL = 2;
 export default {
@@ -40,7 +42,7 @@ export default {
           all: '全部',
           positive: '满意',
           negative: '不满意'
-        }
+        };
       }
     }
   }
