@@ -117,6 +117,7 @@ export default {
         }
     }
     .content{
+        position: relative;
         padding: 18px;
         .title{
             line-height: 14px;
