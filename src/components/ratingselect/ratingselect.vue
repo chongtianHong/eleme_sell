@@ -54,7 +54,7 @@ export default {
     display: inline-block;
     width: 20px;
     height: 20px;
-    line-height: 25px;
+    line-height: 22px;
     text-align: center;
     border-radius: 50%;
     color: #fff;
