@@ -50,5 +50,15 @@ export default {
 </script>
 
 <style lang="stylus" rel="stylesheet/styles">
-
+.icon-check_circle{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 25px;
+    text-align: center;
+    border-radius: 50%;
+    color: #fff;
+    background: #000;
+    font-size: 12px;
+}
 </style>
