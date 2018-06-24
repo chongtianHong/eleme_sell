@@ -61,4 +61,11 @@ export default {
     background: #000;
     font-size: 12px;
 }
+.ratingselect{
+    .rating-type{
+        padding:18px 0;
+        margin: 0 18px; // 因为下面有一条线，如果设置padding会占满整个屏幕
+        border-bottom: 1px solid rgba(7,17,27,0.1);
+    }
+}
 </style>
