@@ -1,0 +1,69 @@
+ratingselect组件（2）
+
+接下来要将上一节定义的props属性从父组件中传入。
+
+首先在food组件的data里面挂一些变量去依赖跟踪子组件。
+data () {
+    return {
+      showFlag: false,
+      selectType: ALL,
+      onlyContent: true,
+      desc: {
+        all: '全部',
+        positive: '推荐',
+        negative: '吐槽'
+      }
+    };
+  },
+
+同时定义几个常量：
+// eslint-disable-next-line
+const POSITIVE = 0;
+// eslint-disable-next-line
+const NEGATIVE = 1;
+const ALL = 2;
+
+定义好之后，在触发show方法的时候，需要初始化这些数据。
+因为food组件可能被多个商品所使用，当传入不同的商品的时候，
+希望数据的状态保持为初始化的状态。
+因此要在show里面写：
+show () {
+      this.showFlag = true;
+      this.selectType = ALL;
+      this.onlyContent = true;
+      this.$nextTick(() => {
+        if (!this.scroll) {
+          this.scroll = new BScroll(this.$refs.food, {
+            click: true
+          });
+        } else {
+          this.scroll.refresh();
+        }
+      });
+    },
+
+接下来将刚定义的数据传入ratingselect组件：
+<ratingselect :select-type="selectType" :only-content="onlyContent" :desc="desc" :ratings="food.ratings">
+注意这里的传入的props属性必须用中划线取代驼峰式命名。
+ratings传入的是food.ratings。
+
+发现数据成功传入到ratingselect组件后，接下来开始写样式。
+首先先写food组件里面的样式。
+.rating{
+        padding-top: 18px;
+        .title{
+            line-height: 14px;
+            margin-left: 18px;
+            font-size: 14px;
+            color: rgb(7,17,27);
+        }
+    }
+
+接下来写ratingselect里的样式：
+.ratingselect{
+    .rating-type{
+        padding:18px 0;
+        margin: 0 18px; // 因为下面有一条线，如果设置padding会占满整个屏幕
+        border-bottom: 1px solid rgba(7,17,27,0.1);
+    }
+}
