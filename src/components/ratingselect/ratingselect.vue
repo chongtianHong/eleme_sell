@@ -52,6 +52,7 @@ export default {
         return;
       }
       this.selectType = type;
+      this.$dispatch('ratingselect.select', type);
     }
   }
 };
