@@ -4,27 +4,29 @@
 商品组件还包含了购物车组件，和商品详情。
 因此商品组件是整个项目中最复杂的部分。
 
-先看最外层的布局。外卖01_商品页_spec.png
+先看最外层的布局。设计稿为外卖01_商品页_spec.png
 两栏布局，左侧是商品分类，右侧是每个分类具体包含那些商品（列表）
 左栏宽度固定，右栏宽度自适应。
 可使用flex布局。
 
 接下来开始写布局。在goods.vue下开发。
-首先需要两个div，左侧menu菜单和右侧商品
+首先需要两个div，左侧为菜单menu-wrapper，右侧为商品foods-wrapper
 <div class="goods">
     <div class="menu-wrapper"></div>
     <div class="foods-wrapper"></div>
 </div>
 接下来开始写样式，发现内容的高度有可能会超过屏幕的高度，而右侧没有滚动条。
+因此，使用绝对定位：
 .goods{
   display: flex;
   position: absolute;
-  top: 174px;// header是134px，tab是40px，因此top=174px
-  bottom: 46px;// 购物车列表的高度
+  top: 174px;// header的高度是134px，tab是40px，因此top=174px
+  bottom: 46px;// 留出购物车列表的高度
   width: 100%;
   overflow: hidden;
 }
 因此其视口的高度就定义好了。
+
 接下来写menu.wrapper和foods-wrapper的样式：
 .menu-wrapper{
     width: 80px;
@@ -38,8 +40,8 @@
 把外壳写好之后接下来开始填内容：
 数据都是在data.json的goods字段里面。
 type是每个商品分类。
-接下来如何拿到这个数据，用到vue-resource这个技术：
-通过props接收seleer。
+接下来想拿到这个数据，需要用到vue-resource（之前在webpack.dev.conf.js中写了请求数据的路由）：
+通过props接收seller。
 props: {
     seller: {
       type: Object
