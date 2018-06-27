@@ -1,0 +1,57 @@
+ratingselect组件（5）
+
+上一小节实现了组件的基本样式。
+接下来来写逻辑，使得组件联动起来。则给组件绑定一些事件。
+
+总共有两种事件，第一个是rating-type中的按钮添加事件。
+一种是给switch按钮添加点击事件。
+
+首先给rating-type中的按钮添加点击事件，触发select方法。
+<span @click="select(2,$event)" class="block positive" :class="{'active':selectType===2}">{{desc.all}}<span class="count">47</span></span>
+接下来在methods项里写对应的select方法。
+methods: {
+    select (type, event) {
+      if (!event._constructed) { // 去掉自带click事件的点击
+        return;
+      }
+      this.selectType = type;
+    }
+}
+同理，给其他两个span添加点击事件。
+
+这里在ratingselect.vue组件里修改了selectType，而父组件food.vue是无法感知到其修改的。
+因此，需要通知父组件。
+教程中通过this.$dispatch('ratingselect.select',type);实现父子组件的通信。
+而查看资料发现，vue2.0废弃了$dispatch,因此需要使用别的方式。
+组件与组件之间的通信以及vue2.0中的变化、示例 https://blog.csdn.net/qq_24122593/article/details/53509229
+
+接下来，给switch添加方法。
+<div @click="toggleContent" class="switch" :class="{'on':onlyContent}">
+在methods中写：
+toggleContent (event) {
+      if (!event._constructed) { // 去掉自带click事件的点击
+        return;
+      }
+      this.onlyContent = !this.onlyContent;
+      this.$dispatch('content.toggle', this.onlyContent);
+}
+
+组件的事件则添加完了。
+
+而之前是将全部、推荐和吐槽中的数字写死了。接下来要将数字和数组的长度做关联。
+接下来修改这部分的内容。
+将“全部”后面的数字改成{{ratings.length}}
+而推荐和吐槽中的数字，需要利用vue的计算属性来进行计算。
+使用数组的filter方法：
+positives() {
+      return this.ratings.filter((rating)=>{
+        return rating.rateType === POSITIVE;
+      });
+}
+因此就能拿到ratings数组中所有推荐的对象数组。
+接下来就把将“推荐”后面的数字改成{{positives.length}}
+同理，negative也是。
+
+以上则实现了按钮后面的数字与ratings之间的关联
+
+之后将开发goods组件的最后一个部分，即实现列表的联动效果。

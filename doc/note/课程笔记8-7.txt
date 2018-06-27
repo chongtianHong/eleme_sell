@@ -1,0 +1,92 @@
+ratingselect组件（1）
+
+接下来看商品评价的模块。
+除了一个标题，还有一个选择评论类型的按钮，分别是选择全部、推荐和吐槽评论。
+有些评论是有内容，有些评论是没有内容的。
+通过选择下面的“只看有内容的评价”，过滤掉没有内容的评论。默认是看所有评论。
+
+这些评论都可以在data.json里面的ratings项中得到。
+
+可以看到商品评价的区块，还有商家评价页中，也有一个类似的区块。
+因此可以抽象成一个ratingselect组件，方便复用。
+
+接下来写这部分的内容。
+首先在info下面新增一个<split>标签。
+<split></split>
+<div class="rating">
+      <h1 class="title">商品评价</h1>
+      <ratingselect></ratingselect>
+</div>
+
+接下来就开始开发ratingselect组件的内容。
+首先在components目录下新建ratingselect的文件夹，
+接着新增一个ratingselect.vue文件。
+
+首先，先判断这个组件需要两个变量，
+一个变量是用来控制只看有内容的评价，
+另一变量是用来选择要看评价的类型（全部、推荐、吐槽）
+还需要维护一个所有评价的数组。
+同时要维护一个描述。支持动态传入描述类型，商品页的（全部、推荐、吐槽）或评价页的（全部、满意、不满意）
+因此开始写props属性。
+export default {
+  name: 'ratingselect',
+  props: {
+    ratings: { // 评价数组
+      type: Array,
+      default () { // 数组和对象都必须返回一个函数
+        return [];
+      }
+    },
+    selectType: { // 选择类型（全部、推荐、吐槽）
+      type: Number,
+      default: ALL
+    },
+    onlyContent: { // 控制只看有内容的评价
+      type: Boolean,
+      default: false
+    },
+    desc: { // 描述
+      type: Object,
+      default () {
+        return {
+          all: '全部',
+          positive: '满意',
+          negative: '不满意'
+        }
+      }
+    }
+  }
+};
+
+接下来写这个组件的结构。
+分为两个区域，上层区块是展示评价类型。
+下层类型是根据选择的评价类型进行的切换展示。
+<template>
+    <div class="ratingselect">
+        <div class="rating-type"></div>
+        <div class="switch"></div>
+    </div>
+</template>
+现在先完成上层部分的结构，有三个区块：
+<div class="rating-type">
+            <span>{{desc.all}}</span>
+            <span>{{desc.positive}}</span>
+            <span>{{desc.negative}}</span>
+</div>
+接下来完成switch部分。
+<div class="switch">
+            <span class="icon-check_circle">√</span>
+            <span class="text">只看有内容的评价</span>
+</div>
+
+稍后完成样式。现在先把组件引入。
+import ratingselect from '../ratingselect/ratingselect';
+components: {
+    cartcontrol,
+    split,
+    ratingselect
+  },
+<div class="rating">
+       <h1 class="title">商品评价</h1>
+       <ratingselect></ratingselect>
+</div>

@@ -1,0 +1,70 @@
+split组件实现
+
+可以看到，分割布局在项目中出现了多次，评价页和商家页都有。
+很明显多次出现时的结构和样式都是一致的。
+因此可以抽象成一个split组件。
+
+新建一个split.vue组件。
+里面没有任何逻辑，因此只需要在script标签里面将组件导出即可。
+<script type="text/ecmascript-6">
+export default {
+  name: 'split'
+};
+</script>
+
+接下来写样式：
+.split{
+    width: 100%;
+    height: 16px;
+    border-top: 1px solid rgba(7,17,27,0.1);
+    border-bottom: 1px solid rgba(7,17,27,0.1);
+    background: #f3f5f7;
+}
+组件即完成了。
+接下来在food.vue组件中引用并注册它。
+import split from '../split/split';
+components: {
+    cartcontrol,
+    split
+  },
+
+这里发现之前的cartcontrol-wrapper和buy结构应该是放在content里面。
+因此将它们移到content里面。
+因为没有给content增加relative。因此还是相对于外层进行定位的。
+因此要给content增加relative。
+然后调整它们的定位。
+
+因此将split标签放与content同级：
+<div class="food-content">
+    <div class="image-header">...</div>
+    <div class="content">...</div>
+    <split></split>
+</div>
+
+split下面有个商品介绍。
+接下来写该部分的内容。去到data.json里面看到，并不是所有的商品都有food.info
+因此要在class="info"标签里增加一个v-show的属性。
+因此也要在上面的split标签增加一个v-show的指令，防止多出来间隔。即：
+<split v-show="food.info"></split>
+<div class="info" v-show="food.info">
+         <h1 class="title">商品信息</h1>
+         <p class="text">{{food.info}}</p>
+</div>
+
+接下来写样式（info与content同级）：
+.info{
+        padding: 18px;
+        .title{
+            line-height: 14px;
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: rgb(7,17,27);
+        }
+        .text{
+            padding: 0 8px;
+            font-size: 12px;
+            line-height: 24px;
+            color: #93999f;
+        }
+}
+完成商品信息的内容。接下来写商品评价的模块。

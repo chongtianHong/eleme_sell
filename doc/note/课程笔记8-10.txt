@@ -1,0 +1,28 @@
+ratingselect组件（4）
+
+接下来写switch的样式。switch和rating-type同级。
+.switch{
+        padding: 12px 18px;
+        line-height: 24px;
+        border-bottom: 1px solid rgba(7,17,27,0.1);
+        color: rgb(147,153,159);
+        .icon-check_circle{
+            margin-right: 4px;
+        }
+        .text{
+            font-size: 14px;
+        }
+    }
+接下来写当按钮被选中时的样式：
+.switch.on{
+            .icon-check_circle{
+                background: #00c850
+            }
+        }
+接下来给switch绑定一个class，当点击时，增加类名on。
+<div class="switch" :class="{'on':onlyContent}">
+只要onlyContent为true，则按钮就显示为选中的样式。
+
+组件的基本样式则实现了。
+接下来来写逻辑，使得组件联动起来。
+接下来则给组件绑定一些事件。
