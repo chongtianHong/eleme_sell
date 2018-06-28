@@ -36,7 +36,18 @@
                     <ratingselect :select-type="selectType" :only-content="onlyContent" :desc="desc" :ratings="food.ratings"></ratingselect>
                     <div class="rating-wrapper">
                         <ul v-show="food.ratings && food.ratings.length">
-                            <li v-for="(rating,index) in food.ratings" :key="index" class="rating-item"></li>
+                            <li v-for="(rating,index) in food.ratings" :key="index" class="rating-item">
+                                <div class="user">
+                                    <span class="name">{{rating.username}}</span>
+                                    <img class="avatar" width="12" height="12" :src="rating.avatar">
+                                </div>
+                                <div class="time">{{rating.rateTime}}</div>
+                                <p class="text">
+                                    <span :class="{'icon-thumb_up':rating.rateType===0,'icon-thumb_down':rating.rateType===1}">
+                                        {{rating.text}}
+                                    </span>
+                                </p>
+                            </li>
                         </ul>
                         <div class="no-rating" v-show="!food.ratings || !food.ratings.length"></div>
                     </div>
