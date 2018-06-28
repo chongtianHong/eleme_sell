@@ -1,0 +1,30 @@
+评价列表（1）
+
+接下来将开发goods组件的最后一个部分，即实现列表的联动效果。
+
+接下来看一下评价列表的布局，
+如果没有评价时，会显示暂无评价的文案。
+
+因此分为两种区块。
+接下来开始写结构。在food.vue组件的rating结构里面写：
+<div class="rating-wrapper">
+                        <ul v-show="food.ratings && food.ratings.length">
+                            <li v-for="(rating,index) in food.ratings" :key="index" class="rating-item"></li>
+                        </ul>
+                        <div class="no-rating" v-show="!food.ratings || !food.ratings.length"></div>
+</div>
+
+接下来为li写内容。
+<li v-for="(rating,index) in food.ratings" :key="index" class="rating-item">
+       <div class="user">
+                <span class="name">{{rating.username}}</span>
+                <img class="avatar" width="12" height="12" :src="rating.avatar">
+       </div>
+       <div class="time">{{rating.rateTime}}</div>
+       <p class="text">
+           <span :class="{'icon-thumb_up':rating.rateType===0,'icon-thumb_down':rating.rateType===1}">
+                {{rating.text}}
+           </span>
+       </p>
+</li>
+布局则就写完了，接下来就为其写样式。
