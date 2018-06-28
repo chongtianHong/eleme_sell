@@ -1,12 +1,12 @@
 better-scroll运用（1）
 
 接下来的小节将实现滚动效果。
-所依赖的库是better-scroll，github地址为：https://github.com/ustbhuangyi/better-scroll
+实现滚动效果依赖的库是better-scroll，github地址为：https://github.com/ustbhuangyi/better-scroll
 
-在package.json里面添加better-scroll依赖的的版本信息，使用npm install安装它。
-回到goods.vue中使用它。
+在package.json里面添加better-scroll依赖的版本信息，使用npm install安装它。
+"better-scroll": "^1.10.2",
 
-在js开始import它。
+安装完之后，就可以回到goods.vue中使用它。通过import引入better-scroll
 import BScroll from 'better-scroll';
 
 它和iscroll一样，在实例化的过程中接受两个参数，第一个参数需要传入一个dom。第二个参数是一个obj对象。
