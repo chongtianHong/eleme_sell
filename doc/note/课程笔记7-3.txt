@@ -3,15 +3,15 @@
 商品列表是与左侧的商品分类对应的。每一个分类有一个标题，还有该分类下的所有商品。
 每个商品分为左右两侧，左边是商品图片，右侧为商品描述。右下角有一个添加购买的按钮。
 
-接下来来开发右侧商品的列表布局。
-首先，定义一个ul列表，li遍历goods的属性。
+接下来来开发右侧商品foods-wrapper的列表布局。
+首先，定义一个ul列表，li中使用v-for遍历goods数组，用于存放每个商品分类。
 <div class="foods-wrapper">
       <ul>
         <li v-for="(item,index) in goods" :key="index" class="food-list"></li>
       </ul>
 </div>
-看到每一个goods下都有一个foods属性。
-这个属性是一个数组，对应的是商品的列表。
+看到每一个item下都有一个foods属性。
+这个属性是一个数组，对应的是每个分类下商品的列表。
 <div class="foods-wrapper">
       <ul>
         <li v-for="(item,index) in goods" :key="index" class="food-list">
