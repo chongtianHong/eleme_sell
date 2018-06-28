@@ -22,6 +22,7 @@
 接下来写商品图片和内容部分。
 图片左边宽度固定，内容部分宽度自适应，因此用到了flex布局。
 
+这里需要给img设置width属性，限定其宽高，否则，类名为icon的div将随着img的宽高而撑大，设置了flex也没用。
 <div class="icon">
     <img width="57" :src="food.icon"/>
 </div>
