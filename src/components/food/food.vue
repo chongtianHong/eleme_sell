@@ -34,6 +34,10 @@
                 <div class="rating">
                     <h1 class="title">商品评价</h1>
                     <ratingselect :select-type="selectType" :only-content="onlyContent" :desc="desc" :ratings="food.ratings"></ratingselect>
+                    <div class="rating-wrapper">
+                        <ul v-show="food.ratings && food.ratings.length"></ul>
+                        <div class="no-rating" v-show="!food.ratings || !food.ratings.length"></div>
+                    </div>
                 </div>
             </div>
         </div>
