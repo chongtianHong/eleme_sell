@@ -243,6 +243,14 @@ export default {
             font-size: 14px;
             color: rgb(7,17,27);
         }
+        .rating-wrapper{
+            padding: 0 18px;
+            .rating-item{
+                position: relative;
+                padding: 16px 0;
+                border-bottom: 1px solid rgba(7,17,27,0.1);
+            }
+        }
     }
 }
 </style>
