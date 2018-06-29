@@ -249,6 +249,23 @@ export default {
                 position: relative;
                 padding: 16px 0;
                 border-bottom: 1px solid rgba(7,17,27,0.1);
+                .user{
+                    position: absolute;
+                    right: 0;
+                    top: 16px;
+                    line-height: 12px;
+                    font-size: 0;
+                    .name{
+                        display: inline-block;
+                        margin-right: 6px;
+                        vertical-align: top;
+                        font-size: 10px;
+                        color: rgb(147,153,159);
+                    }
+                    .avatar{
+                        border-radius: 50%;
+                    }
+                }
             }
         }
     }
