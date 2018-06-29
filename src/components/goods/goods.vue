@@ -178,7 +178,7 @@ export default {
   .menu-wrapper{
     width: 80px;
     // flex: 0 0 80px;
-    background: #f3f5f7;
+    background: #dfdfdf;
     .menu-item{
       display: table;
       height: 54px;

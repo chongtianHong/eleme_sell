@@ -8,7 +8,7 @@ computed: {
       for (let i = 0; i < this.listHeight.length; i++) {
         let height1 = this.listHeight[i];    //区间的上界
         let height2 = this.listHeight[i + 1];//区间的下界
-        if (!height2 || (this.scrollY > height1 && this.scrollY < height2)) {
+        if (!height2 || (this.scrollY >= height1 && this.scrollY < height2)) {
           return i;
         }
       }
@@ -57,6 +57,7 @@ this.menuScroll = new BScroll(this.$refs.menuWrapper, {
         click: true
       });
 传递了之后就可以点击。
+
 为了统一移动端和pc端，点击只发生一次，因此要在selectMenu再传入一个事件。
 <li v-for="(item,index) in goods" :key="index" class="menu-item" :class="{'current':currentIndex === index}" @click="selectMenu(index,$event)">
 在methods里面定义方法：
@@ -77,8 +78,9 @@ selectMenu (index, event) {
       this.foodScroll.scrollToElement(el, 300);
       //console.log(index);
 },
-以上则实现了左右的联动。
+以上则实现了左右列表的联动。
 
+总结：
 1.通过在标签中定义属性ref="name"，然后可以在vue中通过this.$refs.name获得该原生dom对象。
 2.当要计算与dom相关的东西时候，要保证dom已经渲染了。因此在操作相关dom时，应该使用this.$nextTick(),渲染后的操作应该放在该函数执行的回调函数里面。
 
