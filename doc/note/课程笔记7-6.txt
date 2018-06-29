@@ -2,6 +2,8 @@ better-scroll运用（1）
 
 接下来的小节将实现滚动效果。
 实现滚动效果依赖的库是better-scroll，github地址为：https://github.com/ustbhuangyi/better-scroll
+知乎文档：
+https://zhuanlan.zhihu.com/p/27407024
 
 在package.json里面添加better-scroll依赖的版本信息，使用npm install安装它。
 "better-scroll": "^1.10.2",
@@ -9,21 +11,29 @@ better-scroll运用（1）
 安装完之后，就可以回到goods.vue中使用它。通过import引入better-scroll
 import BScroll from 'better-scroll';
 
-它和iscroll一样，在实例化的过程中接受两个参数，第一个参数需要传入一个dom。第二个参数是一个obj对象。
-因此要在获取数据以后，调用_initScroll方法。
+它和iscroll一样，在实例化的过程中接受两个参数，第一个参数需要传入一个dom。第二个参数是一个obj对象（配置参数）。
+better-scroll 的初始化时机很重要，因为它在初始化的时候，会计算父元素和子元素的高度和宽度，来决定是否可以纵向和横向滚动。
+因此，我们在初始化它的时候，必须确保父元素和子元素的内容已经正确渲染了。
+如果子元素或者父元素 DOM 结构发生改变的时候，必须重新调用 scroll.refresh() 方法重新计算来确保滚动效果的正常。
+所以better-scroll 不能滚动的原因多半是初始化 better-scroll 的时机不对，或者是当 DOM 结构发送变化的时候并没有重新计算 better-scroll。
 
 
 <div class="menu-wrapper" ref="menuWrapper">
+     <ul>...</ul>
+</div>
 _initScroll () {
       this.menuScroll = new BScroll(this.$refs.menuWrapper, {}); // 先拿左侧栏
 }
 
 <div class="foods-wrapper" ref="foodsWrapper">
+     <ul>...</ul>
+</div>
 _initScroll () {
       this.foodScroll = new BScroll(this.$refs.foodsWrapper, {});// 再拿右侧栏
 }
 
-然后在钩子函数中调用this.initScroll();
+然后在钩子函数中调用this.initScroll();在获取数据以后，调用_initScroll方法。
+this.goods = response.data;
 this.$nextTick(() => {
           this._initScroll();
 });
@@ -39,3 +49,29 @@ this.$nextTick(() => {
 即实现左右的联动。
 
 后面的小节将实现这个功能。
+
+
+
+
+关于better-scroll：
+better-scroll 是作用在外层 wrapper 容器上的，滚动的部分是 content 元素。
+这里要注意的是，better-scroll 只处理容器（wrapper）的第一个子元素（content）的滚动，其它的元素都会被忽略。
+<div class="wrapper">
+  <ul class="content">
+    <li>...</li>
+    <li>...</li>
+    ...
+  </ul>
+  <!-- 这里可以放一些其它的 DOM，但不会影响滚动 -->
+</div>
+
+
+浏览器的滚动原理： 浏览器的滚动条大家都会遇到，当页面内容的高度超过视口高度的时候，会出现纵向滚动条；
+当页面内容的宽度超过视口宽度的时候，会出现横向滚动条。
+也就是当我们的视口展示不下内容的时候，会通过滚动条的方式让用户滚动屏幕看到剩余的内容。
+
+better-scroll 也是一样的原理：
+绿色部分为 wrapper，也就是父容器，它会有固定的高度。
+黄色部分为 content，它是父容器的第一个子元素，它的高度会随着内容的大小而撑高。
+那么，当 content 的高度不超过父容器的高度，是不能滚动的，而它一旦超过了父容器的高度，
+我们就可以滚动内容区了，这就是 better-scroll 的滚动原理。
