@@ -266,6 +266,30 @@ export default {
                         border-radius: 50%;
                     }
                 }
+                .time{
+                    margin-bottom: 6px;
+                    line-height: 12px;
+                    font-size: 10px;
+                    color: rgb(147,153,159);
+                }
+                .text{
+                    line-height: 16px;
+                    font-size: 12px;
+                    color: rgb(7,17,27);
+                    .icon-like{
+                        font-size: 20px;
+                        background: pink;
+                        border-radius: 50%;
+                        line-height: 20px;
+                    }
+                    .icon-unlike{
+                        padding: 2px 4px;
+                        font-size: 16px;
+                        background: #ccc;
+                        border-radius: 50%;
+                        line-height: 16px;
+                    }
+                }
             }
         }
     }
