@@ -7,12 +7,12 @@ better-scroll运用（2）
 
 接下来实现滚动右栏，左栏对应的分类高亮。
 而左栏支持点击，右栏滑动到对应的位置。
-即实现左右的联动。
+即实现左右栏的联动。
 
-效果：当滚动右侧的时候，左侧能跟着变化。点击左侧时，右侧也能滚动到相应的位置。
+效果：当滚动右侧商品列表时的时候，左侧所属的分类能跟着变化。点击左侧的商品分类时，右侧也能滚动到相应的位置。
 右侧滚动实时变动的y值（纵坐标落到哪个区间），左边对应地就显示哪个区间。
 
-如何计算y值落到哪个区间，所以要知道每个区间的高度。
+想要计算y值落到哪个区间，需要知道每个区间的高度。
 首先要计算整体区间的高度，把每个区间的最大高度记录下来（数组），
 记录数组后，在监听滚动时能拿到实时的Y坐标，然后去对比坐标落到哪个区间，就能得到当前左侧应该高亮的索引值。
 然后利用vue的class绑定，实现高亮的效果。
@@ -22,12 +22,13 @@ better-scroll运用（2）
 
 计算高度的时机也是在nextTick里面。
 在methods里面定义_calculateHeight方法。
-this.$nextTick(() => {
+this.goods = response.data;
+        this.$nextTick(() => {
           this._initScroll();
           this._calculateHeight();
 });
 
-这个方法需要用一个变量存储，因此挂到data里面，listHeight: []
+这个方法需要用一个变量存储每个商品分类的高度，因此挂到data里面，listHeight: []
 data () {
     return {
       goods: [],
@@ -35,7 +36,7 @@ data () {
     };
   },
 
-需要通过dom获得子元素高度，给class名为food-list的li定义一个class名为food-list-hook：
+需要通过dom获得子元素高度，给class名为food-list的li（商品分类）定义一个class名为food-list-hook：
 <li v-for="(item,index) in goods" :key="index" class="food-list food-list-hook">
 使用name-hook指的是这个css选择器只是用来被js选中，并没有实际的样式效果。
 
@@ -50,7 +51,7 @@ _calculateHeight () {
           this.listHeight.push(height);
         }
     }
-因此listHeight就构造好了，是一个递增的数组。
+因此listHeight就构造好了，是一个递增的数组。listHeight:[0,1041,1194,1316,1630,1848,2084,2398,2904,3596]
 表示每个区间所对应的高度。
 
 接下来要实时拿到当前右侧纵轴的值，和左侧的索引做一个映射。
@@ -60,15 +61,15 @@ scrollY的变化，利用了better-scroll的一个接口。
 this.foodScroll = new BScroll(this.$refs.foodsWrapper, {
         probeType: 3
 });
-传递这个属性的意思是：希望scroll在滚动的时候，能试试告诉我们实时滚动的位置。
+传递这个属性的意思是：希望scroll在滚动的时候，能告诉我们实时滚动的位置。
 
-接下来通过foodScroll这个对象，来监听一个事件，
+接下来通过this.foodScroll这个对象，来监听一个事件，
 this.foodScroll.on('scroll', (pos) => {
-        this.scrollY = Math.abs(Math.round(pos.y));//回调函数的参数，就是一个位置，为小数和负数
+        this.scrollY = Math.abs(Math.round(pos.y));//回调函数的参数，就是一个位置，值为一个负的包含小数点的数
 });
 
 接下来就要将scrollY和左侧的索引做一个映射。
-这里用到vue的一个特性，计算属性，
+这里用到vue的一个计算属性，
 在计算属性里面定义一个方法：currentIndex：
 computed: {
     currentIndex () {
@@ -83,3 +84,6 @@ computed: {
     }
   },
 当scrollY变化时，computed的currentIndex就会实时发生变化。
+
+利用vue的class绑定，实现高亮的效果。
+<li v-for="(item,index) in goods" :key="index" class="menu-item" :class="{'current':currentIndex === index}" @click="selectMenu(index,$event)">
