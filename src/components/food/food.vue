@@ -43,9 +43,8 @@
                                 </div>
                                 <div class="time">{{rating.rateTime}}</div>
                                 <p class="text">
-                                    <span :class="{'icon-thumb_up':rating.rateType===0,'icon-thumb_down':rating.rateType===1}">
-                                        {{rating.text}}
-                                    </span>
+                                    <span v-show="rating.rateType===0"><span class="icon-like">☺</span>{{rating.text}}</span>
+                                    <span v-show="rating.rateType===1"><span class="icon-unlike">☹</span>{{rating.text}}</span>
                                 </p>
                             </li>
                         </ul>
