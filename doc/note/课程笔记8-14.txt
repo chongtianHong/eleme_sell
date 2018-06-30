@@ -1,0 +1,107 @@
+评价列表（3）
+
+接下来实现选中类型实现下面内容列表的联动。
+即实现过滤效果。
+
+因此，在li里面写一个函数，用v-show绑定，把rating.ratingType和rating.text传入，
+因为ratingType关联了选择的按钮，而text关联的是内容部分。
+<li v-show="needShow(rating.rateType,rating.text)" v-for="(rating,index) in food.ratings" :key="index" class="rating-item">
+
+接下来写这部分的needShow函数，在methods里面写：
+needShow(type, text) {
+        if (this.onlyContent && !text) {
+          return false;
+        }
+        if (this.selectType == ALL) {
+          return true;
+        } else {
+          return type === this.selectType;
+        }
+    }
+接下来看一下效果，然而发现，选中全部/推荐/吐槽或者选中只看内容，下面的内容列表并不会发生变化。
+可以去show里面通过改变初始化的值，测试结果：
+show () {
+      this.showFlag = true;
+      this.selectType = ALL;
+      this.onlyContent = false;
+      this.$nextTick(() => {
+        if (!this.scroll) {
+          this.scroll = new BScroll(this.$refs.food, {
+            click: true
+          });
+        } else {
+          this.scroll.refresh();
+        }
+      });
+},
+可以看到needShow方法实现的过滤是生效的。
+然而点击这些选择的时候，列表的内容却不会发生变化（不联动）。
+这是因为给ratingselect组件传入的props属性都是基础类型，
+而在子组件修改这些基础类型时，是不会影响到父组件food的数据的。因此要进行父子组件通信。
+
+接下来要监听两个事件，监听ratingselect组件传过来的两个事件。
+因此在food.vue中添加events项：
+events: {
+    'ratingselect.select' (type) {
+      this.selectType = type;
+    },
+    'content.toggle' (onlyContent) {
+      this.onlyContent = onlyContent;
+    }
+  },
+
+然而在实践中证明，这是vue1的用法，现在已经消除了this.$dispatch。
+
+
+解决的方案有不少，比如vuex，比如自定义事件。
+在子组件的方法里使用$emit方法吗，传两个参数，
+第一个是父组件写的自定义事件，第二个则是从子组件传进的参数。
+//子组件：
+<span @click="select(2,$event)" ></span>
+props:{
+  selectType: {
+    type: Number,
+    default: ALL
+  }
+methods: {
+  select (type, event) {
+      if (!event._constructed) { // 去掉自带click事件的点击
+        return;
+      }
+      this.selectType = type;
+      this.$emit('select', type); // 第一个是父组件写的自定义事件，第二个则是从子组件传进的参数。
+  },
+}
+//父组件
+<ratingselect @select="selectRating"></ratingselect>
+data() {
+      return {   
+        selectType: ALL
+      }
+},
+methods : {
+   selectRating(type) {
+        this.selectType = type;
+   }
+}
+
+同理，对于选中只看内容，也是在父子组件中对应修改即可。
+因此则实现了父子组件通信。
+
+然而发现一个问题，
+当选择取消只看内容时，整体内容变高了，而better-scroll当时可滚动区域还没更新。
+因此，还需要将选择按钮与better-scroll做一个关联。
+所以，需要在改变父组件的值得时候同时refresh。
+selectRating (type) {
+      this.selectType = type;
+      this.$nextTick(() => {
+        this.scroll.refresh();
+      });
+    },
+    contentToggle (onlyContent) {
+      this.onlyContent = onlyContent;
+      this.$nextTick(() => {
+        this.scroll.refresh();
+      });
+    }
+因此则实现了联动效果。
