@@ -52,7 +52,7 @@ export default {
         return;
       }
       this.selectType = type;
-      this.$dispatch('ratingselect.select', type);
+      this.$emit('select', type);
     },
     toggleContent (event) {
       if (!event._constructed) { // 去掉自带click事件的点击
