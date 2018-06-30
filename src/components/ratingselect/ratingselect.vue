@@ -131,7 +131,7 @@ export default {
         color: rgb(147,153,159);
         &.on{
             .icon-check_circle{
-                background: #00c850
+                background: #00c850;
             }
         }
         .icon-check_circle{
