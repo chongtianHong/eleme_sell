@@ -36,7 +36,7 @@
                     <ratingselect :select-type="selectType" :only-content="onlyContent" :desc="desc" :ratings="food.ratings"></ratingselect>
                     <div class="rating-wrapper">
                         <ul v-show="food.ratings && food.ratings.length">
-                            <li v-show="needShow(rating.ratingType,rating.text)" v-for="(rating,index) in food.ratings" :key="index" class="rating-item">
+                            <li v-show="needShow(rating.rateType,rating.text)" v-for="(rating,index) in food.ratings" :key="index" class="rating-item">
                                 <div class="user">
                                     <span class="name">{{rating.username}}</span>
                                     <img class="avatar" width="12" height="12" :src="rating.avatar">
@@ -115,7 +115,7 @@ export default {
       Vue.set(this.food, 'count', 1);
     },
     needShow (type, text) {
-      if (this.onlyContenty && !text) { // 如果选中只显示内容，且当前评论没内容时
+      if (this.onlyContent && !text) { // 如果选中只显示内容，且当前评论没内容时
         return false;
       }
       if (this.selectType === ALL) { // 如果选中显示所有评论
