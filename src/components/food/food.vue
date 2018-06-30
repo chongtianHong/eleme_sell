@@ -113,6 +113,16 @@ export default {
         return;
       }
       Vue.set(this.food, 'count', 1);
+    },
+    needShow (type, text) {
+      if (this.onlyContenty && !text) { // 如果选中只显示内容，且当前评论没内容时
+        return false;
+      }
+      if (this.selectType === ALL) { // 如果选中显示所有评论
+        return true;
+      } else {
+        return type === this.selectType; // 当前选中类型和评论类型一致
+      }
     }
   }
 };
