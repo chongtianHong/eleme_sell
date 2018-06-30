@@ -52,14 +52,14 @@ export default {
         return;
       }
       this.selectType = type;
-      this.$emit('select', type);
+      this.$emit('select', type); // 第一个是父组件写的自定义事件，第二个则是从子组件传进的参数。
     },
     toggleContent (event) {
       if (!event._constructed) { // 去掉自带click事件的点击
         return;
       }
       this.onlyContent = !this.onlyContent;
-      this.$dispatch('content.toggle', this.onlyContent);
+      this.$emit('contentToggle', this.onlyContent);
     }
   },
   computed: {
