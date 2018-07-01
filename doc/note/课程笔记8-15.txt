@@ -1,0 +1,25 @@
+评价列表（4）
+
+接下来实现 当评价为空时，实现一个暂无评价的文案。
+因此，去到food.vue中原先写好的结构里面添加：
+.no-rating{
+                padding: 16px 0;
+                font-size: 12px;
+                color: rgb(147,153,159);
+}
+
+接下来要将时间戳转换为时间字符串。
+可以用到vue的filter：
+<div class="time">{{rating.rateTime | formatDate}}</div>
+在组件定义一个filters项：
+这里可以用到node.js的一个moment.js模块来实现转换，
+首先需要安装： npm install --save moment
+然后在food.vue中引入：
+import moment from 'moment';
+因此有：
+filters: {
+    formatDate (time) {
+      let date = new Date(time);
+      return moment(date).format('YYYY-MM-DD hh:mm');
+    }
+  },
