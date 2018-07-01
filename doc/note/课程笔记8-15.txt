@@ -20,6 +20,6 @@ import moment from 'moment';
 filters: {
     formatDate (time) {
       let date = new Date(time);
-      return moment(date).format('YYYY-MM-DD hh:mm');
+      return moment(date).format('YYYY-MM-DD hh:mm:ss');
     }
   },
