@@ -77,7 +77,7 @@ export default {
   filters: {
     formatDate (time) {
       let date = new Date(time);
-      return moment(date).format('YYYY-MM-DD hh:mm');
+      return moment(date).format('YYYY-MM-DD hh:mm:ss');
     }
   },
   components: {
