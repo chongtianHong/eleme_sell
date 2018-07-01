@@ -75,7 +75,7 @@ export default {
         .star-item{
             width: 15px;
             height: 15px;
-            margin-right: 8px;
+            margin-right: 5px;
         }
         &:last-child{
             margin-right: 0;

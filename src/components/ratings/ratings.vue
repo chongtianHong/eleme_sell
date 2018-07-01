@@ -61,6 +61,10 @@ export default {
           width: 137px;
           border-right: 1px solid rgba(7,17,27,0.1);
           text-align: center;
+          @media only screen and (max-width:320px){
+            flex: 0 0 120px;
+            width: 120px;
+          }
           .score{
             margin-bottom: 6px;
             line-height: 28px;
@@ -81,7 +85,10 @@ export default {
         }
         .overview-right{
           flex: 1;
-          padding-left: 24px;
+          padding: 6px 0 6px 24px;
+          @media only screen and (max-width:320px){
+            padding: 6px 0 6px 6px;
+          }
           .score-wrapper{
             margin-bottom: 8px;
             font-size: 0;

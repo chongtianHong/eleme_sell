@@ -45,7 +45,7 @@ better-scroll的结构：外层一个wrapper，内层是content,
 接下来为其写样式：
 .overview-right{
           flex: 1;
-          padding-left: 24px;
+          padding: 6px 0 6px 24px;
           .score-wrapper{
             margin-bottom: 8px;
             font-size: 0;

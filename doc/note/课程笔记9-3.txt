@@ -1,0 +1,19 @@
+rating组件的开发 overview开发（3）
+
+接下来实现在iphone5下的自适应布局
+首先在overview-left下写：
+@media only screen and (max-width:320px){
+            flex: 0 0 120px;
+            width: 120px;
+}
+同时在overview-right下修改padding-left值：
+.overview-right{
+          flex: 1;
+          padding: 6px 0 6px 24px;
+          @media only screen and (max-width:320px){
+            padding: 6px 0 6px 6px;
+}
+
+因此就可以实现了overview区块的自适应布局。
+
+接下来将实现评论选择和评论列表。
