@@ -20,7 +20,7 @@
           </div>
           <div class="delivery-wrapper">
             <span class="title">送达时间</span>
-            <span class="delivery">{{seller.deliveryTime}}</span>
+            <span class="delivery">{{seller.deliveryTime}}分钟</span>
           </div>
         </div>
       </div>
@@ -82,6 +82,42 @@ export default {
         .overview-right{
           flex: 1;
           padding-left: 24px;
+          .score-wrapper{
+            margin-bottom: 8px;
+            font-size: 0;
+            .title{
+              display: inline-block;
+              vertical-align: top;
+              font-size: 12px;
+              line-height: 18px;
+              color: rgb(7,17,27);
+            }
+            .star{
+              display: inline-block;
+              vertical-align: top;
+              margin: 0 12px;
+            }
+            .score{
+              display: inline-block;
+              vertical-align: top;
+              font-size: 12px;
+              line-height: 18px;
+              color: rgb(255,153,0);
+            }
+          }
+          .delivery-wrapper{
+            font-size: 0;
+            .title{
+              font-size: 12px;
+              line-height: 18px;
+              color: rgb(7,17,27);
+            }
+            .delivery{
+              font-size: 12px;
+              color: rgb(147,153,159);
+              margin-left: 12px;
+            }
+          }
         }
       }
     }
