@@ -23,3 +23,7 @@ filters: {
       return moment(date).format('YYYY-MM-DD hh:mm:ss');
     }
   },
+
+
+timeStamp为具体的时间戳（时间戳（timestamp），通常是一个字符序列，唯一地标识某一刻的时间）。
+moment(timeStamp)
