@@ -1,0 +1,94 @@
+rating组件的开发 overview开发（1）
+
+接下来对评价页进行开发
+评价页分为3大块，
+第一块是整体的介绍，关于商家的评分、服务态度、星级的介绍
+第二块是ratingselect组件，之前已经开发好了
+第三块是ratings的列表，这和商品详情的列表略微有些不同，但是还是大同小异的
+
+接下来去到ratings.vue组件下进行开发。
+首先看到，评价页的高度很可能也会超过屏幕的高度，因此也需要用到better-scroll。
+better-scroll的结构：外层一个wrapper，内层是content,
+<div class="ratings">
+    <div class="ratings-content"></div>
+  </div>
+如果内层高度超过外层ratings的高度时，则会产生一个滚动的效果。
+先写.ratings的样式：
+.ratings{
+    position: absolute;
+    top: 174px; // 留出header和tab的高度
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    overflow: hidden;
+  }
+
+接下来先完成overview的内容：
+<div class="ratings-content">
+      <div class="overview">
+        <div class="overview-left"></div>
+        <div class="overview-right"></div>
+      </div>
+</div>
+对其写样式：
+.ratings-content{
+      .overview{
+        display: flex;
+        padding: 18px 0;
+        .overview-left{
+          flex: 0 0 137px; // 先不考虑iphone5的兼容性
+          width: 137px;
+          border-right: 1px solid rgba(7,17,27,0.1);
+          text-align: center;
+        }
+        .overview-right{
+          flex: 1;
+          padding-left: 24px;
+        }
+      }
+}
+
+接下来为overview里面填充内容。
+可以看到，内容部分和data.json里面的seller项中的数据有关，
+因此需要去拿数据，通过使用props属性，获得从父元素传过来的数据。
+由于App.vue中已经向router-view传seller对象，因此只需要在ratings.vue中定义props项即可：
+props: {
+    seller: {
+      type: Object
+    }
+  },
+因此就可以在模板中使用seller中的数据：
+<div class="overview-left">
+          <h1 class="score">{{seller.score}}</h1>
+          <div class="title">综合评分</div>
+          <div class="rank">高于周边商家{{seller.rankRate}}%</div>
+</div>
+
+接下来为这部分写样式：
+.overview-left{
+          flex: 0 0 137px; // 先不考虑iphone5的兼容性
+          padding: 6px 0;
+          width: 137px;
+          border-right: 1px solid rgba(7,17,27,0.1);
+          text-align: center;
+          .score{
+            margin-bottom: 6px;
+            line-height: 28px;
+            font-size: 24px;
+            color: rgb(255,153,0);
+          }
+          .title{
+            margin-bottom: 8px;
+            font-size: 12px;
+            line-height: 12px;
+            color: rgb(7,17,27);
+          }
+          .rank{
+            line-height: 10px;
+            font-size: 10px;
+            color: rgb(147,153,159);
+          }
+}
+以上则完成了overview-left的样式。
+
+接下来完成右半部分的样式。
