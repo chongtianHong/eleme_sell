@@ -41,14 +41,14 @@
                                     <span class="name">{{rating.username}}</span>
                                     <img class="avatar" width="12" height="12" :src="rating.avatar">
                                 </div>
-                                <div class="time">{{rating.rateTime}}</div>
+                                <div class="time">{{rating.rateTime | formatDate}}</div>
                                 <p class="text">
                                     <span v-show="rating.rateType===0"><span class="icon-like">☺</span>{{rating.text}}</span>
                                     <span v-show="rating.rateType===1"><span class="icon-unlike">☹</span>{{rating.text}}</span>
                                 </p>
                             </li>
                         </ul>
-                        <div class="no-rating" v-show="!food.ratings || !food.ratings.length"></div>
+                        <div class="no-rating" v-show="!food.ratings || !food.ratings.length">暂无评价</div>
                     </div>
                 </div>
             </div>
@@ -58,8 +58,9 @@
 
 <script type="text/ecmascript-6">
 import BScroll from 'better-scroll';
-import cartcontrol from '../cartcontrol/cartcontrol';
 import Vue from 'vue';
+import moment from 'moment';
+import cartcontrol from '../cartcontrol/cartcontrol';
 import split from '../split/split';
 import ratingselect from '../ratingselect/ratingselect';
 // eslint-disable-next-line
@@ -71,6 +72,12 @@ export default {
   props: {
     food: {
       type: Object
+    }
+  },
+  filters: {
+    formatDate (time) {
+      let date = new Date(time);
+      return moment(date).format('YYYY-MM-DD hh:mm');
     }
   },
   components: {
@@ -312,6 +319,11 @@ export default {
                         line-height: 16px;
                     }
                 }
+            }
+            .no-rating{
+                padding: 16px 0;
+                font-size: 12px;
+                color: rgb(147,153,159);
             }
         }
     }
