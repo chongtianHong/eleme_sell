@@ -2,7 +2,11 @@
   <div class="ratings">
     <div class="ratings-content">
       <div class="overview">
-        <div class="overview-left"></div>
+        <div class="overview-left">
+          <h1 class="score">{{seller.score}}</h1>
+          <div class="title">综合评分</div>
+          <div class="rank">高于周边商家{{seller.rankRate}}%</div>
+        </div>
         <div class="overview-right"></div>
       </div>
     </div>
@@ -11,7 +15,12 @@
 
 <script type="text/ecmascript-6">
 export default {
-  name: 'ratings'
+  name: 'ratings',
+  props: {
+    seller: {
+      type: Object
+    }
+  }
 };
 </script>
 
