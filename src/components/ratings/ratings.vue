@@ -24,12 +24,17 @@
           </div>
         </div>
       </div>
+      <split></split>
+      <ratingselect></ratingselect>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
 import star from '../star/star';
+import split from '../split/split';
+import ratingselect from '../ratingselect/ratingselect';
+const ALL = 2;
 export default {
   name: 'ratings',
   props: {
@@ -38,7 +43,16 @@ export default {
     }
   },
   components: {
-    star
+    star,
+    split,
+    ratingselect
+  },
+  data () {
+    return {
+      showFlag: false,
+      selectType: ALL,
+      onlyContent: true
+    };
   }
 };
 </script>
