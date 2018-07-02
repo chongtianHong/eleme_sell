@@ -25,7 +25,7 @@
         </div>
       </div>
       <split></split>
-      <ratingselect></ratingselect>
+      <ratingselect @contentToggle="contentToggle" @select="selectRating" :select-type="selectType" :only-content="onlyContent" :desc="desc" :ratings="food.ratings"></ratingselect>
     </div>
   </div>
 </template>
@@ -35,6 +35,7 @@ import star from '../star/star';
 import split from '../split/split';
 import ratingselect from '../ratingselect/ratingselect';
 const ALL = 2;
+const ERR_OK = 0;
 export default {
   name: 'ratings',
   props: {
@@ -49,10 +50,19 @@ export default {
   },
   data () {
     return {
-      showFlag: false,
+      ratings: [],
       selectType: ALL,
       onlyContent: true
     };
+  },
+  created () {
+    this.$http.get('/api/ratings').then((response) => {
+      response = response.body;
+      if (response.errno === ERR_OK) {
+        this.ratings = response.data;
+        //console.log(this.ratings);
+      }
+    });
   }
 };
 </script>
