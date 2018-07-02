@@ -25,7 +25,7 @@
         </div>
       </div>
       <split></split>
-      <ratingselect @contentToggle="contentToggle" @select="selectRating" :select-type="selectType" :only-content="onlyContent" :desc="desc" :ratings="food.ratings"></ratingselect>
+      <ratingselect :select-type="selectType" :only-content="onlyContent" :ratings="ratings"></ratingselect>
     </div>
   </div>
 </template>
