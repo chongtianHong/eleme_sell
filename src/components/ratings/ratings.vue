@@ -26,6 +26,27 @@
       </div>
       <split></split>
       <ratingselect :select-type="selectType" :only-content="onlyContent" :ratings="ratings"></ratingselect>
+      <div class="rating-wrapper">
+        <ul>
+          <li v-for="(rating,index) in ratings" :key=index class="rating-item">
+            <div class="avatar">
+              <img :src="rating.avatar"/>
+            </div>
+            <div class="content">
+              <h1 class="name">{{rating.username}}</h1>
+              <div class="star-wrapper">
+                <star :score="rating.score" :size="24"></star>
+                <span class="delivery" v-show="rating.deliveryTime">{{rating.deliveryTime}}分钟</span>
+              </div>
+              <p class="text">{{rating.text}}</p>
+              <div class="recommend" v-show="rating.recommend && rating.recommend.length">
+                <span v-show="rating.rateType===0" class="icon-like">☺</span>
+                <span v-show="rating.rateType===1" class="icon-unlike">☹</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -68,6 +89,19 @@ export default {
 </script>
 
 <style lang="stylus" rel="stylesheet/styles">
+.icon-like{
+  font-size: 20px;
+  background: pink;
+  border-radius: 50%;
+  line-height: 20px;
+  }
+  .icon-unlike{
+    padding: 2px 4px;
+    font-size: 16px;
+    background: #ccc;
+    border-radius: 50%;
+    line-height: 16px;
+  }
   .ratings{
     position: absolute;
     top: 174px; // 留出header和tab的高度
