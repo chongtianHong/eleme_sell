@@ -41,7 +41,7 @@
               <p class="text">{{rating.text}}</p>
               <div class="recommend" v-show="rating.recommend && rating.recommend.length">
                 <span v-show="rating.rateType===0" class="icon-like">☺</span>
-                <span v-show="rating.rateType===1" class="icon-unlike">☹</span>
+                <span v-for="(item,idx) in rating.recommend" :key="idx">{{item}}</span>
               </div>
             </div>
           </li>
