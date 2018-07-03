@@ -41,7 +41,7 @@
               <p class="text">{{rating.text}}</p>
               <div class="recommend" v-show="rating.recommend && rating.recommend.length">
                 <span v-show="rating.rateType===0" class="icon-like">☺</span>
-                <span v-for="(item,idx) in rating.recommend" :key="idx">{{item}}</span>
+                <span v-for="(item,idx) in rating.recommend" :key="idx" class="item">{{item}}</span>
               </div>
               <div class="time">{{rating.rateTime | formatDate}}</div>
             </div>
@@ -242,6 +242,22 @@ export default {
                 font-size: 10px;
                 font-weight: 200;
                 color: rgb(147,153,159);
+              }
+            }
+            .text{
+              margin-bottom: 8px;
+              line-height: 18px;
+              font-size: 12px;
+              color: rgb(7,17,27);
+            }
+            .recommend{
+              line-height: 16px;
+              .icon-like, .item{
+                display: inline-block;
+                margin: 0 8px 4px 0;
+              }
+              .item{
+                font-size: 9px;
               }
             }
           }
