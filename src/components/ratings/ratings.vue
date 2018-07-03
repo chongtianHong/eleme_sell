@@ -25,10 +25,10 @@
         </div>
       </div>
       <split></split>
-      <ratingselect :select-type="selectType" :only-content="onlyContent" :ratings="ratings"></ratingselect>
+      <ratingselect @contentToggle="contentToggle" @select="selectRating" :select-type="selectType" :only-content="onlyContent" :ratings="ratings"></ratingselect>
       <div class="rating-wrapper">
         <ul>
-          <li v-for="(rating,index) in ratings" :key=index class="rating-item">
+          <li v-show="needShow(rating.rateType,rating.text)" v-for="(rating,index) in ratings" :key=index class="rating-item">
             <div class="avatar">
               <img width="28" height="28" :src="rating.avatar"/>
             </div>
@@ -102,6 +102,28 @@ export default {
       this.scroll = new BScroll(this.$refs.ratings, {
         click: true
       });
+    },
+    selectRating (type) {
+      this.selectType = type;
+      this.$nextTick(() => {
+        this.scroll.refresh();
+      });
+    },
+    contentToggle (onlyContent) {
+      this.onlyContent = onlyContent;
+      this.$nextTick(() => {
+        this.scroll.refresh();
+      });
+    },
+    needShow (type, text) {
+      if (this.onlyContent && !text) { // 如果选中只显示内容，且当前评论没内容时
+        return false;
+      }
+      if (this.selectType === ALL) { // 如果选中显示所有评论
+        return true;
+      } else {
+        return type === this.selectType; // 当前选中类型和评论类型一致
+      }
     }
   }
 };
@@ -258,6 +280,14 @@ export default {
                 color: rgb(147,153,159);
                 background: #fff;
               }
+            }
+            .time{
+              position: absolute;
+              top: 0;
+              right: 0;
+              line-height: 10px;
+              font-size: 10px;
+              color: rgb(147,153,159);
             }
           }
         }
