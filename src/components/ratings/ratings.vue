@@ -109,18 +109,11 @@ export default {
 
 <style lang="stylus" rel="stylesheet/styles">
 .icon-like{
-  font-size: 20px;
+  font-size: 18px;
   background: pink;
   border-radius: 50%;
-  line-height: 20px;
-  }
-  .icon-unlike{
-    padding: 2px 4px;
-    font-size: 16px;
-    background: #ccc;
-    border-radius: 50%;
-    line-height: 16px;
-  }
+  line-height: 18px;
+}
   .ratings{
     position: absolute;
     top: 174px; // 留出header和tab的高度
@@ -254,10 +247,15 @@ export default {
               line-height: 16px;
               .icon-like, .item{
                 display: inline-block;
-                margin: 0 8px 4px 0;
+                margin-bottom: 4px;
               }
               .item{
                 font-size: 9px;
+                padding: 0 6px;
+                border: 1px solid rgba(7,17,27,0.1);
+                border-radius: 1px;
+                color: rgb(147,153,159);
+                background: #fff;
               }
             }
           }
