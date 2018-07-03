@@ -116,7 +116,7 @@ export default {
       });
     },
     needShow (type, text) {
-      if (this.onlyContent && !text) { // 如果选中只显示内容，且当前评论没内容时
+      if (this.onlyContent && !text) { // 如果选中只显示内容，且当前评论没内容时(先过滤掉没评论的，不需要进行选择类型判断)
         return false;
       }
       if (this.selectType === ALL) { // 如果选中显示所有评论
