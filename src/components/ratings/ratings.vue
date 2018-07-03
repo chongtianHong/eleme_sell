@@ -30,7 +30,7 @@
         <ul>
           <li v-for="(rating,index) in ratings" :key=index class="rating-item">
             <div class="avatar">
-              <img :src="rating.avatar"/>
+              <img width="56" height="56" :src="rating.avatar"/>
             </div>
             <div class="content">
               <h1 class="name">{{rating.username}}</h1>
@@ -43,6 +43,7 @@
                 <span v-show="rating.rateType===0" class="icon-like">☺</span>
                 <span v-for="(item,idx) in rating.recommend" :key="idx">{{item}}</span>
               </div>
+              <div class="time">{{rating.rateTime | formatDate}}</div>
             </div>
           </li>
         </ul>
@@ -55,6 +56,7 @@
 import star from '../star/star';
 import split from '../split/split';
 import ratingselect from '../ratingselect/ratingselect';
+import moment from 'moment';
 const ALL = 2;
 const ERR_OK = 0;
 export default {
@@ -62,6 +64,12 @@ export default {
   props: {
     seller: {
       type: Object
+    }
+  },
+  filters: {
+    formatDate (time) {
+      let date = new Date(time);
+      return moment(date).format('YYYY-MM-DD hh:mm:ss');
     }
   },
   components: {
