@@ -1,5 +1,5 @@
 <template>
-  <div class="ratings">
+  <div class="ratings" ref="ratings">
     <div class="ratings-content">
       <div class="overview">
         <div class="overview-left">
@@ -30,7 +30,7 @@
         <ul>
           <li v-for="(rating,index) in ratings" :key=index class="rating-item">
             <div class="avatar">
-              <img width="56" height="56" :src="rating.avatar"/>
+              <img width="28" height="28" :src="rating.avatar"/>
             </div>
             <div class="content">
               <h1 class="name">{{rating.username}}</h1>
@@ -57,6 +57,7 @@ import star from '../star/star';
 import split from '../split/split';
 import ratingselect from '../ratingselect/ratingselect';
 import moment from 'moment';
+import BScroll from 'better-scroll';
 const ALL = 2;
 const ERR_OK = 0;
 export default {
@@ -90,8 +91,18 @@ export default {
       if (response.errno === ERR_OK) {
         this.ratings = response.data;
         //console.log(this.ratings);
+        this.$nextTick(() => {
+          this._initScroll();
+        });
       }
     });
+  },
+  methods: {
+    _initScroll () {
+      this.scroll = new BScroll(this.$refs.ratings, {
+        click: true
+      });
+    }
   }
 };
 </script>
