@@ -108,12 +108,6 @@ export default {
 </script>
 
 <style lang="stylus" rel="stylesheet/styles">
-.icon-like{
-  font-size: 18px;
-  background: pink;
-  border-radius: 50%;
-  line-height: 18px;
-}
   .ratings{
     position: absolute;
     top: 174px; // 留出header和tab的高度
@@ -245,9 +239,16 @@ export default {
             }
             .recommend{
               line-height: 16px;
+              font-size: 0;
               .icon-like, .item{
                 display: inline-block;
                 margin-bottom: 4px;
+              }
+              .icon-like{
+                font-size: 18px;
+                background: pink;
+                border-radius: 50%;
+                line-height: 18px;
               }
               .item{
                 font-size: 9px;
