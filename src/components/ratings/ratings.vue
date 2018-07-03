@@ -91,7 +91,7 @@ export default {
       if (response.errno === ERR_OK) {
         this.ratings = response.data;
         //console.log(this.ratings);
-        this.$nextTick(() => {
+        this.$nextTick(() => { // dom更新之后进行better-scroll初始化
           this._initScroll();
         });
       }
@@ -202,6 +202,14 @@ export default {
               margin-left: 12px;
             }
           }
+        }
+      }
+      .rating-wrapper{
+        padding: 0 18px;
+        .rating-item{
+          display: flex;
+          padding: 18px 0;
+          border-bottom: 1px solid rgba(7,17,27,0.1);
         }
       }
     }
