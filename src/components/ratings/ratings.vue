@@ -210,6 +210,41 @@ export default {
           display: flex;
           padding: 18px 0;
           border-bottom: 1px solid rgba(7,17,27,0.1);
+          .avatar{
+            // flex: 0 0 28px;
+            width: 28px;
+            margin-right: 12px;
+            img{
+              border-radius: 50%;
+            }
+          }
+          .content{
+            flex: 1;
+            position: relative;
+            .name{
+              margin-bottom: 4px;
+              line-height: 12px;
+              font-size: 10px;
+              color: rgb(7,17,27);
+            }
+            .star-wrapper{
+              margin-bottom: 6px;
+              font-size: 0;
+              .star{
+                display: inline-block;
+                vertical-align: top;
+                margin-right: 6px;
+              }
+              .delivery{
+                display: inline-block;
+                vertical-align: top;
+                line-height: 12px;
+                font-size: 10px;
+                font-weight: 200;
+                color: rgb(147,153,159);
+              }
+            }
+          }
         }
       }
     }
