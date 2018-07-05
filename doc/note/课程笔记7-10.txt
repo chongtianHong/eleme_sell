@@ -25,7 +25,7 @@ shopcart购物车组件（2）
         .desc{
             display: inline-block;
         }
-设置了inline-block的子元素其父元素要设置font-size：0；
+设置了inline-block的子元素其父元素要设置font-size：0；这是因为行内/行内块级元素都有一个字符的间隔，会占据空间
 .content-left{
         font-size: 0;
 }
@@ -35,14 +35,14 @@ shopcart购物车组件（2）
             font-size: 0;
             .logo-wrapper{
                 display: inline-block;
+                vertical-align: top;
                 position: relative;
-                top: -10px;
+                top: -10px; // 因为有个突起的圆弧，相对于自身进行平移
                 margin: 0 12px;
                 padding: 6px;
                 width: 56px;
                 height: 56px;
                 box-sizing: border-box;
-                vertical-align: top;
                 border-radius: 50%;
                 background: #141d27;
             }
