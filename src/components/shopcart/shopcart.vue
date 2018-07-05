@@ -19,11 +19,6 @@
             </div>
           </div>
       </div>
-      <!-- <div class="ball-container">
-        <div v-for="(ball,index) in balls" :key="index" v-show="ball.show" transition="drop" class="ball">
-            <div class="inner"></div>
-        </div>
-      </div> -->
       <transition name="fold">
         <div class="shopcart-list" v-show="listShow">
           <div class="list-header">

@@ -4,13 +4,13 @@ shopcart购物车组件（1）
 
 先到resource/标注/外卖01_商品页_spec.png下面看设计稿。对购物车的需求进行分析。
 
-购物车的实现通过新增一个子组件shopcart.vue。
-在template中定义一个class为shopcart的div。
-在script中通过export default {}便于被父组件引入。
+购物车是通过新增一个子组件shopcart.vue来实现。
+在template标签中定义一个class为shopcart的div。
+在script标签中通过export default {}便于被父组件引入。
 
 接下来在goods组件里面引入shopcart.vue组件。
 import shopcart from '../shopcart/shopcart';
-同时需要在goods组件的vue实例里面添加一个components属性注册shopcart组件。
+同时需要在goods组件的vue实例里面添加一个components属性来注册shopcart组件。
 components: {
     shopcart
 },
@@ -39,7 +39,7 @@ components: {
               <div class="price"></div>
               <div class="desc"></div>
 </div>
-与logo-wrapper同级的还有两个区块，分别是price和配送费区块。
+与logo-wrapper同级的还有两个区块，分别是选中商品总价格区块price和配送费区块desc。
 
 接下来开始写样式。
 .icon-shopping_cart{
