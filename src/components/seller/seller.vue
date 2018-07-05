@@ -51,5 +51,21 @@ export default {
 </script>
 
 <style lang="stylus" rel="stylesheet/styles">
-
+.seller{
+    position: absolute;
+    top: 174px; // 留出header和tab的高度
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    overflow: hidden;
+    .overview{
+      padding: 18px;
+      .title{
+        margin-bottom: 8px;
+        line-height: 14px;
+        font-size: 14px;
+        color: rgb(7,17,27);
+      }
+    }
+}
 </style>
