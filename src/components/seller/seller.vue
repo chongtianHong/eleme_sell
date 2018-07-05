@@ -92,7 +92,21 @@ export default {
           text-align: center;
           border-right: 1px solid rgba(7,17,27,0.1);
           &:last-child{
-            border: none;
+            border: none; // 最后一个item没有border-right
+          }
+          h2{
+            margin-bottom: 4px;
+            line-height: 10px;
+            font-size: 10px;
+            color: rgb(147,153,159);
+          }
+          .content{
+            line-height: 24px;
+            font-size: 10px;
+            color: rgb(7,17,27);
+            .stress{
+              font-size: 24px;
+            }
           }
         }
       }
