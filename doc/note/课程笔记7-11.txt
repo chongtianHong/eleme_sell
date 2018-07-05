@@ -48,10 +48,11 @@ props: {
       default: 0
     }
   }
-还要在App.vue里面将seller传入router-view中。
+App.vue传给goods组件的seller对象主要是通过：
+在App.vue里面将seller传入router-view中。当使用vue-router时，路由匹配到的组件将渲染在router-view中
 <router-view :seller="seller"></router-view>
 
-因此就可以在shopcart组件里面使用其父组件传进来的两个props：
+因此就可以在shopcart组件里面使用其父组件传进来的props：
 <div class="desc">另需配送费￥{{deliveryPrice}}元</div>
 
 下一小节将写结算的样式
