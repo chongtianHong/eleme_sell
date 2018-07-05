@@ -6,7 +6,7 @@
         <div class="desc">
           <star :score="seller.score" :size="36"></star>
           <span class="text">({{seller.ratingCount}})</span>
-          <span class="text">{{seller.sellCount}}</span>
+          <span class="text">月售{{seller.sellCount}}单</span>
         </div>
         <ul class="remark">
           <li class="block">
@@ -82,6 +82,18 @@ export default {
           margin-right: 12px;
           font-size: 10px;
           color: rgb(77,85,93);
+        }
+      }
+      .remark{
+        display: flex;
+        padding-top: 18px;
+        .block{
+          flex: 1;
+          text-align: center;
+          border-right: 1px solid rgba(7,17,27,0.1);
+          &:last-child{
+            border: none;
+          }
         }
       }
     }
