@@ -66,6 +66,24 @@ export default {
         font-size: 14px;
         color: rgb(7,17,27);
       }
+      .desc{
+        padding-bottom: 18px;
+        line-height: 18px;
+        font-size: 0;
+        border-bottom: 1px solid rgba(7,17,27,0.1);
+        .star{
+          display: inline-block;
+          vertical-align: top;
+          margin-right: 8px;
+        }
+        .text{
+          display: inline-block;
+          vertical-align: top;
+          margin-right: 12px;
+          font-size: 10px;
+          color: rgb(77,85,93);
+        }
+      }
     }
 }
 </style>
