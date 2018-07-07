@@ -1,5 +1,5 @@
 <template>
-  <div class="seller">
+  <div class="seller" ref="seller">
     <div class="seller-content">
       <div class="overview">
         <h1 class="title">{{seller.name}}</h1>
@@ -49,6 +49,7 @@
 <script type="text/ecmascript-6">
 import star from '../star/star';
 import split from '../split/split';
+import BScroll from 'better-scroll';
 export default {
   name: 'seller',
   props: {
@@ -62,6 +63,16 @@ export default {
   },
   created () {
     this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
+  },
+  mounted () {
+    this._initScroll();
+  },
+  methods: {
+    _initScroll () {
+      this.scroll = new BScroll(this.$refs.seller, {
+        click: true
+      });
+    }
   }
 };
 </script>
@@ -180,6 +191,7 @@ export default {
           .text{
             font-size: 12px;
             line-height: 16px;
+            color: rgb(7,17,27);
           }
         }
       }
