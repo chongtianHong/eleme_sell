@@ -69,9 +69,11 @@ export default {
   },
   methods: {
     _initScroll () {
-      this.scroll = new BScroll(this.$refs.seller, {
-        click: true
-      });
+      if (!this.scroll) {
+        this.scroll = new BScroll(this.$refs.seller, {
+          click: true
+        });
+      }
     }
   }
 };
@@ -158,11 +160,11 @@ export default {
       .supports{
         .support-item{
           padding: 16px 12px;
-          margin-bottom: 12px;
           font-size: 0; // 消除行内元素之间的空白间隔
           border-bottom: 1px solid rgba(7,17,27,0.1);
           &:last-child{
             margin-bottom: 0;
+            border: none;
           }
           .icon{
             display: inline-block;
