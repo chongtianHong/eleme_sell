@@ -145,10 +145,8 @@ export default {
         }
       }
       .supports{
-        width: 80%;
-        margin: 0 auto;
         .support-item{
-          padding: 0 12px;
+          padding: 16px 12px;
           margin-bottom: 12px;
           font-size: 0; // 消除行内元素之间的空白间隔
           border-bottom: 1px solid rgba(7,17,27,0.1);
@@ -165,19 +163,19 @@ export default {
             background-size: cover !important;
           }
           .decrease{
-            background: url("decrease_2@2x.png");
+            background: url("decrease_4@2x.png");
           }
           .discount{
-            background: url("discount_2@2x.png");
+            background: url("discount_4@2x.png");
           }
           .special{
-            background: url("special_2@2x.png");
+            background: url("special_4@2x.png");
           }
           .invoice{
-            background: url("invoice_2@2x.png");
+            background: url("invoice_4@2x.png");
           }
           .guarantee{
-            background: url("guarantee_2@2x.png");
+            background: url("guarantee_4@2x.png");
           }
           .text{
             font-size: 12px;
