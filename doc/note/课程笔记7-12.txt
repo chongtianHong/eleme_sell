@@ -1,6 +1,6 @@
 shopcart购物车组件（4）
 
-接下来将写结算的结构：
+接下来将写结算部分的结构：
 <div class="content-right">
       <div class="pay">
           ￥{{minPrice}}元起送
@@ -21,8 +21,8 @@ shopcart购物车组件（4）
 }
 
 购物车主要是对选择商品的映射。
-选择多少商品主要是goods组件通过props传给购物车组件。
-所以要在shopcart.vue里面传入一个props：
+选择多少商品主要是靠goods组件通过props传给购物车组件。
+所以要在shopcart.vue里面定义一个props：
 selectFoods: {
       type: Array,
       default () {
@@ -34,7 +34,9 @@ selectFoods: {
         ];
       }
     },
-这个selectFoods是一个数组，发现在goods组件下，每个item.foods下都有一个food。
+这个selectFoods是一个数组，
+
+发现在goods组件的foods-wrapper下，每个item是一个商品类别，而item.foods都是一个数组，存放了多个food。
 
 selectFoods（依赖）和totalPrice的关系，通过shopcart组件的computed属性来计算：
 computed: {
@@ -46,8 +48,10 @@ computed: {
       return total;
 }
 
-购物车的状态变化都是selectFoods决定的。
-接下来计算totalCount().
+购物车的状态变化都是通过selectFoods决定的。
+<shopcart :select-foods="selectFoods" :deliveryPrice="seller.deliveryPrice" :minPrice="seller.minPrice"></shopcart>
+
+在shopcart.vue中，定义计算属性totalCount，用于计算购买商品的总数量：
 totalCount () {
       let count = 0;
       this.selectFoods.forEach((food) => {
@@ -55,5 +59,5 @@ totalCount () {
       });
       return count;
     }
-因此在模板中就可以使用totalCount，表示选择商品的总和，
-因此可以对logo进行修改。
+因此在模板中就可以使用totalCount，表示选择购买商品的总数量，
+因此可以对logo右上角显示的数字进行修改。
