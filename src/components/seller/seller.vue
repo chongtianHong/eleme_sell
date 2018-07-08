@@ -53,6 +53,13 @@
           </ul>
         </div>
       </div>
+      <split></split>
+      <div class="info">
+        <h1 class="title">商家信息</h1>
+        <ul>
+          <li class="info-item" v-for="(info,index) in seller.infos" :key="index">{{info}}</li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
