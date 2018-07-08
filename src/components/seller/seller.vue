@@ -42,6 +42,17 @@
           </li>
         </ul>
       </div>
+      <split></split>
+      <div class="pics">
+        <h1 class="title">商家实景</h1>
+        <div class="pic-wrapper">
+          <ul class="pic-list">
+            <li class="pic-item" v-for="(pic,index) in seller.pics" :key="index">
+              <img :src="pic" width="120" height="90"/>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </template>
