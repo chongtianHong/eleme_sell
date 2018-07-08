@@ -28,6 +28,10 @@
             </div>
           </li>
         </ul>
+        <div class="favorite">
+          <span class="icon-favorite" :class="{'active':favorite}">❤</span>
+          <span class="text">{{favoriteText}}</span>
+        </div>
       </div>
       <split></split>
       <div class="bulletin">
@@ -73,6 +77,16 @@ export default {
   props: {
     seller: {
       type: Object
+    }
+  },
+  data () {
+    return {
+      favorite: false
+    };
+  },
+  computed: {
+    favoriteText () {
+      return this.favorite ? '已收藏' : '收藏店家';
     }
   },
   components: {
