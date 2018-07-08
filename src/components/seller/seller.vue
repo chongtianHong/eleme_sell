@@ -28,7 +28,7 @@
             </div>
           </li>
         </ul>
-        <div class="favorite">
+        <div class="favorite" @click="toggleFavorite($event)">
           <span class="icon-favorite" :class="{'active':favorite}">❤</span>
           <span class="text">{{favoriteText}}</span>
         </div>
@@ -86,7 +86,7 @@ export default {
   },
   computed: {
     favoriteText () {
-      return this.favorite ? '已收藏' : '收藏店家';
+      return this.favorite ? '已收藏' : '收藏';
     }
   },
   components: {
@@ -121,6 +121,13 @@ export default {
           });
         });
       }
+    },
+    toggleFavorite (event) {
+      // 使用better-scroll以后，自己默认派发点击事件时候,_constructed被置为true,但是浏览器原生并没有这个属性
+      if (!event._constructed) { // better-scroll派发的事件（去除浏览器原生的点击事件）
+        return;
+      }
+      this.favorite = !this.favorite;
     }
   }
 };
@@ -136,6 +143,7 @@ export default {
     overflow: hidden;
     .overview{
       padding: 18px;
+      position: relative;
       .title{
         margin-bottom: 8px;
         line-height: 14px;
@@ -184,6 +192,27 @@ export default {
               font-size: 24px;
             }
           }
+        }
+      }
+      .favorite{
+        position: absolute;
+        right: 18px;
+        top: 18px;
+        text-align: center;
+        .icon-favorite{
+          display: block;
+          margin-bottom: 4px;
+          line-height: 24px;
+          font-size: 24px;
+          color: #d4d6d9;
+          &.active{
+            color: rgb(240,20,20);
+          }
+        }
+        .text{
+          line-height: 10px;
+          font-size: 10px;
+          color: rgb(77,85,93);
         }
       }
     }
