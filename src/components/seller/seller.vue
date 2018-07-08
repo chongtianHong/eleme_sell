@@ -208,5 +208,31 @@ export default {
         }
       }
     }
+    .pics{
+      padding: 18px;
+      .title{
+        margin-bottom: 12px;
+        line-height: 14px;
+        font-size: 14px;
+        color: rgb(7,17,27);
+      }
+      .pic-wrapper{
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap; // 文本不会换行，文本会在在同一行上继续，直到遇到 <br> 标签为止。
+        .pic-list{
+          font-size: 0;
+          .pic-item{
+            display: inline-block;
+            margin-right: 6px;
+            width: 120px;
+            height: 90px;
+            &:last-child{
+              margin-right: 0;
+            }
+          }
+        }
+      }
+    }
 }
 </style>
