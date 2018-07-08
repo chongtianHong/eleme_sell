@@ -196,6 +196,7 @@ export default {
       }
       .favorite{
         position: absolute;
+        width: 40px;
         right: 18px;
         top: 18px;
         text-align: center;
