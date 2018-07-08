@@ -256,5 +256,24 @@ export default {
         }
       }
     }
+    .info{
+      padding: 18px 18px 0 18px;
+      color: rgb(7,17,27);
+      .title{
+        padding-bottom: 12px;
+        line-height: 14px;
+        font-size: 14px;
+        border-bottom: 1px solid rgba(7,17,27,0.1);
+      }
+      .info-item{
+        padding: 16px 12px;
+        line-height: 16px;
+        border-bottom: 1px solid rgba(7,17,27,0.1);
+        font-size: 12px;
+        &:last-child{
+          border: none;
+        }
+      }
+    }
 }
 </style>
