@@ -66,6 +66,9 @@ selectFoods () {
       });
       return foods;
 }
+count属性是在cartControl.vue中添加的，在子组件对父组件传递过来的数据的修改会反映到父组件上面，
+所以在父组件可以对每一样good下面的每一样的food遍历，当food下面有count属性的时候，说明该food已经被添加到购物车了
+
 然后将selectFoods传给shopcart：
 <shopcart :select-foods="selectFoods" :deliveryPrice="seller.deliveryPrice" :minPrice="seller.minPrice"></shopcart>
 可见就实现了商品和购物车的联动效果。
