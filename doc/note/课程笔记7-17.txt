@@ -74,3 +74,6 @@ count属性是在cartControl.vue中添加的，在子组件对父组件传递过来的数据的修改会反映
 可见就实现了商品和购物车的联动效果。
 
 接下来实现购物车小球的动画效果。
+
+
+很好的一个博客总结：https://blog.csdn.net/tangxiujiang
