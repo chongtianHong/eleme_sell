@@ -114,7 +114,7 @@ export default {
       return count;
     },
     cat () {
-      if (this.totalPrice > 0) {
+      if (this.totalCount > 0) {
         return 'highLight';
       } else {
         return 'icon-shopping_cart';

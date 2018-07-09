@@ -52,7 +52,7 @@ totalCount () {
 <span :class="cat"></span>
 通过计算属性来实现class的绑定，因此，在computed里面写：
 cat () {
-      if (this.totalPrice > 0) {
+      if (this.totalCount > 0) {
         return 'highLight';
       } else {
         return 'icon-shopping_cart';
