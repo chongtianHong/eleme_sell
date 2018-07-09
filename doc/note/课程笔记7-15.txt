@@ -6,7 +6,7 @@ cartcontrol组件（1）
 因此在component目录下创建一个cartcontrol组件。
 首先先写布局。
 <template>
-<div class="cartcontrol"></div>
+    <div class="cartcontrol"></div>
 </template>
 
 然后将组件导出，即在script标签中使用：
@@ -14,16 +14,19 @@ export default {}
 
 因为cartcontrol是和每个商品做关联的。关联的即为商品的购买次数。
 因此这里的cartcontrol就要接受一个数据，因此定义一个props属性，用于接收父组件传过来的数据。
-
 在调用购买控件的时候，一定要传入关联的food，因为在增加或减少商品的个数的时候，都是给这个组件传入每一个food。
+props: {
+    food: {
+      type: Object
+    }
+},
+在父组件中：<cartcontrol :food="food"></cartcontrol>
 
 组件的内容包括三部分，减少按钮、数字、增加按钮：
-<div class="cart-decrease"></div>
-<div class="cart-count"></div>
-<div class="cart-add"></div>
-当count为0时，.cart-decrease和.cart-count是不会被显示的，因此要使用v-show控制它的显示。
 <div class="cart-decrease" v-show="food.count>0"></div>
 <div class="cart-count" v-show="food.count>0">{{food.count}}</div>
+<div class="cart-add"></div>
+当count为0时，.cart-decrease和.cart-count是不会被显示的，因此要使用v-show控制它的显示。
 
 接下来不写样式，先在goods组件中引入cart-control组件：
 import cartcontrol from '../cartcontrol/cartcontrol';

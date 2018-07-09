@@ -5,7 +5,7 @@
           <div class="content-left">
               <div class="logo-wrapper">
                   <div :class="logo">
-                      <span :class="cat"></span>
+                    <span :class="cat"></span>
                   </div>
                   <div class="num" v-show="totalCount>0">{{totalCount}}</div>
               </div>
