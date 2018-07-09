@@ -66,7 +66,8 @@ selectFoods () {
       });
       return foods;
 }
-count属性是在cartControl.vue中添加的，在子组件对父组件传递过来的数据的修改会反映到父组件上面，
+count属性是在cartControl.vue中添加的，通过vue.set()添加属性，当它变化时就能被检测到，从而父组件能获取到count值
+在子组件对父组件传递过来的数据的修改(增加属性，即修改对象本身)则会反映到父组件上面，
 所以在父组件可以对每一样good下面的每一样的food遍历，当food下面有count属性的时候，说明该food已经被添加到购物车了
 
 然后将selectFoods传给shopcart：
