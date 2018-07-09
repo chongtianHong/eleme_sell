@@ -70,6 +70,16 @@ decCart (event) {
       }
 }
 
+
 vue.js的一个特性。当给一个观测对象添加一个不存在的属性的时候，直接赋值是不可以的。
 需要使用Vue.set来设置需要被监听的属性。
-Vue 不允许动态添加根级响应式属性，即不能在直接data上增加属性，可以在data里的对象上增加属性。
+对于已经创建的实例，Vue 不能动态添加根级别的响应式属性。但是，可以使用 Vue.set(object, key, value) 方法向嵌套对象添加响应式属性。
+var vm = new Vue({
+  data: {
+    userProfile: {
+      name: 'Anika'
+    }
+  }
+})
+可以添加一个新的 age 属性到嵌套的 userProfile 对象：
+Vue.set(vm.userProfile, 'age', 27)
