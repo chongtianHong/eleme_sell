@@ -17,19 +17,17 @@ addCart (event) {
       }
 }
 到页面中点击发现，点击事件并没有生效。
-原因:carcontrol是处在foods-wrapper面板里面，当时使用better-scroll。
-在better-scroll下要实现移动端的点击效果。
-因此在初始化时候需要传一个参数，将click改为true。
+原因:carcontrol是在good.vue组件的foods-wrapper面板里面使用，foods-wrapper使用了better-scroll。
+在better-scroll下要实现移动端的点击效果。在初始化时候需要传一个参数，将click改为true。
 因此去到goods.vue组件下，
 this.foodScroll = new BScroll(this.$refs.foodsWrapper, {
         click: true,
-        probeType: 3
-      });
+        probeType: 3  // 传递这个属性的意思是：希望scroll在滚动的时候，能告诉我们实时滚动的位置。
+});
 
 发现点击事件生效以后，减号按钮和商品数量并没有显示。
 即当food.count>0并不能生效。
-这是因为vue.js的一个特性。
-当给一个观测对象添加一个不存在的字段的时候，直接赋值是不可以的。
+这是因为vue.js的一个特性。当给一个观测对象添加一个不存在的字段的时候，直接赋值是不可以的。
       if (!this.food.count) {
         this.food.count = 1;
       } else {
@@ -40,8 +38,19 @@ defineproperty检测不到新增的变化。
 通过import Vue from 'vue';
 Vue.set(this.food, 'count', 1);
 因此this.food.count的变化就能被监听到。
+所以，修改addCart方法里面的内容：
+addCart (event) {
+      if (!event._constructed) { // 去掉自带click事件的点击
+        return;
+      }
+      if (!this.food.count) {
+        Vue.set(this.food, 'count', 1);
+      } else {
+        this.food.count++;
+      }
+},
 
-由于没给商品数量的文字设置样式，因此看不到数字。
+由于没给商品数量的文字设置font-size样式，因此看不到数字，因此设置如下：
   .cart-count{
     display: inline-block;
     width: 24px;
