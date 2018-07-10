@@ -1,5 +1,4 @@
-module.exports = urlParse;
-function urlParse () { // 解析url参数 example:[?id=1234&a=b] return:[Object {id:1234,a:b}]
+export function urlParse () { // 解析url参数 example:[?id=1234&a=b] return:[Object {id:1234,a:b}]
   let url = window.location.serach;
   let obj = {};
   let reg = /[?&][^?&]+=[^?&]+/g;

@@ -26,17 +26,18 @@
 
 <script type="text/ecmascript-6">
 import header from '@/components/header/header.vue';
-import {urlParse} from './common/js/util.js';
+// import {urlParse} from './common/js/util.js';
 const ERR_OK = 0;
 export default {
   name: 'App',
   data () {
     return {
       seller: {
-        id: (() => {
-          let queryParam = urlParse(); // 获取地址中的查询字符串
-          return queryParam.id;
-        })()
+        // id: (() => {
+        //   let queryParam = urlParse(); // 获取地址中的查询字符串
+        //   return queryParam.id;
+        // })()
+        id: 12345
       }
     };
   },
