@@ -26,6 +26,7 @@
 
 <script type="text/ecmascript-6">
 import header from '@/components/header/header.vue';
+import {urlParse} from './common/js/util.js';
 const ERR_OK = 0;
 export default {
   name: 'App',
@@ -33,7 +34,7 @@ export default {
     return {
       seller: {
         id: (() => {
-          let queryParam = this.urlParse();
+          let queryParam = urlParse(); // 获取地址中的查询字符串
           return queryParam.id;
         })()
       }
@@ -43,30 +44,15 @@ export default {
     this.$http.get('/api/seller').then((response) => {
       response = response.body;
       if (response.errno === ERR_OK) {
-        this.seller = response.data;
+        /* this.seller =  response.data; 会覆盖掉id */
+        /* 防止把id覆盖掉，使用es6的一个语法:扩展了对象的属性，在原来的基础上添加response.data的值，不会覆盖掉原来的id属性 */
+        this.seller = Object.assign({}, this.seller, response.data);
         //console.log(this.seller);
       }
     });
   },
   components: {
     'v-header': header
-  },
-  methods: {
-    urlParse () { // 解析url参数 example:[?id=1234&a=b] return:[Object {id:1234,a:b}]
-      let url = window.location.serach;
-      let obj = {};
-      let reg = /[?&][^?&]+=[^?&]+/g;
-      let arr = url.match(reg); // 返回一个数组[?id=1234,&a=b];
-      if (arr) {
-        arr.forEach((item) => {
-          let tempArr = item.substring(1).split('='); // 把首字符删掉.split
-          let key = decodeURIComponent(tempArr[0]);
-          let val = decodeURIComponent(tempArr[1]);
-          obj[key] = val;
-        });
-      }
-      return obj;
-    }
   }
 };
 </script>
