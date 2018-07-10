@@ -33,7 +33,7 @@ export default {
     return {
       seller: {
         id: (() => {
-          let queryParam = urlParse();
+          let queryParam = this.urlParse();
           return queryParam.id;
         })()
       }
@@ -57,6 +57,15 @@ export default {
       let obj = {};
       let reg = /[?&][^?&]+=[^?&]+/g;
       let arr = url.match(reg); // 返回一个数组[?id=1234,&a=b];
+      if (arr) {
+        arr.forEach((item) => {
+          let tempArr = item.substring(1).split('='); // 把首字符删掉.split
+          let key = decodeURIComponent(tempArr[0]);
+          let val = decodeURIComponent(tempArr[1]);
+          obj[key] = val;
+        });
+      }
+      return obj;
     }
   }
 };
