@@ -72,6 +72,7 @@
 import star from '../star/star';
 import split from '../split/split';
 import BScroll from 'better-scroll';
+import {saveToLocal} from '../../common/js/store';
 export default {
   name: 'seller',
   props: {
@@ -128,6 +129,7 @@ export default {
         return;
       }
       this.favorite = !this.favorite;
+      saveToLocal(this.seller.id, 'favorite', this.favorite);
     }
   }
 };
