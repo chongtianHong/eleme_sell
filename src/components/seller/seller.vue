@@ -72,7 +72,7 @@
 import star from '../star/star';
 import split from '../split/split';
 import BScroll from 'better-scroll';
-import {saveToLocal} from '../../common/js/store';
+import {saveToLocal, loadFromLocal} from '../../common/js/store';
 export default {
   name: 'seller',
   props: {
@@ -82,7 +82,10 @@ export default {
   },
   data () {
     return {
-      favorite: false
+      // favorite: false
+      favorite: (() => { // 用立即执行函数
+        return loadFromLocal(this.seller.id, 'favorite', false);
+      })()
     };
   },
   computed: {

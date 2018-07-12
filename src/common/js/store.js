@@ -14,5 +14,14 @@ export function saveToLocal (id, key, value) {
 };
 
 export function loadFromLocal (id, key, def) {
-
+  let seller = localStorage.__seller__;
+  if (!seller) { // 缓存中没有保存seller相关数据
+    return def; // 返回默认值
+  }
+  seller = JSON.parse(seller)[id]; // 将字符串转化为对象后获取对应商家数据
+  if (!seller) {
+    return def;// 返回默认值
+  }
+  let ret = seller[key];
+  return ret || def;// 返回对应key的value或默认值
 };
