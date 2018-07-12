@@ -26,7 +26,7 @@
 
 <script type="text/ecmascript-6">
 import header from '@/components/header/header.vue';
-import {urlParse} from './common/js/util.js';
+// import {urlParse} from './common/js/util.js';
 const ERR_OK = 0;
 export default {
   name: 'App',
