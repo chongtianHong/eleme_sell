@@ -35,7 +35,7 @@ export default {
       seller: {
         id: (() => {
           let queryParam = urlParse(); // 获取地址中的查询字符串
-          console.log(queryParam);
+          // console.log(queryParam);
           return queryParam.id;
         })()
         // id: 12345
