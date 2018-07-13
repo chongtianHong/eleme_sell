@@ -85,7 +85,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       filename: config.build.index,
       template: 'index.html',
       inject: true,
-      minify: {
+      minify: { // 压缩html文件
         removeComments: true,
         collapseWhitespace: true,
         removeAttributeQuotes: true
@@ -104,7 +104,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     // 分割公共 js 到独立的文件
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      minChunks (module) {
+      minChunks (module) { // 将依赖的第三方库打包成vendor.js
         // any required modules inside node_modules are extracted to vendor
         // node_modules中的任何所需模块都提取到vendor
         return (
@@ -119,6 +119,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     // extract webpack runtime and module manifest to its own file in order to
     // prevent vendor hash from being updated whenever app bundle is updated
     // 将webpack runtime 和模块清单 提取到独立的文件，以防止当 app包更新时导致公共 jsd hash也更新
+    // 阻止vendor哈希更新，不随app更新而更新
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
       minChunks: Infinity

@@ -6,7 +6,7 @@ require('./check-versions')()
 // 设置当前环境为生产环境
 process.env.NODE_ENV = 'production'
 
-// loading 插件
+// loading 插件 给一些较长时间的异步任务提供提示
 const ora = require('ora')
 // 可以在 node 中执行`rm -rf`的工具
 const rm = require('rimraf')
