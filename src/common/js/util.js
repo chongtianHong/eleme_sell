@@ -1,5 +1,5 @@
 export function urlParse () { // 解析url参数 example:[?id=1234&a=b] return:[Object {id:1234,a:b}]
-  let url = window.location.serach;
+  let url = window.location.search;
   let obj = {};
   let reg = /[?&][^?&]+=[^?&]+/g;
   let arr = url.match(reg); // 返回一个数组[?id=1234,&a=b];

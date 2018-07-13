@@ -12,7 +12,7 @@ Vue.use(Router);
 // 需要注意的是，export default new Router 必须写在文件底部，而且后面还需要接一空行，否则无法通过 ESlint 语法验证
 // 使用路由规则
 export default new Router({
-  mode: 'history', // 若不配置 mode，就会使用默认的 hash 模式，该模式下会将路径格式化为 #! 开头。
+  // mode: 'history', // 若不配置 mode，就会使用默认的 hash 模式，该模式下会将路径格式化为 #! 开头。
   routes: [
     {
       path: '/goods',
