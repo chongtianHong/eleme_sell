@@ -7,7 +7,7 @@ const app = express(); // 请求server
 
 var router = express.Router();
 
-router.get('/', function(req,res,next){
+router.get('/', function(req, res, next){
   req.url = '/index.html';
   next();
 });
