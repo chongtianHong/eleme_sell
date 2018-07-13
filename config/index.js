@@ -66,7 +66,7 @@ module.exports = {
      * Source Maps
      */
     // 是否开启 cssSourceMap
-    productionSourceMap: true,
+    productionSourceMap: false,
     // https://webpack.js.org/configuration/devtool/#production
     devtool: '#source-map',
 
@@ -85,6 +85,7 @@ module.exports = {
     // Set to `true` or `false` to always turn it on or off
     // 运行“build”命令行时，加上一个参数，可以在构建完成后参看包分析报告
     // true为开启，false为关闭
-    bundleAnalyzerReport: process.env.npm_config_report
+    bundleAnalyzerReport: process.env.npm_config_report,
+    port: 9000
   }
 }
