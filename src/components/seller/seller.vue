@@ -80,6 +80,13 @@ export default {
       type: Object
     }
   },
+  watch: { // 解决刷新页面后，商品商家实景图片无法横向滚动的问题
+    'seller' () {
+      this.$nextTick(() => {
+        this._initPicScroll();
+      });
+    }
+  },
   data () {
     return {
       // favorite: false
